@@ -4,13 +4,12 @@ import characters.Player;
 
 public class Main {
     public static void main(String[] args) {
-        Player player= new Player();
-        BasicCharacter character=new BasicCharacter();
-        character.newName();
-        character.displayData();
-        player.newName();
-        player.displayData();
-        player.attack();
+        System.out.println("\n//////////BIENVENIDO//////////");
+     Player player= new Player();
+     BasicCharacter character=new BasicCharacter();
+     character.displayData();
+     player.displayData();
+     player.attack();
 
     }
 }

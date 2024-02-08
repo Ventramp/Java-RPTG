@@ -9,6 +9,7 @@ public class Player extends BasicCharacter{
     protected int def;
     protected int dex;
     protected int attk;
+    protected int dm;
     protected int crit;
     protected int luck;
     protected int level;
