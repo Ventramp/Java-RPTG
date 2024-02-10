@@ -10,6 +10,8 @@ public class Main {
      character.displayData();
      player.displayData();
      player.attack();
+     Monk monk =new Monk();
+     monk.aboutJob();
 
     }
 }
