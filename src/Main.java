@@ -7,6 +7,7 @@ public class Main {
         System.out.println("\n//////////BIENVENIDO//////////");
      Player player= new Player();
      BasicCharacter character=new BasicCharacter();
+     character.newName();
      character.displayData();
      player.displayData();
      player.attack();
