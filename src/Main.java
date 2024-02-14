@@ -1,17 +1,15 @@
 import characters.BasicCharacter;
 import characters.Jobs.Monk;
 import characters.Player;
+import characters.Jobs.Ranger;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("\n//////////BIENVENIDO//////////");
-     Player player= new Player();
-     BasicCharacter character=new BasicCharacter();
-     character.displayData();
-     player.displayData();
-     player.attack();
-     Monk monk =new Monk();
-     monk.aboutJob();
+     Ranger ranger = new Ranger();
+     ranger.newName();
+     ranger.displayData();
+     ranger.attack();
 
     }
 }
