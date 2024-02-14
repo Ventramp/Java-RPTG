@@ -10,6 +10,6 @@ public class Swordman extends Player {
         this.jobDesc = jobDesc;
         this.masterSword = masterSword;
         this.jobBuff = jobBuff;
-        this.attk = (this.str+ weapon.getwAttk());
+        this.attk = (this.str+ weapon.getwA());
     }
 }

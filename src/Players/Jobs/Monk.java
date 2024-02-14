@@ -1,25 +1,26 @@
 package Players.Jobs;
 import Players.Player;
-
+//PREVISUALIZACION DE CLASE MONK//
 public class Monk extends Player {
     private String jobName;
     private int unarmed;
-
-
+    //CONSTRUCTOR DE MONK Y SUS STADS ADICIONALES Y ESPECIALES//
     public Monk() {
         this.jobName = "Monje";
         this.unarmed = 0;
         this.str = (str+5);
-        this.maxHp=(hp+30);
+        this.hp=this.hp+30;
+        this.maxHp=(maxHp+30);
         System.out.println("Adquiriendo trabajo:");
         System.out.println(".\n...\n.....\n");
         System.out.printf("\n///////\t\t%s\t\t///////\n",name);
-        System.out.printf("\t\tHP:\t\t\t%d/%d\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp,maxHp,mp,maxMp);
+        System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp);
         System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
         System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
-        System.out.printf("\t\tSTR:\t\t\t%d\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d\n",str,mag,def);
-        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tARMOR:\t\t%d\n\n",dex,pCrit,unarmed,armor);
+        System.out.printf("\t\tSTR:\t\t\t%d+(%d)\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d+(%d)\n",str,weapon.getwA(),mag,def,armor.getaD());
+        System.out.printf("\t\tDEX:\t\t\t%d+(%d)\n\t\tPROB.CRIT:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,weapon.getwD(),pCrit,unarmed,weapon.getN(),armor.getN());
     }
+    //SOBREESCRITURA DE DISPLAY DATA PARA MONK
     @Override
     public void displayData(){
         System.out.printf("\n///////\t\t%s\t\t///////\n",name);
@@ -27,7 +28,7 @@ public class Monk extends Player {
         System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
         System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
         System.out.printf("\t\tSTR:\t\t\t%d\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d\n",str,mag,def);
-        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tARMOR:\t\t%d\n\n",dex,pCrit,unarmed,armor);
+        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tARMOR:\t\t%d\n\n",dex,pCrit,unarmed,armor.getN());
     }
 
     @Override
