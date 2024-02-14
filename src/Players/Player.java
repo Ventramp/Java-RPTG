@@ -1,9 +1,10 @@
-package characters;
+package Players;
 
-import armors.Armors;
-import weapons.Weapons;
+import characters.BasicCharacter;
+import items.armors.Armors;
+import items.weapons.Weapons;
 
-public class Player extends BasicCharacter{
+public class Player extends BasicCharacter {
     protected int str;
     protected int mag;
     protected int def;
@@ -11,7 +12,7 @@ public class Player extends BasicCharacter{
     protected int attk;
     protected int dm;
     protected int crit;
-    protected int luck;
+    protected int pCrit;
     protected int level;
     protected int exp;
     protected Weapons weapon;
@@ -36,7 +37,7 @@ public class Player extends BasicCharacter{
 
         //o eres bueno con la magia o eres fuerte creando un equilibrio artificial de los stads
         this.mag = (-this.str+15);
-        this.luck=5;
+        this.pCrit=5;
         this.level = 1;
         this.exp = 0;
         this.weapon=null;
@@ -51,10 +52,10 @@ public void displayData(){
     System.out.printf("\t\tHP:\t\t\t%d/%d\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp,maxHp,mp,maxMp);
     System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
     System.out.printf("\t\tSTR:\t\t\t%d\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d\n",str,mag,def);
-    System.out.printf("\t\tDEX:\t\t\t%d\n\t\tLUCK:\t\t\t%d\n\n\tWEAPON:\t\t%d\n\tARMOR:\t\t%d\n\n",dex,luck,weapon,armor);
+    System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\n\tWEAPON:\t\t%d\n\tARMOR:\t\t%d\n\n",dex,pCrit,weapon,armor);
     }
     public void attack(){
-        if (rng(1, 100) <= luck) {
+        if (rng(1, 100) <= pCrit) {
             this.crit =(this.str * 2);
             System.out.printf("!CRITICO¡\n%s Ataca con las manos vacias\nHace: %d de daño\n\n",name, crit);
         }else{

@@ -1,6 +1,6 @@
-package characters.Jobs;
-import characters.Player;
-import weapons.Sword;
+package Players.Jobs;
+import Players.Player;
+
 public class Swordman extends Player {
     private String jobDesc;
     private int masterSword;
