@@ -1,7 +1,5 @@
-package characters.Jobs;
-import characters.Player;
-import weapons.Weapons;
-import armors.Knuckles;
+package Players.Jobs;
+import Players.Player;
 
 public class Monk extends Player {
     private String jobName;
@@ -20,7 +18,7 @@ public class Monk extends Player {
         System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
         System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
         System.out.printf("\t\tSTR:\t\t\t%d\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d\n",str,mag,def);
-        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tLUCK:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tARMOR:\t\t%d\n\n",dex,luck,unarmed,armor);
+        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tARMOR:\t\t%d\n\n",dex,pCrit,unarmed,armor);
     }
     @Override
     public void displayData(){
@@ -29,12 +27,12 @@ public class Monk extends Player {
         System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
         System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
         System.out.printf("\t\tSTR:\t\t\t%d\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d\n",str,mag,def);
-        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tLUCK:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tARMOR:\t\t%d\n\n",dex,luck,unarmed,armor);
+        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tARMOR:\t\t%d\n\n",dex,pCrit,unarmed,armor);
     }
 
     @Override
         public void attack(){
-            if (rng(1, 100) <= luck) {
+            if (rng(1, 100) <= pCrit) {
                 this.crit =this.dm= (unarmed*2 + str* 2);
                 this.unarmed +=1;
                 System.out.printf("!CRITICO¡\n%s Ataca desarmado\nHace: %d de daño\nDesarmado ha subido a:\n\tUnarmed:%d\n\n",name, crit,unarmed);
