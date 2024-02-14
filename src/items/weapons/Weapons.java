@@ -1,6 +1,8 @@
-package weapons;
+package items.weapons;
 
-public class Weapons {
+import items.Items;
+
+public class Weapons extends Items {
     protected String name;
     protected String description;
     protected int price;
