@@ -8,11 +8,14 @@ public class Monk extends Player {
     public Monk() {
         this.jobName = "Monje";
         this.unarmed = 0;
-        this.str = (str+5);
-        this.hp=this.hp+30;
-        this.maxHp=(maxHp+30);
+        this.str = (str + 10);
+        this.hp=this.hp + 30;
+        this.maxHp=(maxHp + 30);
+        this.mag = mag - 5;
+        this.maxMp = maxMp - 20;
         System.out.println("Adquiriendo trabajo:");
         System.out.println(".\n...\n.....\n");
+        System.out.println("Ahora eres un MONJE\n");
         System.out.printf("\n///////\t\t%s\t\t///////\n",name);
         System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp);
         System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
@@ -42,6 +45,8 @@ public class Monk extends Player {
                 System.out.printf("%s Ataca desarmado\nHace: %d de Daño \n\n",name, dm);
             }
         }
+
+        @Override
         public void aboutJob(){
             System.out.println("El monje es un luchador cuerpo a cuerpo que no usa armas\nCada que acierte un critico  sin una arma equipada su cualidad:\nDESARMADO subira de nivel, la cual aumentara su fuerza de sus golpes");
         }

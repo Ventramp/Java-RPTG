@@ -60,6 +60,9 @@ public void displayData() {
     System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tMAG:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),mag,weapon.getwMag(),def,armor.getaD());
     System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,pCrit,weapon.getN(),armor.getN());
     }
+    public void aboutJob(){
+        System.out.println("Actualmente no tienes adquirida ninguna CLASE");
+    }
     public void attack(){
         this.dm=str+weapon.getwA();
         //switch segun el Job//
@@ -75,7 +78,7 @@ public void displayData() {
         this.dm=mag+ weapon.getwMag();
         //switch segun el elemento//
         //switch
-        System.out.printf("%s Castea un Hechizo\n",name);
+        System.out.printf("%s Canaliza un Hechizo\n",name);
         if (rng(1, 100) <= pCrit) {
             this.crit =dm*2;
             System.out.printf("!CRITICO¡\n%s Lanza un hechizo magico\nHace: %d de daño\n\n",name, crit);
@@ -83,10 +86,11 @@ public void displayData() {
             System.out.printf("%s Lanza un hechizo magico\nHace: %d de Daño \n\n",name, dm);
         }
     }
+    //implementacion temprana a sistema de nivel, sujeto a cambios//
     public void levelUp(){
         this.level=level+1;
         this.exp=0;
-        System.out.println("SUBISTE DE NIVEL\n");
+        System.out.println("\nSUBISTE DE NIVEL\n");
         this.hp=hp+20;
         this.maxHp=maxHp+20;
         System.out.printf("HP\t maxima aumentada:\t%d\n",maxHp);

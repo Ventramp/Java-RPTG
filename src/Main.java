@@ -10,9 +10,11 @@ public class Main {
      //creacion de jugador//
         Player player= new Player();
      player.displayData();
+     player.aboutJob();
      player.attack();
      player.magicA();
      player.levelUp();
      player.displayData();
+
     }
 }
