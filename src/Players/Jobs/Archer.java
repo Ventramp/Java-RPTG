@@ -36,11 +36,11 @@ public class Archer extends Player {
             {
                 this.crit =(str* 2);
                 this.aim +=1;
-                System.out.printf("!CRITICO¡\n%s Ataca con flecha \nHace: %d de daño\nPunteria ha subido a:\n\tAim: %d\n\n",name, crit,aim);
+                System.out.printf("!CRITICO¡\nEl ARQUERO %s Ataca con flecha \nHace: %d de daño\nPunteria ha subido a:\n\tAim: %d\n\n",name, crit,aim);
             }
             else{
                 this.dm=str;
-                System.out.printf("%s Ataca Con flecha\nHace: %d de Daño \n\n",name, dm);
+                System.out.printf("El ARQUERO%s Ataca Con flecha\nHace: %d de Daño \n\n",name, dm);
             }
         }
     }

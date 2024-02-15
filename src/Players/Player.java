@@ -61,7 +61,7 @@ public void displayData() {
     System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,pCrit,weapon.getN(),armor.getN());
     }
     public void aboutJob(){
-        System.out.println("Actualmente no tienes adquirida ninguna CLASE");
+        System.out.println("CLASE:\nActualmente no tienes adquirida ninguna CLASE\n");
     }
     public void attack(){
         this.dm=str+weapon.getwA();
@@ -78,7 +78,7 @@ public void displayData() {
         this.dm=mag+ weapon.getwMag();
         //switch segun el elemento//
         //switch
-        System.out.printf("%s Canaliza un Hechizo\n",name);
+        System.out.printf("%s Canaliza un Hechizo\n\n",name);
         if (rng(1, 100) <= pCrit) {
             this.crit =dm*2;
             System.out.printf("!CRITICO¡\n%s Lanza un hechizo magico\nHace: %d de daño\n\n",name, crit);

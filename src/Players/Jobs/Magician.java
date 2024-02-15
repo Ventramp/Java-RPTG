@@ -28,7 +28,7 @@ public class Magician extends Player {
         this.dm=mag+ weapon.getwMag()+masterStaff;
         //switch segun el elemento//
         //switch
-        System.out.printf("%s Canaliza un Hechizo\n",name);
+        System.out.printf("El MAGO %s Canaliza un Hechizo\n",name);
         if (rng(1, 100) <= pCrit) {
             this.crit =dm*2;
             this.masterStaff=masterStaff+1;

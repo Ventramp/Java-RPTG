@@ -39,10 +39,10 @@ public class Monk extends Player {
             if (rng(1, 100) <= pCrit) {
                 this.crit =this.dm= (unarmed*2 + str* 2);
                 this.unarmed +=1;
-                System.out.printf("!CRITICO¡\n%s Ataca desarmado\nHace: %d de daño\nDesarmado ha subido a:\n\tUnarmed:%d\n\n",name, crit,unarmed);
+                System.out.printf("!CRITICO¡\nEl MONJE %s Ataca desarmado\nHace: %d de daño\nDesarmado ha subido a:\n\tUnarmed:%d\n\n",name, crit,unarmed);
             }else{
                 this.dm=(unarmed*2+str);
-                System.out.printf("%s Ataca desarmado\nHace: %d de Daño \n\n",name, dm);
+                System.out.printf("El MONJE %s Ataca desarmado\nHace: %d de Daño \n\n",name, dm);
             }
         }
 
