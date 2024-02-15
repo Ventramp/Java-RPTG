@@ -11,6 +11,8 @@ public class Main {
         Player player= new Player();
      player.displayData();
      player.attack();
-
+     player.magicA();
+     player.levelUp();
+     player.displayData();
     }
 }

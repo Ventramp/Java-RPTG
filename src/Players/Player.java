@@ -55,19 +55,56 @@ public class Player extends BasicCharacter {
 @Override
 public void displayData() {
     System.out.printf("\n///////\t\t%s\t\t///////\n",name);
-    System.out.printf("\t\tHP:\t\t\t%d/%d   +\t(%d)\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp);
+    System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tMP:\t\t\t%d/%d+(%d)\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp,weapon.getwMP());
     System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
-    System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),mag,def,armor.getaD());
-    System.out.printf("\t\tDEX:\t\t\t%d   +\t(%d)\n\t\tPROB.CRIT:\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,weapon.getwD(),pCrit,weapon.getN(),armor.getN());
+    System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tMAG:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),mag,weapon.getwMag(),def,armor.getaD());
+    System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,pCrit,weapon.getN(),armor.getN());
     }
     public void attack(){
+        this.dm=str+weapon.getwA();
         //switch segun el Job//
         //switch//
         if (rng(1, 100) <= pCrit) {
-            this.crit =((str+ weapon.getwA()) * 2);
+            this.crit =dm * 2;
             System.out.printf("!CRITICO¡\n%s Ataca con las manos vacias\nHace: %d de daño\n\n",name, crit);
         }else{
-            System.out.printf("%s Ataca con las manos desnudas\nHace: %d de Daño \n\n",name, str+ weapon.getwA());
+            System.out.printf("%s Ataca con las manos desnudas\nHace: %d de Daño \n\n",name, dm);
+        }
+    }
+    public void magicA(){
+        this.dm=mag+ weapon.getwMag();
+        //switch segun el elemento//
+        //switch
+        System.out.printf("%s Castea un Hechizo\n",name);
+        if (rng(1, 100) <= pCrit) {
+            this.crit =dm*2;
+            System.out.printf("!CRITICO¡\n%s Lanza un hechizo magico\nHace: %d de daño\n\n",name, crit);
+        }else{
+            System.out.printf("%s Lanza un hechizo magico\nHace: %d de Daño \n\n",name, dm);
+        }
+    }
+    public void levelUp(){
+        this.level=level+1;
+        this.exp=0;
+        System.out.println("SUBISTE DE NIVEL\n");
+        this.hp=hp+20;
+        this.maxHp=maxHp+20;
+        System.out.printf("HP\t maxima aumentada:\t%d\n",maxHp);
+        this.mp=mp+10;
+        this.maxMp=maxMp+10;
+        System.out.printf("MP\t maxima aumentada:\t%d\n",maxMp);
+        for (int i = 0; i < 4; i++){
+            int x=rng(1,5);
+            if (x==1) {this.str=(str+1);
+                System.out.printf("STR\t Ha aumentado a:\t%d\n",str);}
+            if (x==2) {this.def=(def+1);
+                System.out.printf("DEF\t Ha aumentado a:\t%d\n",def);}
+            if (x==3) {this.dex=(dex+1);
+                System.out.printf("DEX\t Ha aumentado a:\t%d\n",dex);}
+            if (x==4) {this.mag=(mag+1);
+                System.out.printf("MAG\t Ha aumentado a:\t%d\n",mag);}
+            if (x==5) {this.pCrit=(pCrit+1);
+                System.out.printf("P.CRIT Ha aumentado a:\t%d\n",pCrit);}
         }
     }
 }

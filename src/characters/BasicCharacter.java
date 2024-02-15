@@ -17,7 +17,7 @@ public class BasicCharacter {
     }
 //DISPLAY DATA DE PERSONAJE NUEVO//
     public void displayData() {
-        System.out.println("\n\t\t\t**NPC**\t\t\t");
+        System.out.println("\n\t\t\t** NPC **\t\t\t");
         System.out.printf("///////\t\t%s\t\t///////\n",name);
         System.out.printf("\t\tHP:\t\t\t%d/%d\n\t\tMP:\t\t\t%d/%d\t\t\t\n\n",hp,maxHp,mp,maxMp);
     }
