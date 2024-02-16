@@ -1,5 +1,6 @@
 package Players.Jobs;
 import Players.Player;
+import items.weapons.MagicStaff;
 
 public class Magician extends Player {
     private String jobName;
@@ -7,6 +8,7 @@ public class Magician extends Player {
 
     public Magician() {
         this.jobName = "Mago";
+        this.weapon = new MagicStaff();
         this.mp = mp +50;
         this.maxMp =maxMp+50;
         this.mag = mag+5;
@@ -31,7 +33,7 @@ public class Magician extends Player {
         System.out.printf("El MAGO %s Canaliza un Hechizo\n",name);
         if (rng(1, 100) <= pCrit) {
             this.crit =dm*2;
-            this.masterStaff=masterStaff+1;
+            this.masterStaff += 1;
             System.out.printf("!CRITICO¡\n%s Lanza un hechizo magico\nHace: %d de daño\nMaestria de Magia Aumento a:\t%d\n\n",name, crit,masterStaff);
 
         }else{

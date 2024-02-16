@@ -1,5 +1,6 @@
 package Players.Jobs;
 import Players.Player;
+import items.weapons.Sword;
 
 public class Swordman extends Player {
     private String jobName;
@@ -7,6 +8,7 @@ public class Swordman extends Player {
     public Swordman() {
         this.jobName = "Espadachin";
         this.bleeding = 1;
+        this.weapon = new Sword();
         this.def+=7;
         this.str+=7;
         this.mag-=7;

@@ -1,6 +1,7 @@
 package Players.Jobs;
 
 import Players.Player;
+import items.weapons.Bow;
 
 public class Archer extends Player {
     protected int aim;
@@ -8,10 +9,12 @@ public class Archer extends Player {
     protected String jobName;
 
     public Archer() {
+        this.weapon= new Bow();
         this.jobName = "Arquero";
+        this.str-=3;
         this.aim = 0;
-        this.dex = (dex+5);
-        this.def=(def+5);
+        this.dex +=5;
+        this.def+=5;
     }
     @Override
     public void displayData() {
