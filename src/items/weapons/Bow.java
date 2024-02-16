@@ -1,7 +1,7 @@
 package items.weapons;
 
-public class bow extends Weapons {
-    public bow() {
+public class Bow extends Weapons {
+    public Bow() {
         this.name = "Arco de madera";
         this.description = "Un arco de madera vieja y mohosa, lo encontraste tirado por ahi";
         this.price = 0;
