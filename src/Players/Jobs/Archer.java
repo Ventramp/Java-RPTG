@@ -57,8 +57,5 @@ public class Archer extends Player {
         }
     }
 
-    public static void main(String[] args) {
-        Archer archer =new Archer();
-    }
 }
 
