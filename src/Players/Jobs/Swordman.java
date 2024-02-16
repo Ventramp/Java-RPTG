@@ -21,7 +21,7 @@ public class Swordman extends Player {
         System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp);
         System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
         System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
-        System.out.printf("\t\tSTR:\t\t\t%d+(%d)\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d+(%d)\n",str,weapon.getwA(),mag,def,armor.getaD());
+        System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tMAG:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),mag,weapon.getwMag(),def,armor.getaD());
         System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tBLEEDING:\t\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,pCrit,bleeding,weapon.getN(),armor.getN());
     }
 

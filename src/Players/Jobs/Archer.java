@@ -15,6 +15,15 @@ public class Archer extends Player {
         this.aim = 0;
         this.dex +=5;
         this.def+=5;
+        System.out.println("Adquiriendo trabajo:");
+        System.out.println(".\n...\n.....\n");
+        System.out.println("Ahora eres un ARQUERO\n");
+        System.out.printf("\n///////\t\t%s\t\t///////\n",name);
+        System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp);
+        System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
+        System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
+        System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tMAG:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),mag,weapon.getwMag(),def,armor.getaD());
+        System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tAIM:\t\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,pCrit,aim,weapon.getN(),armor.getN());
     }
     @Override
     public void displayData() {
@@ -22,7 +31,7 @@ public class Archer extends Player {
         System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tMP:\t\t\t%d/%d\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp);
         System.out.printf("\n\t\tJob:\t\t\t%s\n",jobName);
         System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t\t\t%d\n\n",level,exp);
-        System.out.printf("\t\tSTR:\t\t\t%d+(%d)\n\t\tMAG:\t\t\t%d\n\t\tDEF:\t\t\t%d+(%d)\n",str,weapon.getwA(),mag,def,armor.getaD());
+        System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tMAG:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),mag,weapon.getwMag(),def,armor.getaD());
         System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t\t%d\n\tAIM:\t\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n",dex,pCrit,aim,weapon.getN(),armor.getN());
     }
     @Override
@@ -46,6 +55,10 @@ public class Archer extends Player {
                 System.out.printf("El ARQUERO%s Ataca Con flecha\nHace: %d de Daño \n\n",name, dm);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Archer archer =new Archer();
     }
 }
 
