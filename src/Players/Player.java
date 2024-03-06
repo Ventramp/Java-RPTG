@@ -4,6 +4,7 @@ import java.util.Scanner;
 import characters.BasicCharacter;
 import items.armors.Armors;
 import items.weapons.Weapons;
+import static util.Randomized.rng;
 //INICIO DE PLAYER Y ATRIBUTOS//
 public class Player extends BasicCharacter {
     protected int str;
@@ -19,10 +20,7 @@ public class Player extends BasicCharacter {
     //VINCULACION DE LOS OBJETOS WEAPON Y ARMOR//
     protected Weapons weapon;
     protected Armors armor;
-    //RNG PARA ELEMENTOS ALEATORIOS EN EL FUNCIONAMIENTO DEL PLAYER//
-    protected int rng(int min, int max) {
-        return (int) Math.floor(Math.random() * (max - min + 1) + min);
-    }
+
     //CONSTRUCTOR DE LAS CARACTERISTICAS DE PLAYER//
     public Player() {
         System.out.println("Nuevo Jugador Ingresando:");
@@ -36,7 +34,7 @@ public class Player extends BasicCharacter {
         //genera un rng entre 1 y 3 donde cada numero esta asignado a una estadistica de caer uno de los numeros se sumara +1 a la
         //estadistica correspondiente, este ciclo se repetira hasta que la suma total de atributos sea 30//
         do {
-            int x=rng(1,3);
+            int x= (rng(1,3));
             if (x==1) {this.str=(this.str+1);}
             if (x==2) {this.def=(this.def+1);}
             if (x==3) {this.dex=(this.dex+1);}
@@ -98,7 +96,7 @@ public void displayData() {
         this.maxMp=maxMp+10;
         System.out.printf("MP\t maxima aumentada:\t%d\n",maxMp);
         for (int i = 0; i < 4; i++){
-            int x=rng(1,5);
+            int x=(rng(1,5));
             if (x==1) {this.str=(str+1);
                 System.out.printf("STR\t Ha aumentado a:\t%d\n",str);}
             if (x==2) {this.def=(def+1);
