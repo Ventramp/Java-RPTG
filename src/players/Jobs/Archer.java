@@ -1,9 +1,6 @@
-package Players.Jobs;
+package players.Jobs;
 
-import Players.Player;
-import items.weapons.Bow;
-
-public class Archer extends Player {
+/*public class Archer extends Player {
     protected int aim;
     protected int addArrow;
     protected String jobName;
@@ -58,4 +55,6 @@ public class Archer extends Player {
     }
 
 }
+
+ */
 

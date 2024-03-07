@@ -1,26 +1,29 @@
 package characters;
 
 //DEFINICION ATRIBUTOS DE NUEVO PERSONAJE//
-public class BasicCharacter {
+public abstract class BasicCharacter {
     protected String name;
     protected int hp;
     protected int maxHp;
     protected int mp;
     protected int maxMp;
 //CONSTRUCTOR DE PERSONAJE NUEVO//
-    public BasicCharacter() {
-        this.name = "DAVE";
-        this.hp = 100;
-        this.maxHp = 100;
-        this.mp = 100;
-        this.maxMp = 100;
+    public BasicCharacter(String name, int hp, int mp) {
+        this.name = name;
+        this.hp = hp;
+        this.maxHp = hp;
+        this.mp = mp;
+        this.maxMp = mp;
     }
 //DISPLAY DATA DE PERSONAJE NUEVO//
-    public void displayData() {
-        System.out.println("\n\t\t\t** NPC **\t\t\t");
-        System.out.printf("///////\t\t%s\t\t///////\n",name);
-        System.out.printf("\t\tHP:\t\t\t%d/%d\n\t\tMP:\t\t\t%d/%d\t\t\t\n\n",hp,maxHp,mp,maxMp);
+    public abstract void displayData();
+    public void recibeDm(int eDm){
+        hp-=eDm;
     }
+    public boolean muerte() {
+        return hp <= 0;
+    }
+
     //GETTERS Y SETTERS DE PERSONAJE NUEVO//
     public String getName() {
         return name;

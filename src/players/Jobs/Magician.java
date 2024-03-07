@@ -1,8 +1,5 @@
-package Players.Jobs;
-import Players.Player;
-import items.weapons.MagicStaff;
-
-public class Magician extends Player {
+package players.Jobs;
+/*public class Magician extends Player {
     private String jobName;
     private int masterStaff;
 
@@ -47,3 +44,5 @@ public class Magician extends Player {
     }
 
 }
+
+ */

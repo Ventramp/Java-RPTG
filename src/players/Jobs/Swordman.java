@@ -1,11 +1,9 @@
-package Players.Jobs;
-import Players.Player;
-import items.weapons.Sword;
+package players.Jobs;
 
-public class Swordman extends Player {
+/* public class Swordman extends Player {
     private String jobName;
     private int bleeding;
-    public Swordman() {
+  public Swordman() {
         this.jobName = "Espadachin";
         this.bleeding = 1;
         this.weapon = new Sword();
@@ -39,3 +37,6 @@ public class Swordman extends Player {
         System.out.println("El ESPADACHIN es un Guerrero cuerpo a cuerpo\nPierde capacidades magicas y MP pero gana Fuerza y Defensa\nEl espadachin tiene la caracteristica SANGRADO que se activa despues de un critico\nCada turno que pase el enemigo afectado por SANGRADO perdera vida de manera creciente");
     }
 }
+
+
+ */

@@ -1,20 +1,22 @@
-import characters.BasicCharacter;
-import Players.Player;
+import players.Player;
+import enemies.pirate.NavigatorPirate;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("\n////////// BIENVENIDO //////////");
-        //creacion de Basic character o npc
-     BasicCharacter character=new BasicCharacter();
-     character.displayData();
      //creacion de jugador//
-        Player player= new Player();
+        Player player= new Player("Player");
+        NavigatorPirate navigator = new NavigatorPirate();
      player.displayData();
      player.aboutJob();
      player.attack();
      player.magicA();
      player.levelUp();
      player.displayData();
+    navigator.eAttack(player);
+        navigator.eAttack(player);
+        navigator.eAttack(player);
+    player.displayData();
 
     }
 }

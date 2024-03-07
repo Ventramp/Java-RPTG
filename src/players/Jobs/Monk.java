@@ -1,9 +1,6 @@
-package Players.Jobs;
-import Players.Player;
-import items.armors.Knuckles;
-
+package players.Jobs;
 //PREVISUALIZACION DE CLASE MONK//
-public class Monk extends Player {
+/*public class Monk extends Player {
     private String jobName;
     private int unarmed;
     //CONSTRUCTOR DE MONK Y SUS STADS ADICIONALES Y ESPECIALES//
@@ -55,3 +52,5 @@ public class Monk extends Player {
             System.out.println("El MONJE es un luchador cuerpo a cuerpo que no usa armas\nCada que acierte un critico  sin una arma equipada su cualidad:\nDESARMADO subira de nivel, la cual aumentara su fuerza de sus golpes");
         }
 }
+
+ */

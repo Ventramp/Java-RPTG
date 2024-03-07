@@ -1,12 +1,13 @@
 package enemies;
-import Players.Player;
+import players.Player;
 public abstract class Enemies {
     private final String eName;
     private int eHP;
     private final int eDm;
     private final int dropG;
     private final int giveExp;
-
+/*Para evitar confuciones dentro del codigo diferenciamos la informacion de los enemigos de
+* la del jugador colocando a sus atributos una e*/
     public Enemies(String eName, int eHP, int eDm, int dropG, int giveExp) {
         this.eName = eName;
         this.eHP = eHP;
@@ -14,13 +15,13 @@ public abstract class Enemies {
         this.dropG = dropG;
         this.giveExp = giveExp;
     }
-    public void recibeDm (int dm){
+    public void eRecibeDm (int dm){
         System.out.printf("%s Recibio $d puntos de daño ",eDm,dm);
         eHP-=dm;
-        if (muerte())
+        if (eDie())
             System.out.printf("%s fue derrotado");
     }
-    public boolean muerte(){
+    public boolean eDie(){
         return eHP <= 0;
     }
     public abstract void eAttack(Player player);
