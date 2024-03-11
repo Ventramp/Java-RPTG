@@ -2,8 +2,11 @@ package players;
 //IMPORTS NECESARIOS PARA FUNCIONAMIENTO COMPLETO DE PLAYER Y SUS EXTENCIONES//
 import java.util.Scanner;
 import characters.BasicCharacter;
+import enemies.Enemies;
 import items.armors.Armors;
 import items.weapons.Weapons;
+import org.jetbrains.annotations.NotNull;
+
 import static util.Randomized.rng;
 //INICIO DE PLAYER Y ATRIBUTOS//
 public class Player extends BasicCharacter {
@@ -66,7 +69,7 @@ public void displayData() {
     public void aboutJob(){
         System.out.println("CLASE:\nActualmente no tienes adquirida ninguna CLASE\n");
     }
-    public void attack(){
+    public void attack(@NotNull Enemies enemies){
         this.dm=str+weapon.getwA();
         //switch segun el Job//
         //switch//
@@ -76,8 +79,9 @@ public void displayData() {
         }else{
             System.out.printf("%s Ataca con las manos desnudas\nHace: %d de Daño \n\n",name, dm);
         }
+        enemies.eRecibeDm (dm);
     }
-    public void magicA(){
+    public void magicA(@NotNull Enemies enemies){
         this.dm=mag+ weapon.getwMag();
         //switch segun el elemento//
         //switch
@@ -88,8 +92,9 @@ public void displayData() {
         }else{
             System.out.printf("%s Lanza un hechizo magico\nHace: %d de Daño \n\n",name, dm);
         }
+        enemies.eRecibeDm (dm);
     }
-
+    
     //implementacion temprana a sistema de nivel, sujeto a cambios//
     public void levelUp() {
         level++;

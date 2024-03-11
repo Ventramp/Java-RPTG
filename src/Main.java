@@ -9,11 +9,12 @@ public class Main {
         NavigatorPirate navigator = new NavigatorPirate();
      player.displayData();
      player.aboutJob();
-     player.attack();
-     player.magicA();
+     player.attack(navigator);
+     player.magicA(navigator);
      player.levelUp();
      player.displayData();
     navigator.eAttack(player);
+        navigator.eAttack(player);
         navigator.eAttack(player);
         navigator.eAttack(player);
     player.displayData();
