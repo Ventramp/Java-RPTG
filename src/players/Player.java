@@ -6,7 +6,6 @@ import enemies.Enemies;
 import items.armors.Armors;
 import items.weapons.Weapons;
 import org.jetbrains.annotations.NotNull;
-
 import static util.Randomized.rng;
 //INICIO DE PLAYER Y ATRIBUTOS//
 public class Player extends BasicCharacter {
@@ -55,7 +54,7 @@ public class Player extends BasicCharacter {
         this.maxExp = 100;
         this.weapon = new Weapons();
         this.armor = new Armors();
-
+        displayData();
     }
 //SOBREESCRIBIR DISPLAY DATA PARA PLAYER EN BASE DE BASIC PLAYER Adicionado con el aumento de atributos por elementos de Armas y Armaduras//
 @Override
@@ -69,69 +68,88 @@ public void displayData() {
     public void aboutJob(){
         System.out.println("CLASE:\nActualmente no tienes adquirida ninguna CLASE\n");
     }
+    //not nulls para que estas acciones no sean posibles sin un enemigo//
     public void attack(@NotNull Enemies enemies){
-        this.dm=str+weapon.getwA();
-        //switch segun el Job//
-        //switch//
+        //llamada al calculo de daño fisico//
+        fisicDm();
         if (rng(1, 100) <= pCrit) {
-            this.crit =dm * 2;
-            System.out.printf("!CRITICO¡\n%s Ataca con las manos vacias\nHace: %d de daño\n\n",name, crit);
+            //llamada al calculo para daños criticos//
+            critical();
+            System.out.printf("%s Ataca a %s con las manos vacias\n!!CRITICO¡¡\n\n",name,enemies.geteName());
+            //llamada a la funcion de los enemigos recibe daño con el comodin critico//
+            enemies.eRecibeDm(crit);
         }else{
-            System.out.printf("%s Ataca con las manos desnudas\nHace: %d de Daño \n\n",name, dm);
+            System.out.printf("%s Ataca a %s con las manos desnudas\n\n",name,enemies.geteName());
+            enemies.eRecibeDm(dm);
         }
-        enemies.eRecibeDm (dm);
+        if (enemies.eDie()){
+            rewards(enemies);
+            lvUpCheck();
+        }
     }
     public void magicA(@NotNull Enemies enemies){
-        this.dm=mag+ weapon.getwMag();
-        //switch segun el elemento//
-        //switch
-        System.out.printf("%s Canaliza un Hechizo\n\n",name);
+        //llamada al calculo de daño magico//
+        magicDm();
+        System.out.printf("%s Canaliza un Hechizo\n",name);
         if (rng(1, 100) <= pCrit) {
-            this.crit =dm*2;
-            System.out.printf("!CRITICO¡\n%s Lanza un hechizo magico\nHace: %d de daño\n\n",name, crit);
+            critical();
+            System.out.printf("%s Lanza un hechizo magico a %s\n!!CRITICO¡¡\n\n",name,enemies.geteName());
+            enemies.eRecibeDm(crit);
         }else{
-            System.out.printf("%s Lanza un hechizo magico\nHace: %d de Daño \n\n",name, dm);
+            System.out.printf("%s Lanza un hechizo magico a %s\n\n",name,enemies.geteName());
+            enemies.eRecibeDm(dm);
         }
-        enemies.eRecibeDm (dm);
+        if (enemies.eDie()){
+            //obtiene las recompensas de enemie si este muere//
+            rewards(enemies);
+            //revision de exp para comprobar si subira de nivel cuando el enemigo muere//
+            lvUpCheck();
+        }
     }
-    
-    //implementacion temprana a sistema de nivel, sujeto a cambios//
+
+    //voids para calculos especificos de daño en las funciones de ataque//
+    private void fisicDm(){dm=str+weapon.getwA();}
+    private void magicDm(){dm=mag+ weapon.getwMag();}
+    private void critical (){crit=dm*2;}
+    //Obtencion de recompensas//
+    private void rewards(Enemies enemies){
+        System.out.printf("EXP \t %d  +  %d\nGold \t %d  +  %d\n\n",exp,enemies.getGiveExp(),gold,enemies.getDropG());
+        this.exp+= enemies.getGiveExp();
+        this.gold+= enemies.getDropG();
+    }
+    //Funcion que comprueba el exp actual contra el exp maximo//
+    private void lvUpCheck(){
+        if (exp >= maxExp) {
+            levelUp();
+        }
+    }
+    /**Que ocurre cuando se suba de nivel**/
     public void levelUp() {
+        exp -= maxExp ;
         level++;
-        exp = 0;
+        //exp maxima aumentara gradualmente segun cuantos niveles suba//
+        maxExp += 20*(level-1);
         System.out.println("\nSUBISTE DE NIVEL\n");
         for (int i = 0; i < 4; i++) {
             int x = (rng(1, 7));
             switch (x) {
-                case 1 -> {str++;
-                    System.out.printf("STR\t Ha aumentado a:\t%d\n", str);
-                }
-                case 2 -> {def++;
-                    System.out.printf("DEF\t Ha aumentado a:\t%d\n", def);
-                }
-                case 3 -> {dex++;
-                    System.out.printf("DEX\t Ha aumentado a:\t%d\n", dex);
-                }
-                case 4 -> {mag++;
-                    System.out.printf("MAG\t Ha aumentado a:\t%d\n", mag);
-                }
-                case 5 -> {pCrit++;
-                    System.out.printf("P.CRIT Ha aumentado a:\t%d\n", pCrit);
-                }
-                case 6 -> {hp += 20;    maxHp += 20;
-                    System.out.printf("HP\t maxima aumentada:\t%d\n", maxHp);
-                }
-                case 7 -> {mp += 10;    maxMp += 10;
-                    System.out.printf("MP\t maxima aumentada:\t%d\n", maxMp);
-                }
+                case 1 -> {str++;                       System.out.printf("STR\t Ha aumentado a:\t%d\n", str);}
+                case 2 -> {def++;                       System.out.printf("DEF\t Ha aumentado a:\t%d\n", def);}
+                case 3 -> {dex++;                       System.out.printf("DEX\t Ha aumentado a:\t%d\n", dex);}
+                case 4 -> {mag++;                       System.out.printf("MAG\t Ha aumentado a:\t%d\n", mag);}
+                case 5 -> {pCrit++;                     System.out.printf("P.CRIT Ha aumentado a:\t%d\n", pCrit);}
+                case 6 -> {hp += 20;    maxHp += 20;    System.out.printf("HP\t maxima aumentada:\t%d\n", maxHp);}
+                case 7 -> {mp += 10;    maxMp += 10;    System.out.printf("MP\t maxima aumentada:\t%d\n", maxMp);}
             }
         }
+        System.out.println();
     }
 /**getters y setters**/
     public int getStr() {return str;}
     public void setStr(int str) {this.str = str;}
     public int getGold() {return gold;}
-    public void setGold(int gold) {this.gold = gold;}
+    //el minimo de oro que se puede setear es 0)
+    public void setGold(int gold) {this.gold = Math.max (gold,0);}
     public int getMag() {return mag;}
     public void setMag(int mag) {this.mag = mag;}
     public int getDef() {return def;}
