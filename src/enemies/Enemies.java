@@ -1,4 +1,5 @@
 package enemies;
+//DEFINICION DE LOS ENEMIGOS ABSTRACTA//
 import players.Player;
 public abstract class Enemies {
     private final String eName;
@@ -8,6 +9,7 @@ public abstract class Enemies {
     private final int giveExp;
 /*Para evitar confuciones dentro del codigo diferenciamos la informacion de los enemigos de
 * la del jugador colocando a sus atributos una e*/
+    //UTILIZAMOS EL THIS PARA ACCEDER A LAS VARIABLES//
     public Enemies(String eName, int eHP, int eDm, int dropG, int giveExp) {
         this.eName = eName;
         this.eHP = eHP;
@@ -15,6 +17,7 @@ public abstract class Enemies {
         this.dropG = dropG;
         this.giveExp = giveExp;
     }
+    //ACCIONES QUE REALIZARA EL PERSONAJE//
     public void eRecibeDm (int dm){
         System.out.printf("%s Recibio $d puntos de daño ",eDm,dm);
         eHP-=dm;

@@ -1,5 +1,5 @@
 package enemies.pirate;
-
+//SE INDICA EL VALOR//
 import enemies.Enemies;
 import players.Player;
 import org.jetbrains.annotations.NotNull;
@@ -18,6 +18,7 @@ public class NavigatorPirate extends Enemies{
     }
 
     }
+    //SE IMPRIME EL MENSAJE CON UN SALTO DE LINEA//
     private void thrust (@NotNull Player player){
         System.out.printf("%s Ataco y te hizo %d Puntos de daño\n\n",geteName(),geteDm());
         player.recibeDm(geteDm());
@@ -33,6 +34,7 @@ public class NavigatorPirate extends Enemies{
         System.out.printf("%s hizo un total de %d de daño\n\n",geteName(),(geteDm()*multshot));
     }
     /*Dudas: que pasa si el oro acual es igual a 0?*/
+    //SE IMPRIME Y DETERMINA EL CONTENIDO//
     public void robarG (@NotNull Player player){
         System.out.println(geteName()+" te robo 10 G\n");
         player.setGold(player.getGold()-10);
