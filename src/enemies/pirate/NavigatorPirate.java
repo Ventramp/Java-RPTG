@@ -21,7 +21,7 @@ public class NavigatorPirate extends Enemies{
     }
     //ataque tipo estoque con notnull para que no se pueda hacer sin player//
     private void thrust (@NotNull Player player){
-        System.out.printf("%s Ataca con un Estoque\n\n",geteName(),geteDm());
+        System.out.printf("%s Ataca con un Estoque\n\n",geteName());
         //llamada a la funcion con la cual los characters reciben daño//
         player.recibeDm(geteDm());
     }
