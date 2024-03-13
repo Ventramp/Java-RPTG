@@ -30,11 +30,11 @@ public class Player extends BasicCharacter {
     public Player(String name) {
         super(name, 100,100);
         System.out.println("Nuevo Jugador Ingresando:");
-        System.out.println("\n.\n...\n.....");
             Scanner scanner = new Scanner(System.in);
             System.out.println("\nIngresa tu nombre de usuario:");
             this.name = scanner.nextLine();
-        //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESVALANCES//
+        System.out.println("Creando Jugador");
+        //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESBALANCES//
         this.def=5;
         this.dex=5;
         this.str=5;
@@ -61,50 +61,52 @@ public class Player extends BasicCharacter {
 //SOBREESCRIBIR DISPLAY DATA PARA PLAYER EN BASE DE BASIC PLAYER Adicionado con el aumento de atributos por elementos de Armas y Armaduras//
     public void accion(@NotNull Enemies enemies){
         System.out.println("\t\t\tElige una accion");
-        System.out.println("1- Ataque\t2- Escape\t3- Mostrar Estadisticas");
+        System.out.println("1- Atacar\t2- Escape\t3- Mostrar Estadisticas");
         Scanner tipeAccion = new Scanner(System.in);
         switch (tipeAccion.nextLine()){
             case "1":
             case "Atacar":
             case "ATACAR":
             case "atacar":
-                attack(enemies);
+                System.out.println();
+                selectAttack(enemies);
         break;
             case "2":
             case "Huir":
             case "HUIR":
             case "huir":
+                System.out.println();
                 escape(enemies);
         break;
             case "3":
             case "Stats":
             case "STATS":
             case "stats":
+                System.out.println();
                 displayData();
                 accion(enemies);
         break;
             default:
                 System.out.println("Ingresa una opcion valida");
         }
+
     }
 @Override
 public void displayData() {
     System.out.printf("\n///////\t\t%s\t\t///////\n",name);
     System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tAP:\t\t\t%d/%d+(%d)\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),ap,maxAp,weapon.getwMP());
-    System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t%d/%d\n\n",level,exp,maxExp);
+    System.out.printf("\n\t\tCLASE:\t\t%s\n",job);
+    System.out.printf("\t//\t\t\tLV:%d\t\t//\n\t\tEXP:\t\t\t%d/%d\n\n",level,exp,maxExp);
     System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),def,armor.getaD());
     System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n\t\t\t\t\t\t\t%d G\n\n",dex,pCrit,weapon.getN(),armor.getN(),gold);
-    }
-    public void aboutJob(){
-        System.out.println("CLASE:\nActualmente no tienes adquirida ninguna CLASE\n");
-    }
+        }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
     //seleccion de las formas de ataque disponibles//
     public void selectAttack(@NotNull Enemies enemies) {
         Scanner sAttack = new Scanner(System.in);
         System.out.printf("%s se esta preparando para atacar\n",name);
-            System.out.printf("Elige el tipo de ataque\n\n");
-            System.out.printf("1-\tNormal\t\t2-\tArtilleria\n\n");
+            System.out.println("Elige el tipo de ataque\n");
+            System.out.println("1-\tNormal\t\t2-\tArtilleria");
         System.out.println();
         //switch con diferentes imputs por si acaso//
             switch (sAttack.nextLine()) {
@@ -113,12 +115,14 @@ public void displayData() {
                 case "Normal":
                 case "1":
                     attack(enemies);
+                    System.out.println();
             break;
                 case "artilleria":
                 case "Artilleria":
                 case "ARTILLERIA":
                 case "2":
                         artilleryA(enemies);
+                    System.out.println();
             break;
                 default: System.out.println("INGRESA UNA OPCION VALIDA\n");
             }
