@@ -73,12 +73,23 @@ public void displayData() {
         Scanner sAttack = new Scanner(System.in);
         System.out.printf("%s se esta preparando para atacar\n",name);
             System.out.printf("Elige el tipo de ataque\n\n");
-            System.out.printf("Normal\t\tArtilleria\n");
+            System.out.printf("1-\tNormal\t\t2-\tArtilleria\n\n");
             tipeAttack = sAttack.nextLine();
+        System.out.println();
             switch (tipeAttack) {
-                case "normal" -> attack(enemies);
-                case "artilleria" -> artilleryA(enemies);
-                default -> System.out.println("INGRESA UNA OPCION VALIDA\n");
+                case "normal":
+                case "NORMAL":
+                case "Normal":
+                case "1":
+                    attack(enemies);
+            break;
+                case "artilleria":
+                case "Artilleria":
+                case "ARTILLERIA":
+                case "2":
+                        artilleryA(enemies);
+            break;
+                default: System.out.println("INGRESA UNA OPCION VALIDA\n");
             }
     }
     public void attack(@NotNull Enemies enemies){
@@ -104,30 +115,47 @@ public void displayData() {
         String opcion;
         Scanner artillery = new Scanner(System.in);
         System.out.printf("%s atacara con un arma de fuego\n", name);
-        System.out.printf("1- Pistola\t\t-30 AP\n2- Rifle\t\t-50 AP\n3- Cañon\t\t-100 AP\n4- Regresar\n");
+        System.out.println("1- Pistola\t\t-30 AP\n2- Rifle\t\t-50 AP\n3- Cañon\t\t-100 AP\n4- Regresar\n");
         opcion = artillery.nextLine();
+        System.out.println();
         switch (opcion) {
-            case "1" -> {
+            case "1":
+            case "Pistola":
+            case "pistola":
+            case "PISTOLA":
                 if (ap>= 30) gun(enemies);
-                else System.out.println("AP insuficiente");
-                    selectAttack(enemies);
-            }
-            case "2" -> {
+                else System.out.println("AP insuficiente\n");
+                selectAttack(enemies);
+        break;
+            case "2":
+            case "Rifle":
+            case "rifle":
+            case "RIFLE":
                 if (ap>= 50) rifle(enemies);
-                else System.out.println("AP insuficiente");
-                    selectAttack(enemies);
-            }
-            case "3" -> {if (ap>= 50) canyon(enemies);
-            else System.out.println("AP insuficiente\n");
-                selectAttack(enemies);}
-            case "4" -> selectAttack(enemies);
-            default -> System.out.println("Ingresa una opcion valida");
+                else System.out.println("AP insuficiente\n");
+                selectAttack(enemies);
+        break;
+            case "3":
+            case "Canyon":
+            case "canyon":
+            case "CANYON":
+                if (ap>= 100) canyon(enemies);
+                else System.out.println("AP insuficiente\n");
+                selectAttack(enemies);
+        break;
+            case "4":
+            case "regresar":
+            case "Regresar":
+            case "REGRESAR":
+                selectAttack(enemies);
+        break;
+            default: System.out.println("Ingresa una opcion valida");
         }
     }
-
     //voids para calculos especificos de daño en las funciones de ataque//
     private void fisicDm(){dm=str+weapon.getwA();}
     private void critical (){crit=dm*2;}
+    /* Ataques de tipo artilleria*/
     private void gun(@NotNull Enemies enemies){
         ap-=30;
         dm=str+5;
@@ -157,7 +185,7 @@ public void displayData() {
     }
     //Obtencion de recompensas//
     private void rewards(@NotNull Enemies enemies){
-        System.out.printf("EXP \t %d  +  %d\nGold \t %d  +  %d\n\n",exp,enemies.getGiveExp(),gold,enemies.getDropG());
+        System.out.printf("///EXP \t %d  +  %d///\n///Gold \t %d  +  %d///\n\n",exp,enemies.getGiveExp(),gold,enemies.getDropG());
         this.exp+= enemies.getGiveExp();
         this.gold+= enemies.getDropG();
     }
@@ -186,6 +214,15 @@ public void displayData() {
             }
         }
         System.out.println();
+    }
+    @Override
+    public void recibeDm(int eDm) {
+        int edmreduction;
+        edmreduction=eDm-def;
+        if (edmreduction <= 0) edmreduction=0;
+        hp -= edmreduction;
+        System.out.printf("%s recibio %d puntos de daño\n",name,edmreduction);
+        System.out.printf("\t\tHP:\t\t\t%d/%d\n\t\tAP:\t\t\t%d/%d\n\n",hp,maxHp,ap,maxAp);
     }
 /**getters y setters**/
     public int getStr() {return str;}

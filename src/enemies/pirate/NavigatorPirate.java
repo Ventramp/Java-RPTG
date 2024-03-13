@@ -6,7 +6,7 @@ import static util.Randomized.rng;
 public class NavigatorPirate extends Enemies{
     public NavigatorPirate()
     {
-        super ("Navegante",40,40,10,10,110);
+        super ("Navegante",50,40,25,15,20);
     }
     //override de enemieattack con rng para que se hagan diferentes acciones//
     @Override
@@ -21,25 +21,25 @@ public class NavigatorPirate extends Enemies{
     }
     //ataque tipo estoque con notnull para que no se pueda hacer sin player//
     private void thrust (@NotNull Player player){
-        System.out.printf("%s Ataco y te hizo %d Puntos de daño\n\n",geteName(),geteDm());
+        System.out.printf("%s Ataca con un Estoque\n\n",geteName(),geteDm());
         //llamada a la funcion con la cual los characters reciben daño//
         player.recibeDm(geteDm());
     }
     //ataque tipo disparo con posibilidad entre 1 y 3 disparos//
     public void shot (@NotNull Player player){
-        System.out.println(geteName()+" te va a disparar");
-        int multshot = rng(1,3);
-        for (int i=1; i==multshot;i++){
-            System.out.println((i)+"° Disparo\n"+geteDm());
+        System.out.println(geteName()+" te va a disparar\n");
+        int multshot = rng(0,3);
+        for (int i=0; i<multshot;i++){
+            System.out.println((i+1)+"° Disparo\n");
             player.recibeDm(geteDm());
         }
-        System.out.printf("%s hizo un total de %d de daño\n\n",geteName(),(geteDm()*(multshot-1)));
+        System.out.println("Fin del ataque");
     }
     //el enemigo te roba tu dinero//
     public void robarG (@NotNull Player player){
         //si no tienes nada de dinero se burla
         if (player.getGold()==0){
-            System.out.printf("%s se burla de ti puesto que no tienes dinero que pueda robar\n\n",geteName());
+            System.out.printf("%s te intenta robar los calzones\n\n",geteName());
         }
         //si tienes mas de 0 pero menos o igual a 10//
         if (player.getGold()<=10&player.getGold()>0){
