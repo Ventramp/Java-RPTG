@@ -6,6 +6,9 @@ import enemies.Enemies;
 import items.armors.Armors;
 import items.weapons.Weapons;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+
 import static util.Randomized.rng;
 //INICIO DE PLAYER Y ATRIBUTOS//
 public class Player extends BasicCharacter {
@@ -29,11 +32,10 @@ public class Player extends BasicCharacter {
     //CONSTRUCTOR DE LAS CARACTERISTICAS DE PLAYER//
     public Player(String name) {
         super(name, 100,100);
-        System.out.println("Nuevo Jugador Ingresando:");
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("\nIngresa tu nombre de usuario:");
-            this.name = scanner.nextLine();
-        System.out.println("Creando Jugador");
+        JOptionPane.showMessageDialog(null,"Nuevo Jugador Ingresando:");
+
+            this.name = JOptionPane.showInputDialog("Ingresa tu nombre de usuario:");
+        JOptionPane.showMessageDialog(null,"Creando Jugador");
         //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESBALANCES//
         this.def=5;
         this.dex=5;
@@ -58,39 +60,21 @@ public class Player extends BasicCharacter {
         this.job="Sin Clase";
         displayData();
     }
-//SOBREESCRIBIR DISPLAY DATA PARA PLAYER EN BASE DE BASIC PLAYER Adicionado con el aumento de atributos por elementos de Armas y Armaduras//
-    public void accion(@NotNull Enemies enemies){
-        System.out.println("\t\t\tElige una accion");
-        System.out.println("1- Atacar\t2- Escape\t3- Mostrar Estadisticas");
-        Scanner tipeAccion = new Scanner(System.in);
-        switch (tipeAccion.nextLine()){
-            case "1":
-            case "Atacar":
-            case "ATACAR":
-            case "atacar":
-                System.out.println();
-                selectAttack(enemies);
-        break;
-            case "2":
-            case "Huir":
-            case "HUIR":
-            case "huir":
-                System.out.println();
-                escape(enemies);
-        break;
-            case "3":
-            case "Stats":
-            case "STATS":
-            case "stats":
-                System.out.println();
-                displayData();
-                accion(enemies);
-        break;
-            default:
-                System.out.println("Ingresa una opcion valida");
-        }
 
+    public void accion(@NotNull Enemies enemies){
+        String [] opcion= {"Atacar", "Huir", "Stats"};
+        int tipeAttack=JOptionPane.showOptionDialog(null,"Elige una accion","ACCION",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Huir");
+        switch (opcion[tipeAttack]) {
+            case "Atacar" -> {System.out.println();
+            selectAttack(enemies);}
+            case "Huir" -> {System.out.println();
+                escape(enemies);}
+            case "Stats"-> {System.out.println();
+                displayData();
+                accion(enemies);}
+        }
     }
+    //SOBREESCRIBIR DISPLAY DATA PARA PLAYER EN BASE DE BASIC PLAYER Adicionado con el aumento de atributos por elementos de Armas y Armaduras//
 @Override
 public void displayData() {
     System.out.printf("\n///////\t\t%s\t\t///////\n",name);
@@ -103,28 +87,15 @@ public void displayData() {
     //not nulls para que estas acciones no sean posibles sin un enemigo//
     //seleccion de las formas de ataque disponibles//
     public void selectAttack(@NotNull Enemies enemies) {
-        Scanner sAttack = new Scanner(System.in);
-        System.out.printf("%s se esta preparando para atacar\n",name);
-            System.out.println("Elige el tipo de ataque\n");
-            System.out.println("1-\tNormal\t\t2-\tArtilleria");
-        System.out.println();
+        JOptionPane.showMessageDialog(null,name+" se esta preparando para atacar\n","Aviso",0);
+
+        String [] opcion= {"Normal", "Artilleria","Regresar"};
+        int sAttack=JOptionPane.showOptionDialog(null,"ATAQUE","Elige el tipo de ataque",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Artilleria");
         //switch con diferentes imputs por si acaso//
-            switch (sAttack.nextLine()) {
-                case "normal":
-                case "NORMAL":
-                case "Normal":
-                case "1":
-                    attack(enemies);
-                    System.out.println();
-            break;
-                case "artilleria":
-                case "Artilleria":
-                case "ARTILLERIA":
-                case "2":
-                        artilleryA(enemies);
-                    System.out.println();
-            break;
-                default: System.out.println("INGRESA UNA OPCION VALIDA\n");
+        switch (opcion[sAttack]) {
+                case "Normal"->{attack(enemies);}
+                case "Artilleria"->{artilleryA(enemies);}
+                case "Regresar"->{accion(enemies);}
             }
     }
     //ataque normal//
@@ -148,42 +119,26 @@ public void displayData() {
     }
     //Ataque de artilleria//
     public void artilleryA(@NotNull Enemies enemies) {
-        Scanner artillery = new Scanner(System.in);
-        System.out.printf("%s atacara con un arma de fuego\n", name);
-        System.out.println("1- Pistola\t\t-30 AP\n2- Rifle\t\t-50 AP\n3- Cañon\t\t-100 AP\n4- Regresar\n");
+        String [] opcion= {"Pistola", "Rifle","Cañon","Regresar"};
+        int artillery=JOptionPane.showOptionDialog(null,name+" Atacara con Artilleria","ARTILLERIA",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Rifle");
+
         System.out.println();
-        switch (artillery.nextLine()) {
-            case "1":
+        switch (opcion[artillery]) {
             case "Pistola":
-            case "pistola":
-            case "PISTOLA":
                 if (ap>= 30) gun(enemies);
-                else System.out.println("AP insuficiente\n");
+                else JOptionPane.showMessageDialog(null,"AP insuficiente");
                 selectAttack(enemies);
-        break;
-            case "2":
             case "Rifle":
-            case "rifle":
-            case "RIFLE":
                 if (ap>= 50) rifle(enemies);
-                else System.out.println("AP insuficiente\n");
+                else JOptionPane.showMessageDialog(null,"AP insuficiente");
                 selectAttack(enemies);
-        break;
-            case "3":
-            case "Canyon":
-            case "canyon":
-            case "CANYON":
+            case "Cañon":
                 if (ap>= 100) canyon(enemies);
-                else System.out.println("AP insuficiente\n");
+                else JOptionPane.showMessageDialog(null,"AP insuficiente");
                 selectAttack(enemies);
-        break;
             case "4":
-            case "regresar":
             case "Regresar":
-            case "REGRESAR":
                 selectAttack(enemies);
-        break;
-            default: System.out.println("Ingresa una opcion valida");
         }
     }
     public void escape(@NotNull Enemies enemies){
