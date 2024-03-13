@@ -59,6 +59,34 @@ public class Player extends BasicCharacter {
         displayData();
     }
 //SOBREESCRIBIR DISPLAY DATA PARA PLAYER EN BASE DE BASIC PLAYER Adicionado con el aumento de atributos por elementos de Armas y Armaduras//
+    public void accion(@NotNull Enemies enemies){
+        System.out.println("\t\t\tElige una accion");
+        System.out.println("1- Ataque\t2- Escape\t3- Mostrar Estadisticas");
+        Scanner tipeAccion = new Scanner(System.in);
+        switch (tipeAccion.nextLine()){
+            case "1":
+            case "Atacar":
+            case "ATACAR":
+            case "atacar":
+                attack(enemies);
+        break;
+            case "2":
+            case "Huir":
+            case "HUIR":
+            case "huir":
+                escape(enemies);
+        break;
+            case "3":
+            case "Stats":
+            case "STATS":
+            case "stats":
+                displayData();
+                accion(enemies);
+        break;
+            default:
+                System.out.println("Ingresa una opcion valida");
+        }
+    }
 @Override
 public void displayData() {
     System.out.printf("\n///////\t\t%s\t\t///////\n",name);
@@ -73,15 +101,13 @@ public void displayData() {
     //not nulls para que estas acciones no sean posibles sin un enemigo//
     //seleccion de las formas de ataque disponibles//
     public void selectAttack(@NotNull Enemies enemies) {
-        String tipeAttack;
         Scanner sAttack = new Scanner(System.in);
         System.out.printf("%s se esta preparando para atacar\n",name);
             System.out.printf("Elige el tipo de ataque\n\n");
             System.out.printf("1-\tNormal\t\t2-\tArtilleria\n\n");
-            tipeAttack = sAttack.nextLine();
         System.out.println();
         //switch con diferentes imputs por si acaso//
-            switch (tipeAttack) {
+            switch (sAttack.nextLine()) {
                 case "normal":
                 case "NORMAL":
                 case "Normal":
@@ -116,15 +142,13 @@ public void displayData() {
             lvUpCheck();
         }
     }
-
+    //Ataque de artilleria//
     public void artilleryA(@NotNull Enemies enemies) {
-        String opcion;
         Scanner artillery = new Scanner(System.in);
         System.out.printf("%s atacara con un arma de fuego\n", name);
         System.out.println("1- Pistola\t\t-30 AP\n2- Rifle\t\t-50 AP\n3- Cañon\t\t-100 AP\n4- Regresar\n");
-        opcion = artillery.nextLine();
         System.out.println();
-        switch (opcion) {
+        switch (artillery.nextLine()) {
             case "1":
             case "Pistola":
             case "pistola":
@@ -157,6 +181,11 @@ public void displayData() {
         break;
             default: System.out.println("Ingresa una opcion valida");
         }
+    }
+    public void escape(@NotNull Enemies enemies){
+        enemies.seteHP(0);
+        enemies.eDie();
+        System.out.printf("%s Escapo de %s\n\n",name,enemies.geteName());
     }
     //voids para calculos especificos de daño en las funciones de ataque//
     private void fisicDm(){dm=str+weapon.getwA();}
