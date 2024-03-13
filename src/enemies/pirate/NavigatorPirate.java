@@ -6,7 +6,7 @@ import static util.Randomized.rng;
 public class NavigatorPirate extends Enemies{
     public NavigatorPirate()
     {
-        super ("Navegante",50,40,25,15,20);
+        super ("Navegante",50,25,15,20);
     }
     //override de enemieattack con rng para que se hagan diferentes acciones//
     @Override

@@ -11,7 +11,7 @@ public abstract class Enemies {
 /*Para evitar confuciones dentro del codigo diferenciamos la informacion de los enemigos de
 * la del jugador colocando a sus atributos una e*/
     //UTILIZAMOS EL THIS PARA ACCEDER A LAS VARIABLES//
-public Enemies(String eName, int eHP, int eMaxHp, int eDm, int dropG, int giveExp) {
+public Enemies(String eName, int eHP, int eDm, int dropG, int giveExp) {
         this.eName = eName;
     //agregamos max Hp solo para proveer informacion al jugador//
         this.eMaxHp = eHP;
