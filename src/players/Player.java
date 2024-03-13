@@ -23,6 +23,8 @@ public class Player extends BasicCharacter {
     //VINCULACION DE LOS OBJETOS WEAPON Y ARMOR//
     protected Weapons weapon;
     protected Armors armor;
+    protected String job;
+    protected int jobadd;
 
     //CONSTRUCTOR DE LAS CARACTERISTICAS DE PLAYER//
     public Player(String name) {
@@ -53,6 +55,7 @@ public class Player extends BasicCharacter {
         this.maxExp = 100;
         this.weapon = new Weapons();
         this.armor = new Armors();
+        this.job="Sin Clase";
         displayData();
     }
 //SOBREESCRIBIR DISPLAY DATA PARA PLAYER EN BASE DE BASIC PLAYER Adicionado con el aumento de atributos por elementos de Armas y Armaduras//
@@ -68,6 +71,7 @@ public void displayData() {
         System.out.println("CLASE:\nActualmente no tienes adquirida ninguna CLASE\n");
     }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
+    //seleccion de las formas de ataque disponibles//
     public void selectAttack(@NotNull Enemies enemies) {
         String tipeAttack;
         Scanner sAttack = new Scanner(System.in);
@@ -76,6 +80,7 @@ public void displayData() {
             System.out.printf("1-\tNormal\t\t2-\tArtilleria\n\n");
             tipeAttack = sAttack.nextLine();
         System.out.println();
+        //switch con diferentes imputs por si acaso//
             switch (tipeAttack) {
                 case "normal":
                 case "NORMAL":
@@ -92,6 +97,7 @@ public void displayData() {
                 default: System.out.println("INGRESA UNA OPCION VALIDA\n");
             }
     }
+    //ataque normal//
     public void attack(@NotNull Enemies enemies){
         //llamada al calculo de daño fisico//
         fisicDm();
@@ -214,7 +220,94 @@ public void displayData() {
             }
         }
         System.out.println();
+        /*if (cangetjob())
+            System.out.printf("%s ha alcanzado el nivel 10");
+            getjob();
+         */
     }
+    /*private boolean cangetjob(){return level==10;}
+
+    private void getjob(){
+    souf ("Elige tu clase")
+        scan
+        switch{
+        monk
+        swordman
+        gunner
+        }
+    }
+    private void monk(){
+    System.out.println("El MONJE es un luchador cuerpo a cuerpo que no usa armas\nCada que acierte un critico  sin una arma equipada su cualidad:\nDESARMADO subira de nivel, la cual aumentara su fuerza de sus golpes");
+    seleccion si o no adquirir trabajo
+    if (si) getmonk;
+    if (no) getjob();}
+    private void getmonk(){
+    job="Monje";
+    jobadd=0
+    str += 10;
+    hp += 30;
+    maxHp += 30;
+    mag -= 5;
+    maxAp -= 20;
+    this.ap -=20;
+    @Override
+    public void displayData() {
+    System.out.printf("\n///////\t\t%s\t\t///////\n",name);
+    System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tAP:\t\t\t%d/%d+(%d)\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),ap,maxAp,weapon.getwMP());
+    System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t%d/%d\n\n",level,exp,maxExp);
+    System.out.printf("\n\t\tJob:\t\t\t%s\n",job);
+    System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),def,armor.getaD());
+    System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\tUNARMED:\t\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n\t\t\t\t\t\t\t%d G\n\n",dex,pCrit,jobadd,weapon.getN(),armor.getN(),gold);
+    }
+     private void gunner(){
+   System.out.println("El ARTILLERO es un atacante a distancia con la capacidad de  usar artilleria mas seguido\nSu cualidad AIM le permitira acertar criticos con artilleria");
+    seleccion si o no adquirir trabajo
+    if (si) getgunner();
+    if (no) getjob();}
+    }
+    private void getgunner(){
+    job= "Artilllero";
+    jobadd=1;
+    ap+=20
+    maxAp+=20
+    str-=3;
+    dex +=5;
+    def+=5;
+     @Override
+    public void displayData() {
+    System.out.printf("\n///////\t\t%s\t\t///////\n",name);
+    System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tAP:\t\t\t%d/%d+(%d)\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),ap,maxAp,weapon.getwMP());
+    System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t%d/%d\n\n",level,exp,maxExp);
+    System.out.printf("\n\t\tJob:\t\t\t%s\n",job);
+    System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),def,armor.getaD());
+    System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\tAIM:\t\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n\t\t\t\t\t\t\t%d G\n\n",dex,pCrit,jobadd,weapon.getN(),armor.getN(),gold);
+    }
+    private void swordman(){
+      System.out.println("El ESPADACHIN es un Guerrero cuerpo a cuerpo\nPierde capacidades magicas y MP pero gana Fuerza y Defensa\nEl espadachin tiene la caracteristica SANGRADO que se activa despues de un critico\nCada turno que pase el enemigo afectado por SANGRADO perdera vida de manera creciente");
+        seleccion si o no adquirir trabajo
+    if (si) getgunner();
+    if (no) getjob();}
+    }
+
+    private void getswordman(){
+    job = "Espadachin";
+    jobadd= 1;
+    def+=7;
+    str+=7;
+    ap-=50;
+    maxAp=-50
+    @Override
+    public void displayData() {
+    System.out.printf("\n///////\t\t%s\t\t///////\n",name);
+    System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tAP:\t\t\t%d/%d+(%d)\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),ap,maxAp,weapon.getwMP());
+    System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t%d/%d\n\n",level,exp,maxExp);
+    System.out.printf("\n\t\tJob:\t\t\t%s\n",job);
+    System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),def,armor.getaD());
+    System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\tBLEEDING:\t\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n\t\t\t\t\t\t\t%d G\n\n",dex,pCrit,jobadd,weapon.getN(),armor.getN(),gold);
+    }
+     */
+
+    //como recibe daño un player segun su defensa//
     @Override
     public void recibeDm(int eDm) {
         int edmreduction;
