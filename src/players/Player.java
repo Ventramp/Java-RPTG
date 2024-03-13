@@ -11,7 +11,6 @@ import static util.Randomized.rng;
 public class Player extends BasicCharacter {
     protected int str;
     protected int gold;
-    protected int mag;
     protected int def;
     protected int dex;
     protected int attk;
@@ -36,6 +35,7 @@ public class Player extends BasicCharacter {
         //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESVALANCES//
         this.def=5;
         this.dex=5;
+        this.str=5;
         //genera un rng entre 1 y 3 donde cada numero esta asignado a una estadistica de caer uno de los numeros se sumara +1 a la
         //estadistica correspondiente, este ciclo se repetira hasta que la suma total de atributos sea 30//
         do {
@@ -45,8 +45,7 @@ public class Player extends BasicCharacter {
             if (x==3) {dex++;}
         }
         while ((str+def+dex) !=30);
-        //CREACION DE BALANCE ENTRE FUERZA Y MAGIA//
-        this.mag = (-str+15);
+
         this.pCrit=5;
         this.gold=100;
         this.level = 1;
@@ -60,15 +59,28 @@ public class Player extends BasicCharacter {
 @Override
 public void displayData() {
     System.out.printf("\n///////\t\t%s\t\t///////\n",name);
-    System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tMP:\t\t\t%d/%d+(%d)\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),mp,maxMp,weapon.getwMP());
+    System.out.printf("\t\tHP:\t\t\t%d/%d+(%d)\n\t\tAP:\t\t\t%d/%d+(%d)\t\t\t\n",hp+ armor.getaHp(),maxHp,armor.getaHp(),ap,maxAp,weapon.getwMP());
     System.out.printf("\t//\t\t\tLV:%d\t\t//\n\tEXP:\t\t\t%d/%d\n\n",level,exp,maxExp);
-    System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tMAG:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),mag,weapon.getwMag(),def,armor.getaD());
+    System.out.printf("\t\tSTR:\t\t\t%d   +\t(%d)\n\t\tDEF:\t\t\t%d   +\t(%d)\n",str,weapon.getwA(),def,armor.getaD());
     System.out.printf("\t\tDEX:\t\t\t%d\n\t\tPROB.CRIT:\t\t%d\n\n\tWEAPON:\t\t%s\n\tARMOR:\t\t%s\n\n\t\t\t\t\t\t\t%d G\n\n",dex,pCrit,weapon.getN(),armor.getN(),gold);
     }
     public void aboutJob(){
         System.out.println("CLASE:\nActualmente no tienes adquirida ninguna CLASE\n");
     }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
+    public void selectAttack(@NotNull Enemies enemies) {
+        String tipeAttack;
+        Scanner sAttack = new Scanner(System.in);
+        System.out.printf("%s se esta preparando para atacar\n",name);
+            System.out.printf("Elige el tipo de ataque\n\n");
+            System.out.printf("Normal\t\tArtilleria\n");
+            tipeAttack = sAttack.nextLine();
+            switch (tipeAttack) {
+                case "normal" -> attack(enemies);
+                case "artilleria" -> artilleryA(enemies);
+                default -> System.out.println("INGRESA UNA OPCION VALIDA\n");
+            }
+    }
     public void attack(@NotNull Enemies enemies){
         //llamada al calculo de daño fisico//
         fisicDm();
@@ -87,30 +99,51 @@ public void displayData() {
             lvUpCheck();
         }
     }
-    public void magicA(@NotNull Enemies enemies){
-        //llamada al calculo de daño magico//
-        magicDm();
-        System.out.printf("%s Canaliza un Hechizo\n",name);
-        if (rng(1, 100) <= pCrit) {
-            critical();
-            System.out.printf("%s Lanza un hechizo magico a %s\n!!CRITICO¡¡\n\n",name,enemies.geteName());
-            enemies.eRecibeDm(crit);
-        }else{
-            System.out.printf("%s Lanza un hechizo magico a %s\n\n",name,enemies.geteName());
-            enemies.eRecibeDm(dm);
-        }
-        if (enemies.eDie()){
-            //obtiene las recompensas de enemie si este muere//
-            rewards(enemies);
-            //revision de exp para comprobar si subira de nivel cuando el enemigo muere//
-            lvUpCheck();
+
+    public void artilleryA(@NotNull Enemies enemies) {
+        String opcion;
+        Scanner artillery = new Scanner(System.in);
+        System.out.printf("%s atacara con un arma de fuego\n", name);
+        System.out.printf("1- Pistola\t\t-30 AP\n2- Rifle\t\t -50 AP\n3- Cañon\t\t-100 AP\n\n");
+        opcion = artillery.nextLine();
+        switch (opcion) {
+            case "1" -> gun(enemies);
+            case "2" -> rifle(enemies);
+            case "3" -> canyon(enemies);
+            default -> System.out.printf("Ingresa una opcion valida\n");
         }
     }
 
     //voids para calculos especificos de daño en las funciones de ataque//
     private void fisicDm(){dm=str+weapon.getwA();}
-    private void magicDm(){dm=mag+ weapon.getwMag();}
     private void critical (){crit=dm*2;}
+    private void gun(@NotNull Enemies enemies){
+        ap-=30;
+        dm=str+5;
+        enemies.eRecibeDm(dm);
+        if (enemies.eDie()){
+            rewards(enemies);
+            lvUpCheck();
+        }
+    }
+    private void rifle(@NotNull Enemies enemies){
+        ap-=50;
+        dm=str*2;
+        enemies.eRecibeDm(dm);
+        if (enemies.eDie()){
+            rewards(enemies);
+            lvUpCheck();
+        }
+    }
+    private void canyon(@NotNull Enemies enemies){
+        ap-=100;
+        dm=str*4;
+        enemies.eRecibeDm(dm);
+        if (enemies.eDie()){
+            rewards(enemies);
+            lvUpCheck();
+        }
+    }
     //Obtencion de recompensas//
     private void rewards(Enemies enemies){
         System.out.printf("EXP \t %d  +  %d\nGold \t %d  +  %d\n\n",exp,enemies.getGiveExp(),gold,enemies.getDropG());
@@ -131,15 +164,14 @@ public void displayData() {
         maxExp += 20*(level-1);
         System.out.println("\nSUBISTE DE NIVEL\n");
         for (int i = 0; i < 4; i++) {
-            int x = (rng(1, 7));
+            int x = (rng(1, 6));
             switch (x) {
                 case 1 -> {str++;                       System.out.printf("STR\t Ha aumentado a:\t%d\n", str);}
                 case 2 -> {def++;                       System.out.printf("DEF\t Ha aumentado a:\t%d\n", def);}
                 case 3 -> {dex++;                       System.out.printf("DEX\t Ha aumentado a:\t%d\n", dex);}
-                case 4 -> {mag++;                       System.out.printf("MAG\t Ha aumentado a:\t%d\n", mag);}
-                case 5 -> {pCrit++;                     System.out.printf("P.CRIT Ha aumentado a:\t%d\n", pCrit);}
-                case 6 -> {hp += 20;    maxHp += 20;    System.out.printf("HP\t maxima aumentada:\t%d\n", maxHp);}
-                case 7 -> {mp += 10;    maxMp += 10;    System.out.printf("MP\t maxima aumentada:\t%d\n", maxMp);}
+                case 4 -> {pCrit++;                     System.out.printf("P.CRIT Ha aumentado a:\t%d\n", pCrit);}
+                case 5 -> {hp += 20;    maxHp += 20;    System.out.printf("HP\t maxima aumentada:\t%d\n", maxHp);}
+                case 6 -> {ap += 10;    maxAp += 10;    System.out.printf("MP\t maxima aumentada:\t%d\n", maxAp);}
             }
         }
         System.out.println();
@@ -150,8 +182,6 @@ public void displayData() {
     public int getGold() {return gold;}
     //el minimo de oro que se puede setear es 0)
     public void setGold(int gold) {this.gold = Math.max (gold,0);}
-    public int getMag() {return mag;}
-    public void setMag(int mag) {this.mag = mag;}
     public int getDef() {return def;}
     public void setDef(int def) {this.def = def;}
     public int getDex() {return dex;}

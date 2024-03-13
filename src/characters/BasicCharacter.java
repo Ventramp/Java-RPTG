@@ -5,15 +5,15 @@ public abstract class BasicCharacter {
     protected String name;
     protected int hp;
     protected int maxHp;
-    protected int mp;
-    protected int maxMp;
+    protected int ap;
+    protected int maxAp;
 //CONSTRUCTOR DE PERSONAJE NUEVO//
-    public BasicCharacter(String name, int hp, int mp) {
+    public BasicCharacter(String name, int hp, int ap) {
         this.name = name;
         this.hp = hp;
         this.maxHp = hp;
-        this.mp = mp;
-        this.maxMp = mp;
+        this.ap = ap;
+        this.maxAp = ap;
     }
 //DISPLAY DATA DE PERSONAJE NUEVO//
     public abstract void displayData();
@@ -43,16 +43,21 @@ public abstract class BasicCharacter {
     public void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
     }
-    public int getMp() {
-        return mp;
+
+    public int getAp() {
+        return ap;
     }
-    public void setMp(int mp) {
-        this.mp = mp;
+
+    public void setAp(int ap) {
+        this.ap = ap;
     }
-    public int getMaxMp() {
-        return maxMp;
+
+    public int getMaxAp() {
+        return maxAp;
     }
-    public void setMaxMp(int maxMp) {
-        this.maxMp = maxMp;
+
+    public void setMaxAp(int maxAp) {
+        this.maxAp = maxAp;
     }
 }
+

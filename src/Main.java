@@ -7,17 +7,13 @@ public class Main {
      //creacion de jugador//
         Player player= new Player("Player");
         NavigatorPirate navigator = new NavigatorPirate();
-
+        player.selectAttack(navigator);
         navigator.eAttack(player);
+        player.selectAttack(navigator);
         navigator.eAttack(player);
+        player.selectAttack(navigator);
         navigator.eAttack(player);
         player.displayData();
-        player.attack(navigator);
-        player.magicA(navigator);
-        player.attack(navigator);
-        player.magicA(navigator);
-        player.attack(navigator);
-        player.magicA(navigator);
     player.displayData();
     }
 }
