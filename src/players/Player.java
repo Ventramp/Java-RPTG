@@ -104,13 +104,24 @@ public void displayData() {
         String opcion;
         Scanner artillery = new Scanner(System.in);
         System.out.printf("%s atacara con un arma de fuego\n", name);
-        System.out.printf("1- Pistola\t\t-30 AP\n2- Rifle\t\t -50 AP\n3- Cañon\t\t-100 AP\n\n");
+        System.out.printf("1- Pistola\t\t-30 AP\n2- Rifle\t\t-50 AP\n3- Cañon\t\t-100 AP\n4- Regresar\n");
         opcion = artillery.nextLine();
         switch (opcion) {
-            case "1" -> gun(enemies);
-            case "2" -> rifle(enemies);
-            case "3" -> canyon(enemies);
-            default -> System.out.printf("Ingresa una opcion valida\n");
+            case "1" -> {
+                if (ap>= 30) gun(enemies);
+                else System.out.println("AP insuficiente");
+                    selectAttack(enemies);
+            }
+            case "2" -> {
+                if (ap>= 50) rifle(enemies);
+                else System.out.println("AP insuficiente");
+                    selectAttack(enemies);
+            }
+            case "3" -> {if (ap>= 50) canyon(enemies);
+            else System.out.println("AP insuficiente\n");
+                selectAttack(enemies);}
+            case "4" -> selectAttack(enemies);
+            default -> System.out.println("Ingresa una opcion valida");
         }
     }
 
@@ -145,7 +156,7 @@ public void displayData() {
         }
     }
     //Obtencion de recompensas//
-    private void rewards(Enemies enemies){
+    private void rewards(@NotNull Enemies enemies){
         System.out.printf("EXP \t %d  +  %d\nGold \t %d  +  %d\n\n",exp,enemies.getGiveExp(),gold,enemies.getDropG());
         this.exp+= enemies.getGiveExp();
         this.gold+= enemies.getDropG();
