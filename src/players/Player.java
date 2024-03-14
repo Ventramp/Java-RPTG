@@ -298,10 +298,10 @@ public void displayData() {
     @Override
     public void recibeDm(int eDm) {
         int edmreduction;
-        edmreduction=eDm-def;
+        edmreduction= eDm-def;
         if (edmreduction <= 0) edmreduction=0;
         hp -= edmreduction;
-        JOptionPane.showMessageDialog(null,name+" recibio "+eDm+" puntos de daño\n"
+        JOptionPane.showMessageDialog(null,name+" recibio "+edmreduction+" puntos de daño\n"
         +"      HP:         "+hp+"/"+maxHp+"\n      AP:         "+ap+"/"+maxHp);
     }
 /**getters y setters**/
