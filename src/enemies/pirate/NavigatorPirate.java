@@ -2,6 +2,9 @@ package enemies.pirate;
 import enemies.Enemies;
 import players.Player;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+
 import static util.Randomized.rng;
 public class NavigatorPirate extends Enemies{
     public NavigatorPirate()
@@ -21,35 +24,35 @@ public class NavigatorPirate extends Enemies{
     }
     //ataque tipo estoque con notnull para que no se pueda hacer sin player//
     private void thrust (@NotNull Player player){
-        System.out.printf("%s Ataca con un Estoque\n\n",geteName());
+        JOptionPane.showMessageDialog(null,geteName()+" Ataca con un Estoque");
         //llamada a la funcion con la cual los characters reciben daño//
         player.recibeDm(geteDm());
     }
     //ataque tipo disparo con posibilidad entre 1 y 3 disparos//
     public void shot (@NotNull Player player){
-        System.out.println(geteName()+" te va a disparar\n");
+        JOptionPane.showMessageDialog(null,geteName()+" te va a disparar");
         int multshot = rng(0,3);
         for (int i=0; i<multshot;i++){
-            System.out.println((i+1)+"° Disparo\n");
+            JOptionPane.showMessageDialog(null,(i+1)+"° Disparo");
             player.recibeDm(geteDm());
         }
-        System.out.println("Fin del ataque");
+        JOptionPane.showMessageDialog(null,"Fin del ataque enemigo");
     }
     //el enemigo te roba tu dinero//
     public void robarG (@NotNull Player player){
         //si no tienes nada de dinero se burla
         if (player.getGold()==0){
-            System.out.printf("%s te intenta robar los calzones\n\n",geteName());
+            JOptionPane.showMessageDialog(null,geteName()+" te intenta robar los calzones");
         }
         //si tienes mas de 0 pero menos o igual a 10//
         if (player.getGold()<=10&player.getGold()>0){
             player.setGold(player.getGold() - 10);
-            System.out.printf("%s Te robo el poco dinero que te quedaba\n\n",geteName());
+            JOptionPane.showMessageDialog(null,geteName()+" Te robo el poco dinero que te quedaba");
         }
         if (player.getGold()>10) {
             //si es mayor a 10//
             player.setGold(player.getGold() - 10);
-            System.out.println(geteName() + " te robo 10 G\n");
+            JOptionPane.showMessageDialog(null,geteName() + " te robo 10 G");
         }
     }
 }

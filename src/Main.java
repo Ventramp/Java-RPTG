@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-       System.out.println("\n////////// BIENVENIDO //////////");
+       JOptionPane.showMessageDialog(null,"      ////////// BIENVENIDO //////////");
      //creacion de jugador//
         Player player= new Player("Player");
         NavigatorPirate navigator = new NavigatorPirate();
@@ -15,7 +15,5 @@ public class Main {
         navigator.eAttack(player);
         player.accion(navigator);
         navigator.eAttack(player);
-        player.accion(navigator);
-
     }
 }

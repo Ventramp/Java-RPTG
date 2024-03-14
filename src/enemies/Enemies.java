@@ -22,18 +22,18 @@ public Enemies(String eName, int eHP, int eDm, int dropG, int giveExp) {
         this.eDm = eDm;
         this.dropG = dropG;
         this.giveExp = giveExp;
-    JOptionPane.showMessageDialog(null, eName+"ha aparecido delante tuyo");
+    JOptionPane.showMessageDialog(null, eName+" ha aparecido delante tuyo");
 
     }
     //ACCIONES QUE REALIZARA EL PERSONAJE//
     public void eRecibeDm (int dm){
         //comodin dm para recordar que es el daño que hace el player//
         eHP-=dm;
-        System.out.printf("%s Recibio %d puntos de daño \n",eName,dm);
-        System.out.printf("\t\t\t EHP:%d/%d\n\n",eHP,eMaxHp);
+        JOptionPane.showMessageDialog(null,eName+" recibio "+dm+" puntos de daño \n"
+        +"               EHP:"+eHP+"/"+eMaxHp);
         //si se cumple el boleano de muerte hacer//
         if (eDie())
-            System.out.printf("%s fue derrotado\n",eName);
+            JOptionPane.showMessageDialog(null,eName+" fue derrotado\n");
     }
     public boolean eDie(){
         return eHP <= 0;
