@@ -86,6 +86,7 @@ public void displayData() {
                 + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getN()+"\nARMOR:              "+armor.getN()+"\n\n                                         "+gold+" G\n\n");
         }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
+
     //seleccion de las formas de ataque disponibles//
     public void selectAttack(@NotNull Enemies enemies) {
         String [] opcion= {"Normal", "Artilleria","Regresar"};
@@ -96,6 +97,11 @@ public void displayData() {
                 case "Artilleria"->{artilleryA(enemies);}
                 case "Regresar"->{accion(enemies);}
             }
+        if (enemies.eDie()){
+            rewards(enemies);
+            lvUpCheck();
+            hpRecover();
+        }
     }
     //ataque normal//
     public void attack(@NotNull Enemies enemies){
@@ -107,13 +113,10 @@ public void displayData() {
             JOptionPane.showMessageDialog(null,name+" Ataca a "+enemies.geteName()+" con las manos vacias\n!!CRITICO¡¡\n\n");
             //llamada a la funcion de los enemigos recibe daño con el comodin critico//
             enemies.eRecibeDm(crit);
-        }else{
+        }
+        else{
             JOptionPane.showMessageDialog(null,name+" Ataca a "+enemies.geteName()+" con las manos desnudas\n\n");
             enemies.eRecibeDm(dm);
-        }
-        if (enemies.eDie()){
-            rewards(enemies);
-            lvUpCheck();
         }
     }
     //Ataque de artilleria//
@@ -136,6 +139,25 @@ public void displayData() {
             default->{selectAttack(enemies);}
         }
     }
+    private void gun(@NotNull Enemies enemies){
+        ap-=30;
+        dm=str+5;
+        JOptionPane.showMessageDialog(null,"Pistola -30Ap\nAP:   "+ap+"/"+maxAp);
+        enemies.eRecibeDm(dm);
+
+    }
+    private void rifle(@NotNull Enemies enemies){
+        ap-=50;
+        dm=str*2;
+        JOptionPane.showMessageDialog(null,"Cañon -50Ap\nAP:   "+ap+"/"+maxAp);
+        enemies.eRecibeDm(dm);
+    }
+    private void canyon(@NotNull Enemies enemies){
+        ap-=100;
+        dm=str*4;
+        JOptionPane.showMessageDialog(null,"Cañon -100Ap\nAP:   "+ap+"/"+maxAp);
+        enemies.eRecibeDm(dm);
+    }
     //preguntar como desaparecer objetos//
     public void escape(@NotNull Enemies enemies){
         enemies.seteHP(0);
@@ -146,36 +168,7 @@ public void displayData() {
     private void fisicDm(){dm=str+weapon.getwA();}
     private void critical (){crit=dm*2;}
     /* Ataques de tipo artilleria*/
-    private void gun(@NotNull Enemies enemies){
-        ap-=30;
-        dm=str+5;
-        JOptionPane.showMessageDialog(null,"Pistola -30Ap\nAP:   "+ap+"/"+maxAp);
-        enemies.eRecibeDm(dm);
-        if (enemies.eDie()){
-            rewards(enemies);
-            lvUpCheck();
-        }
-    }
-    private void rifle(@NotNull Enemies enemies){
-        ap-=50;
-        dm=str*2;
-        JOptionPane.showMessageDialog(null,"Cañon -50Ap\nAP:   "+ap+"/"+maxAp);
-        enemies.eRecibeDm(dm);
-        if (enemies.eDie()){
-            rewards(enemies);
-            lvUpCheck();
-        }
-    }
-    private void canyon(@NotNull Enemies enemies){
-        ap-=100;
-        dm=str*4;
-        JOptionPane.showMessageDialog(null,"Cañon -100Ap\nAP:   "+ap+"/"+maxAp);
-        enemies.eRecibeDm(dm);
-        if (enemies.eDie()){
-            rewards(enemies);
-            lvUpCheck();
-        }
-    }
+
     //Obtencion de recompensas//
     private void rewards(@NotNull Enemies enemies){
         JOptionPane.showMessageDialog(null,"///EXP     "+exp+"  +  "+enemies.getGiveExp()+"///\n///Gold     "+gold+"  +  "+enemies.getDropG()+"///");
@@ -184,9 +177,7 @@ public void displayData() {
     }
     //Funcion que comprueba el exp actual contra el exp maximo//
     private void lvUpCheck(){
-        if (exp >= maxExp) {
-            levelUp();
-        }
+        if (exp >= maxExp) {levelUp();}
     }
     /**Que ocurre cuando se suba de nivel**/
     public void levelUp() {
@@ -301,10 +292,15 @@ public void displayData() {
         edmreduction= eDm-def;
         if (edmreduction <= 0) edmreduction=0;
         hp -= edmreduction;
-        JOptionPane.showMessageDialog(null,name+" recibio "+edmreduction+" puntos de daño\n      Recuperaste AP"
-        +"      HP:         "+hp+"/"+maxHp+"\n      AP:         "+ap+"/"+maxHp);
-        ap+=10;
+        JOptionPane.showMessageDialog(null,name+" recibio "+edmreduction+" puntos de daño\n"
+        +"      HP:         "+hp+"/"+maxHp+"\n      AP:          "+ap+"/"+maxHp);
+        apRecover();
+        if (muerte())
+            JOptionPane.showMessageDialog(null,"**********  HAS MUERTO  **********");
     }
+    //ganancia y limitacion de hp y ap usados al recibir daño y al acabar una pelea//
+    private void apRecover(){ap+=10;     if (ap>maxHp) ap=maxAp;}
+    private void hpRecover(){hp+=dex;    if (hp>maxHp) hp=maxHp;}
 /**getters y setters**/
     public int getStr() {return str;}
     public void setStr(int str) {this.str = str;}
