@@ -301,8 +301,9 @@ public void displayData() {
         edmreduction= eDm-def;
         if (edmreduction <= 0) edmreduction=0;
         hp -= edmreduction;
-        JOptionPane.showMessageDialog(null,name+" recibio "+edmreduction+" puntos de daño\n"
+        JOptionPane.showMessageDialog(null,name+" recibio "+edmreduction+" puntos de daño\n      Recuperaste AP"
         +"      HP:         "+hp+"/"+maxHp+"\n      AP:         "+ap+"/"+maxHp);
+        ap+=10;
     }
 /**getters y setters**/
     public int getStr() {return str;}
@@ -332,4 +333,5 @@ public void displayData() {
     public void setWeapon(Weapons weapon) {this.weapon = weapon;}
     public Armors getArmor() {return armor;}
     public void setArmor(Armors armor) {this.armor = armor;}
+
 }
