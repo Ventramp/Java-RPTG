@@ -2,29 +2,27 @@ package items.armors;
 
 import items.Items;
 
-public class Armors extends Items {
+public abstract class Armors extends Items {
     protected int aHp;
     protected int aDef;
+    protected int aDex;
 
-    public Armors() {
-        this.name = "Sin Armadura";
-        this.description = "N/A";
-        this.price = 0;
-        this.lv = 0;
-        this.aHp = 0;
-        this.aDef = 0;
-    }
-    //Actualizacion
-    public abstract class Armor extends Items {
-        protected int atk;
-        public Armor(String name, String description, int price, int atk) {
-            super(name, description, price);
-            this.atk = atk;
-        }
-    public void displayAInfo(){
-        //aparecer caracteristicas del item Armadura//
+    public Armors(String name, String description, int price, int lv, int aHp, int aDef, int aDex) {
+        super(name, description, price, lv);
+        this.aHp = aHp;
+        this.aDef = aDef;
+        this.aDex = aDex;
     }
 
     public int getaHp() {return aHp;}
-    public int getaD() {return aDef;}
+
+    public void setaHp(int aHp) {this.aHp = aHp;}
+
+    public int getaDef() {return aDef;}
+
+    public void setaDef(int aDef) {this.aDef = aDef;}
+
+    public int getaDex() {return aDex;}
+
+    public void setaDex(int aDex) {this.aDex = aDex;}
 }

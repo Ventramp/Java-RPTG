@@ -5,6 +5,8 @@ import characters.BasicCharacter;
 import enemies.Enemies;
 import items.Items;
 import items.armors.Armors;
+import items.armors.EmpyArmor;
+import items.weapons.Empy;
 import items.weapons.Weapons;
 import org.jetbrains.annotations.NotNull;
 import util.FixedArrayList;
@@ -58,8 +60,8 @@ public class Player extends BasicCharacter {
         this.level = 1;
         this.exp = 0;
         this.maxExp = 100;
-        this.weapon = new Weapons();
-        this.armor = new Armors();
+        this.weapon = new Empy();
+        this.armor = new EmpyArmor();
         this.job="Sin Clase";
         displayData();
     }
@@ -85,8 +87,8 @@ public void displayData() {
                 + "      HP:         "+hp+"/"+maxHp+"+("+armor.getaHp()+")\n      AP:         "+ap+"/"+maxAp+"+("+weapon.getwAP()+")\t\t\t\n"
                 + "\n      CLASE:      "+job+"\n"
                 + "        //          LV:"+level+"      //\n         EXP:         "+exp+"/"+maxExp+"\n\n"
-                + "    STR:                         "+str+"   +   ("+weapon.getwA()+")\n    DEF:                         "+def+"   +   ("+armor.getaD()+")\n"
-                + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getN()+"\nARMOR:              "+armor.getN()+"\n\n                                         "+gold+" G\n\n");
+                + "    STR:                         "+str+"   +   ("+weapon.getwAttk()+")\n    DEF:                         "+def+"   +   ("+armor.getaDef()+")\n"
+                + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getName()+"\nARMOR:              "+armor.getName()+"\n\n                                         "+gold+" G\n\n");
         }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
 
@@ -168,7 +170,7 @@ public void displayData() {
         JOptionPane.showMessageDialog(null,name+" Escapo de "+enemies.geteName());
     }
     //voids para calculos especificos de daño en las funciones de ataque//
-    private void fisicDm(){dm=str+weapon.getwA();}
+    private void fisicDm(){dm=str+weapon.getwAttk();}
     private void critical (){crit=dm*2;}
     /* Ataques de tipo artilleria*/
 
@@ -333,42 +335,4 @@ public void displayData() {
     public Armors getArmor() {return armor;}
     public void setArmor(Armors armor) {this.armor = armor;}
 
-}
-//Uso de Inventario
-public class Inventory {
-
-    private final FixedArrayList<Items> items;
-
-    public Inventory() {
-
-        items = new FixedArrayList<> (15);
-    }
-
-    public void addItem(Items item) {
-
-        System.out.println(items.add(item) ? item.getName() + " has been added to your inventory." : "Inventory is full.");
-    }
-
-    public void removeItem(Items item) {
-
-        items.remove(item);
-    }
-
-    public FixedArrayList<Items> getItems() {
-
-        return items;
-    }
-
-    public void printItems() {
-
-        if (items.isEmpty()) {
-
-            System.out.println("Inventory is empty.");
-        } else {
-            System.out.println("Inventory:");
-            for (Items item : items) {
-                System.out.println(item.getName() + " - " + item.getDescription());
-            }
-        }
-    }
 }

@@ -1,13 +1,8 @@
 package items.armors;
 
 
-public class Knuckles extends Armors {
-    public Knuckles() {
-        this.name = "Brazaletes Oxidados";
-        this.description = "Bazaletes de hierro Oxidado, Los encontraste tirados por ahi";
-        this.price = 0;
-        this.lv = 1;
-        this.aHp = 1;
-        this.aDef = 1;
+public  abstract class Knuckles extends Armors {
+    public Knuckles(String name, String description, int price, int lv, int aHp, int aDef, int aDex) {
+        super(name, description, price, lv, aHp, aDef, aDex);
     }
 }

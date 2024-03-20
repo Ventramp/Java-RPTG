@@ -9,7 +9,7 @@ public class Main {
         //creacion de jugador//
         Player player = new Player("Player");
         NavigatorPirate n1 = new NavigatorPirate();
-        while (!n1.eDie()) {
+        while (!n1.eDie() && !player.muerte()) {
             player.accion(n1);
             if (n1.eDie()) {
             } else {
@@ -17,7 +17,7 @@ public class Main {
             }
         }
         NavigatorPirate n2 = new NavigatorPirate();
-        while (!n2.eDie()||!player.muerte()) {
+        while (!n2.eDie() && !player.muerte()) {
             player.accion(n2);
             if (n2.eDie()) {
             } else {
@@ -25,7 +25,7 @@ public class Main {
             }
         }
         NavigatorPirate n3 = new NavigatorPirate();
-        while (!n3.eDie()) {
+        while (!n3.eDie()&& !player.muerte()) {
             player.accion(n3);
             if (n3.eDie()) {
             } else {
