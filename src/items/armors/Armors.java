@@ -14,6 +14,13 @@ public class Armors extends Items {
         this.aHp = 0;
         this.aDef = 0;
     }
+    //Actualizacion
+    public abstract class Armor extends Items {
+        protected int atk;
+        public Armor(String name, String description, int price, int atk) {
+            super(name, description, price);
+            this.atk = atk;
+        }
     public void displayAInfo(){
         //aparecer caracteristicas del item Armadura//
     }

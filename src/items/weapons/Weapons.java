@@ -14,6 +14,13 @@ public class Weapons extends Items {
         this.wAP = 0;
         this.lv = 0;
     }
+    //Actualizacion
+    public abstract class Weapon extends Items {
+        protected int atk;
+        public Weapon(String name, String description, int price, int atk) {
+            super(name, description, price);
+            this.atk = atk;
+        }
     public void displayWInfo(){
         //aparecer informacion de item tipo Arma//
     }
