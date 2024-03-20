@@ -1,7 +1,9 @@
 package characters;
 
+import java.io.Serializable;
+
 //DEFINICION ATRIBUTOS DE NUEVO PERSONAJE//
-public abstract class BasicCharacter {
+public abstract class BasicCharacter implements Serializable {
     protected String name;
     protected int hp;
     protected int maxHp;

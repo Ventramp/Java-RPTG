@@ -2,7 +2,9 @@ package items.armors;
 
 import items.Items;
 
-public abstract class Armors extends Items {
+import java.io.Serializable;
+
+public abstract class Armors extends Items implements Serializable {
     protected int aHp;
     protected int aDef;
     protected int aDex;

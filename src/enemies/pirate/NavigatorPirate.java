@@ -5,8 +5,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
+import java.io.Serializable;
+
 import static util.Randomized.rng;
-public class NavigatorPirate extends Enemies{
+public class NavigatorPirate extends Enemies implements Serializable {
     public NavigatorPirate()
     {
         super ("Navegante",50,25,15,20);

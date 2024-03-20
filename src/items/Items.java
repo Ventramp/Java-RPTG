@@ -1,9 +1,10 @@
 package items;
 
 import javax.swing.*;
+import java.io.Serializable;
 
 //CLASE ITEM PARA OBJETOS EQUIPABLES//
-public abstract class Items {
+public abstract class Items implements Serializable {
     protected final String name;
     protected final String description;
     protected final int price;

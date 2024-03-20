@@ -3,7 +3,9 @@ package players;
 import items.Items;
 import util.FixedArrayList;
 
-public class Inventory {
+import java.io.Serializable;
+
+public class Inventory implements Serializable {
         private final FixedArrayList<Items> items;
 
         public Inventory() {

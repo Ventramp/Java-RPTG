@@ -3,8 +3,9 @@ package enemies;
 import players.Player;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public abstract class Enemies {
+public abstract class Enemies implements Serializable {
     private final String eName;
     private int eHP;
     private final int eMaxHp;

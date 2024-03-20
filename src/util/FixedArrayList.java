@@ -1,8 +1,9 @@
 package util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FixedArrayList<T> extends ArrayList<T> {
+public class FixedArrayList<T> extends ArrayList<T> implements Serializable {
 
     private int capacity;
 

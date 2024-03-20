@@ -1,6 +1,8 @@
 package items.armors;
 
-public class EmpyArmor extends Armors{
+import java.io.Serializable;
+
+public class EmpyArmor extends Armors implements Serializable {
     public EmpyArmor() {
         super("Sin Armadura","Vacio",0,0,0,0,0);
     }

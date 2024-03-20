@@ -1,5 +1,6 @@
 package players;
 //IMPORTS NECESARIOS PARA FUNCIONAMIENTO COMPLETO DE PLAYER Y SUS EXTENCIONES//
+import java.io.Serializable;
 import java.util.Scanner;
 import characters.BasicCharacter;
 import enemies.Enemies;
@@ -16,7 +17,7 @@ import javax.swing.*;
 import static util.Randomized.rng;
 
 //INICIO DE PLAYER Y ATRIBUTOS//
-public class Player extends BasicCharacter {
+public class Player extends BasicCharacter implements Serializable {
     protected int str;
     protected int gold;
     protected int def;

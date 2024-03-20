@@ -1,8 +1,11 @@
 package items.weapons;
 
 import items.Items;
+
+import java.io.Serializable;
+
 //CREACION DE OBJETOS TIPO ARMA//
-public abstract class Weapons extends Items {
+public abstract class Weapons extends Items implements Serializable {
 //ATRIBUTOS ESPECIALES DE WEAPON
     protected int wAttk;
     protected int wAP;
