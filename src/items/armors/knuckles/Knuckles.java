@@ -1,5 +1,7 @@
-package items.armors;
+package items.armors.knuckles;
 
+
+import items.armors.Armors;
 
 import java.io.Serializable;
 
