@@ -7,7 +7,7 @@ public class FileManager {
 
         Player player = null;
         try {
-            player = (Player) new ObjectInputStream(new FileInputStream("C:\\Users\\buenc\\Downloads\\game.dat")).readObject();
+            player = (Player) new ObjectInputStream(new FileInputStream("C:\\Program Files\\game.dat")).readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new FileNotFoundException("No se encontró el archivo");
         }
@@ -18,7 +18,7 @@ public class FileManager {
 
         ObjectOutputStream oos = null;
         try {
-            oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\buenc\\Downloads\\game.dat"));
+            oos = new ObjectOutputStream(new FileOutputStream("C:\\Program Files\\game.dat"));
             oos.writeObject(player);
             try {
                 oos.close();
