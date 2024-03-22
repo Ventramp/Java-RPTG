@@ -1,4 +1,4 @@
-package game.exceptions;
+package game.exeptions;
 
 public class ZeroException extends Exception {
 

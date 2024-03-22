@@ -1,9 +1,7 @@
-package game.exceptions;
+package game.exeptions;
 
-public class EnemyDeadException extends Exception {
-
+public class EnemyDeadException extends Exception{
     public EnemyDeadException() {
-
         super("El Enemigo recibió un overkill");
     }
 }
