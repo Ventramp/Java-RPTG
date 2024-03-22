@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Game {
 
-   /* private Player player;
+    private Player player;
     private final List<Enemies> enemies;
     public Game() {
         player = null;
@@ -24,5 +24,30 @@ public class Game {
         enemies.add(new ViceCaptain());
         enemies.add(new Ateez());
         enemies.add(new Captain());
-    }*/
+    }
+    public void printMainMenu() {
+
+        String menu = "1. Jugar\n2. Salir";
+        try {
+            int option = Integer.parseInt(JOptionPane.showInputDialog(menu));
+            switch (option) {
+
+                case 1 -> {
+                    try {
+                        player = FileManager.loadGame();
+                        String Bienvenida JOptionPazne.showOptionDialog(null,"Bienvenido");
+                    } catch (Exception e) {
+                        player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
+                    }
+                    printPlayerMenu();
+                }
+                case 2 -> Interactive.printDialog("Gracias por jugar");
+                default -> throw new InvalidOptionException();
+            }
+        } catch (Exception e) {
+            Interactive.printDialog("La opción ingresada no es válida");
+            printMainMenu();
+        }
+    }
+
 }

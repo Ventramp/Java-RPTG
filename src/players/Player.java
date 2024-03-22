@@ -34,6 +34,7 @@ public class Player extends BasicCharacter implements Serializable {
     protected Armors armor;
     protected String job;
     protected int jobadd;
+    protected Inventory inventory;
 
     //CONSTRUCTOR DE LAS CARACTERISTICAS DE PLAYER//
     public Player(String name) {
@@ -94,7 +95,7 @@ public void displayData() {
     //not nulls para que estas acciones no sean posibles sin un enemigo//
 
     //seleccion de las formas de ataque disponibles//
-    public void selectAttack(@NotNull Enemies enemies) {
+    public void selectAttack(@NotNull Enemies enemies, @NotNull Player player) {
         String [] opcion= {"Normal", "Artilleria","Regresar"};
         int sAttack=JOptionPane.showOptionDialog(null,"Elige el tipo de ataque","ATAQUE",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Artilleria");
         //switch con diferentes imputs por si acaso//
@@ -107,6 +108,7 @@ public void displayData() {
             rewards(enemies);
             lvUpCheck();
             hpRecover();
+            enemies.dropItem(player);
         }
     }
     //ataque normal//
@@ -336,4 +338,15 @@ public void displayData() {
     public Armors getArmor() {return armor;}
     public void setArmor(Armors armor) {this.armor = armor;}
 
+    public String getJob() {return job;}
+
+    public void setJob(String job) {this.job = job;}
+
+    public int getJobadd() {return jobadd;}
+
+    public void setJobadd(int jobadd) {this.jobadd = jobadd;}
+
+    public Inventory getInventory() {return inventory;}
+
+    public void setInventory(Inventory inventory) {this.inventory = inventory;}
 }

@@ -5,8 +5,7 @@ import players.Player;
 import java.io.*;
 
 public class FileManager {
-}
-/*
+
     public static Player loadGame() throws FileNotFoundException {
 
         Player player = null;
@@ -34,4 +33,4 @@ public class FileManager {
         }
     }
 }
- */
+

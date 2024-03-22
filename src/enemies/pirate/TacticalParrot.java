@@ -1,15 +1,24 @@
 package enemies.pirate;
 
 import enemies.Enemies;
+import items.drops.Compass;
+import items.drops.Jewells;
+import org.jetbrains.annotations.NotNull;
 import players.Player;
 
-public class TacticalParrot extends Enemies {
+import java.io.Serializable;
 
+import static util.Randomized.rng;
 
-    public TacticalParrot(String eName, int eHP, int eDm, int dropG, int giveExp) {
-        super(eName, eHP, eDm, dropG, giveExp);
+public class TacticalParrot extends Enemies implements Serializable {
+    public TacticalParrot() {
+        super("Perico Armado",30, 50, 10, 50);
     }
-
+    @Override
+    public void dropItem(@NotNull Player player) {
+        int prob = rng(1,100);
+        player.getInventory().addItem(prob > 90 ? new Jewells() : new Compass());
+    }
     @Override
     public void eAttack(Player player) {
     }

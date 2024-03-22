@@ -1,5 +1,7 @@
 package enemies.pirate;
 import enemies.Enemies;
+import items.drops.Compass;
+import items.drops.Jewells;
 import players.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,13 +17,19 @@ public class NavigatorPirate extends Enemies implements Serializable {
     }
     //override de enemieattack con rng para que se hagan diferentes acciones//
     @Override
+    public void dropItem(@NotNull Player player){
+        int prob = rng(1,100);
+        player.getInventory().addItem(prob > 90 ? new Jewells() : new Compass());
+    }
+    @Override
     public void eAttack(Player player)
     {
-        switch (rng(0,2))
+        switch (rng(0,3))
         {
             case 0 -> thrust(player);
             case 1 -> shot(player);
             case 2 -> robarG(player);
+            case 3 -> thrust(player);
         }
     }
     //ataque tipo estoque con notnull para que no se pueda hacer sin player//

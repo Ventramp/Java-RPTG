@@ -41,6 +41,7 @@ public Enemies(String eName, int eHP, int eDm, int dropG, int giveExp) {
     }
     //funcion de ataque en general de todos los hijos de enemigo//
     public abstract void eAttack(Player player);
+    public abstract void dropItem(Player player);
 
     public String geteName() {return eName;}
     public int geteHP() {return eHP;}
