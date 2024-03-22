@@ -1,4 +1,9 @@
-package game.exeptions;
+package game.exceptions;
 
-public class ZeroException extends Exception{
+public class ZeroException extends Exception {
+
+    public ZeroException() {
+
+        super("El Dato ingresado en 0");
+    }
 }
