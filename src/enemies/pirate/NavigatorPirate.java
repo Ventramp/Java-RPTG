@@ -17,7 +17,7 @@ public class NavigatorPirate extends Enemies implements Serializable {
     }
     //override de enemieattack con rng para que se hagan diferentes acciones//
     @Override
-    public void dropItem(@NotNull Player player){
+    public void dropItem(Player player){
         int prob = rng(1,100);
         player.getInventory().addItem(prob > 90 ? new Jewells() : new Compass());
     }

@@ -25,9 +25,7 @@ public class Game {
         enemies = new ArrayList<>(5);
         enemies.add(new NavigatorPirate());
         enemies.add(new TacticalParrot());
-        enemies.add(new ViceCaptain());
-        enemies.add(new Ateez());
-        enemies.add(new Captain());
+
     }
     public void mainMenu() {
         try {
@@ -52,30 +50,23 @@ public class Game {
         }
     }
     public void actionMenu(){
-        try {
             String [] opcion= {"Pelear", "Stats","Inventario","MENU"};
             int sAccion=JOptionPane.showOptionDialog(null,"Menu de Acciones","Accion",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Stats");
 
             switch (opcion[sAccion]) {
-
-                case "Pelea" -> fightCycle();
-                case "Stats" -> player.displayData();   actionMenu();
+                case "Pelear" -> fightCycle();
+                case "Stats" -> {player.displayData();   actionMenu();}
                 case "MENU" -> endGame();
-                case "Inventario"->
-                default -> throw new InvalidOptionException();
-                actionMenu();
+                case "Inventario"-> inventoryMenu();
             }
-        } catch (Exception e) {
-            actionMenu();
-        }
     }
     public void inventoryMenu(){
         player.getInventory().printItems();
         String [] opcion= {"Equipar Armadura", "Equipar Arma","Regresar"};
         int sInventory=JOptionPane.showOptionDialog(null,"Menu de Inventario","Inventario",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Regresar");
         switch (opcion[sInventory]){
-            case "Equipar Armadura"-> ;
-            case "Equipar Arma" -> ;
+            case "Equipar Armadura"-> equipArmor();
+            case "Equipar Arma" -> equipWeapon();
             case "Regresar" -> actionMenu();
         }
     }
@@ -89,13 +80,31 @@ public class Game {
                 currentEnemy.eAttack(player);
             }
         }
+        enemies.remove(currentEnemy);
+        actionMenu();
+    }
+    public void equipArmor(){
+        player.getInventory().equipArmorMenu(player);
+        actionMenu();
+    }
+    public void equipWeapon(){
+        player.getInventory().equipWeaponMenu(player);
+        actionMenu();
+    }
+    private void endGame() {
+
+        JOptionPane.showMessageDialog(null,"Gracias por jugar");
+        FileManager.saveGame(player);
     }
     @NotNull
     private static Enemies getEnemy(List<Enemies> enemies) {
 
         Enemies enemy = enemies.get(rng(0, enemies.size() - 1));
+        JOptionPane.showMessageDialog(null, enemy.geteName()+" ha aparecido delante tuyo");
         return enemy;
+
     }
+
     }
 
 

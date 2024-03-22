@@ -1,16 +1,13 @@
 package util;
-
 import players.Player;
-
 import java.io.*;
-
 public class FileManager {
 
     public static Player loadGame() throws FileNotFoundException {
 
         Player player = null;
         try {
-            player = (Player) new ObjectInputStream(new FileInputStream("files/game.dat")).readObject();
+            player = (Player) new ObjectInputStream(new FileInputStream("C:\\Users\\buenc\\Downloads\\game.dat")).readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new FileNotFoundException("No se encontró el archivo");
         }
@@ -21,7 +18,7 @@ public class FileManager {
 
         ObjectOutputStream oos = null;
         try {
-            oos = new ObjectOutputStream(new FileOutputStream("files/game.dat"));
+            oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\buenc\\Downloads\\game.dat"));
             oos.writeObject(player);
             try {
                 oos.close();
@@ -33,4 +30,3 @@ public class FileManager {
         }
     }
 }
-

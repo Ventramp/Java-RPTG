@@ -13,4 +13,9 @@ public class Captain extends Enemies {
     @Override
     public void eAttack(Player player) {
     }
+
+    @Override
+    public void dropItem(Player player) {
+
+    }
 }

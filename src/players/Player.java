@@ -1,16 +1,14 @@
 package players;
 //IMPORTS NECESARIOS PARA FUNCIONAMIENTO COMPLETO DE PLAYER Y SUS EXTENCIONES//
 import java.io.Serializable;
-import java.util.Scanner;
+
 import characters.BasicCharacter;
 import enemies.Enemies;
-import items.Items;
 import items.armors.Armors;
 import items.armors.EmpyArmor;
 import items.weapons.Empy;
 import items.weapons.Weapons;
 import org.jetbrains.annotations.NotNull;
-import util.FixedArrayList;
 
 import javax.swing.*;
 
@@ -34,15 +32,12 @@ public class Player extends BasicCharacter implements Serializable {
     protected Armors armor;
     protected String job;
     protected int jobadd;
-    protected Inventory inventory;
+    protected final Inventory inventory;
 
     //CONSTRUCTOR DE LAS CARACTERISTICAS DE PLAYER//
     public Player(String name) {
         super(name, 100,100);
         JOptionPane.showMessageDialog(null,"Nuevo Jugador Ingresando:");
-
-            this.name = JOptionPane.showInputDialog("Ingresa tu nombre de usuario:");
-        JOptionPane.showMessageDialog(null,"Creando Jugador");
         //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESBALANCES//
         this.def=5;
         this.dex=5;
@@ -65,6 +60,7 @@ public class Player extends BasicCharacter implements Serializable {
         this.weapon = new Empy();
         this.armor = new EmpyArmor();
         this.job="Sin Clase";
+        inventory = new Inventory();
         displayData();
     }
 
@@ -95,7 +91,7 @@ public void displayData() {
     //not nulls para que estas acciones no sean posibles sin un enemigo//
 
     //seleccion de las formas de ataque disponibles//
-    public void selectAttack(@NotNull Enemies enemies, @NotNull Player player) {
+    public void selectAttack(@NotNull Enemies enemies) {
         String [] opcion= {"Normal", "Artilleria","Regresar"};
         int sAttack=JOptionPane.showOptionDialog(null,"Elige el tipo de ataque","ATAQUE",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Artilleria");
         //switch con diferentes imputs por si acaso//
@@ -108,7 +104,7 @@ public void displayData() {
             rewards(enemies);
             lvUpCheck();
             hpRecover();
-            enemies.dropItem(player);
+            enemies.dropItem(this);
         }
     }
     //ataque normal//
@@ -128,7 +124,7 @@ public void displayData() {
         }
     }
     //Ataque de artilleria//
-    public void artilleryA(@NotNull Enemies enemies) {
+    public void artilleryA(Enemies enemies) {
         String [] opcion= {"Pistola", "Rifle","Cañon","Regresar"};
         int artillery=JOptionPane.showOptionDialog(null,name+" Atacara con Artilleria\n\nPistola               Rifle               Cañon   \n -30Ap               -50Ap             -100Ap   ","ARTILLERIA",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Pistola");
         switch (opcion[artillery]) {
@@ -144,7 +140,6 @@ public void displayData() {
                 if (ap>= 100) canyon(enemies);
                 else {JOptionPane.showMessageDialog(null,"AP insuficiente");
                 selectAttack(enemies);}}
-            default->{selectAttack(enemies);}
         }
     }
     private void gun(@NotNull Enemies enemies){
@@ -294,6 +289,25 @@ public void displayData() {
      */
 
     //como recibe daño un player segun su defensa//
+    public void equipWeapon(Weapons weapon) {
+        this.weapon = weapon;
+    }
+    public void equipWDialog(@NotNull Weapons weapons){
+        JOptionPane.showMessageDialog(null,"Has equipado :"+weapon.getName());
+    }
+    public void equipArmor(Armors armor) {
+        this.armor = armor;
+
+    }
+    public void equipADialog(@NotNull Armors armor){
+        JOptionPane.showMessageDialog(null,"Has equipado :"+armor.getName());
+    }
+
+    public void revive() {
+
+        hp = maxHp;
+        ap = maxAp;
+    }
     @Override
     public void recibeDm(int eDm) {
         int edmreduction;
@@ -347,6 +361,4 @@ public void displayData() {
     public void setJobadd(int jobadd) {this.jobadd = jobadd;}
 
     public Inventory getInventory() {return inventory;}
-
-    public void setInventory(Inventory inventory) {this.inventory = inventory;}
 }

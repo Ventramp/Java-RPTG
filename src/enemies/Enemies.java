@@ -23,7 +23,7 @@ public Enemies(String eName, int eHP, int eDm, int dropG, int giveExp) {
         this.eDm = eDm;
         this.dropG = dropG;
         this.giveExp = giveExp;
-    JOptionPane.showMessageDialog(null, eName+" ha aparecido delante tuyo");
+
 
     }
     //ACCIONES QUE REALIZARA EL PERSONAJE//

@@ -11,4 +11,9 @@ public class Ateez extends Enemies {
     @Override
     public void eAttack(Player player) {
     }
+
+    @Override
+    public void dropItem(Player player) {
+
+    }
 }
