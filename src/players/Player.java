@@ -61,7 +61,7 @@ public class Player extends BasicCharacter implements Serializable {
         this.weapon = new Empy();
         this.armor = new EmpyArmor();
         this.job="Sin Clase";
-        this.revives=3;
+        this.revives=0;
         inventory = new Inventory();
         displayData();
     }
@@ -89,7 +89,7 @@ public void displayData() {
                 + "        //          LV:"+level+"      //\n         EXP:         "+exp+"/"+maxExp+"\n\n"
                 + "    STR:                         "+str+"   +   ("+weapon.getwAttk()+")\n    DEF:                         "+def+"   +   ("+armor.getaDef()+")\n"
                 + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getName()+"\nARMOR:              "+armor.getName()+"\n\n                                         "+gold+" G\n\n"
-                +"                                         "+revives+" Revives\\n\\n");
+                +"                                         "+revives+" Revives\n\n");
         }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
 
@@ -167,7 +167,6 @@ public void displayData() {
     //preguntar como desaparecer objetos//
     public void escape(@NotNull Enemies enemies){
         enemies.seteHP(0);
-        enemies.eDie();
         JOptionPane.showMessageDialog(null,name+" Escapo de "+enemies.geteName());
     }
     //voids para calculos especificos de daño en las funciones de ataque//
@@ -307,14 +306,10 @@ public void displayData() {
     }
 
     public void revive() {
-    if (revives >0 ) {
-        JOptionPane.showMessageDialog(null,"Has muerto y se gasto 1 revivir");
-        revives-=1;
+            revives-=1;
             hp = maxHp;
             ap = maxAp;
         }
-    else JOptionPane.showMessageDialog(null,"No quedan Revivir");
-    }
     @Override
     public void recibeDm(int eDm) {
         int edmreduction;

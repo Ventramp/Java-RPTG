@@ -24,12 +24,13 @@ public class Game {
         player = null;
         enemies = new ArrayList<>(5);
         enemies.add(new NavigatorPirate());
+        enemies.add(new NavigatorPirate());
+        enemies.add(new NavigatorPirate());
         enemies.add(new TacticalParrot());
-        enemies.add(new Ateez());
+        enemies.add(new TacticalParrot());
 
     }
     public void mainMenu() {
-
         try {
             String [] opcion= {"Jugar", "Salir"};
             int seleccion=JOptionPane.showOptionDialog(null,"Pirate Quest","Game",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Jugar");
@@ -41,6 +42,7 @@ public class Game {
                         JOptionPane.showMessageDialog(null,"Bienvenido de Vuelta");
                     } catch (Exception e) {
                         player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
+                        difficult();
                     }
                     actionMenu();
                 }
@@ -51,8 +53,16 @@ public class Game {
             mainMenu();
         }
     }
+    public void difficult(){
+        String [] opcion= {"Facil", "Normal","Dificil"};
+        int sdifficult=JOptionPane.showOptionDialog(null,"Pirate Quest","Game",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Normal");
+            switch (opcion[sdifficult]){
+                case "Facil"-> player.setRevives(5);
+                case "Normal"-> player.setRevives(3);
+                case "Dificil"-> player.setRevives(0);
+            }
+    }
     public void actionMenu(){
-
             String [] opcion= {"Pelear", "Stats","Inventario","MENU"};
             int sAccion=JOptionPane.showOptionDialog(null,"Menu de Acciones","Accion",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Stats");
 
@@ -73,29 +83,27 @@ public class Game {
             case "Regresar" -> actionMenu();
         }
     }
-    public void fightCycle (){
-
-        if(!enemies.isEmpty()) {
+    public void fightCycle () {
+        if (!enemies.isEmpty()) {
             Enemies currentEnemy;
             currentEnemy = getEnemy(enemies);
             while (!currentEnemy.eDie() && !player.muerte()) {
-                figthLogic(currentEnemy);
+                player.accion(currentEnemy);
+                if (currentEnemy.eDie()) {
+                } else {
+                    currentEnemy.eAttack(player);
+                }
             }
             enemies.remove(currentEnemy);
-            }
-        else {
-            JOptionPane.showMessageDialog(null,"No quedan Enemigos");
-            }
-        actionMenu();
-        }
-
-    public void figthLogic(Enemies enemies){
-        player.accion(enemies);
-        if (enemies.eDie()) {
         } else {
-            enemies.eAttack(player);
+            JOptionPane.showMessageDialog(null, "No quedan Enemigos en este nivel");
+            actionMenu();
         }
+        if (!player.muerte()) actionMenu();
+        else revive();
+
     }
+
     public void equipArmor(){
         player.getInventory().equipArmorMenu(player);
         actionMenu();
@@ -104,15 +112,32 @@ public class Game {
         player.getInventory().equipWeaponMenu(player);
         actionMenu();
     }
+    public void gameOver(){
+        JOptionPane.showMessageDialog(null,"Fin del Juego \n Regresando al menu principal");
+        mainMenu();
+    }
+    private void revive(){
+
+        if (player.getRevives() >0 ) {
+            String[] opcion = {"Revivir", "Salir"};
+            int sRevive = JOptionPane.showOptionDialog(null, "¿Quieres revivir?", "Revivir", 0, JOptionPane.QUESTION_MESSAGE, null, opcion, "Jugar");
+            switch (opcion[sRevive]) {
+                case "Revivir" -> {
+                    player.revive();
+                    actionMenu();
+                }
+
+                case "Salir" -> mainMenu();
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "No quedan Revivir");
+            gameOver();
+            }
+        }
     private void endGame() {
-
-        JOptionPane.showMessageDialog(null,"Gracias por jugar");
         FileManager.saveGame(player);
+        JOptionPane.showMessageDialog(null,"Gracias por jugar");
     }
-    private boolean gameOver(Player player){
-        return player.getRevives() < 0;
-    }
-
     @NotNull
     private static Enemies getEnemy(List<Enemies> enemies) {
 
