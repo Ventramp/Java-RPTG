@@ -33,6 +33,7 @@ public class Player extends BasicCharacter implements Serializable {
     protected String job;
     protected int jobadd;
     protected final Inventory inventory;
+    protected int revives;
 
     //CONSTRUCTOR DE LAS CARACTERISTICAS DE PLAYER//
     public Player(String name) {
@@ -60,6 +61,7 @@ public class Player extends BasicCharacter implements Serializable {
         this.weapon = new Empy();
         this.armor = new EmpyArmor();
         this.job="Sin Clase";
+        this.revives=3;
         inventory = new Inventory();
         displayData();
     }
@@ -200,7 +202,7 @@ public void displayData() {
                 case 6 -> {ap += 10;    maxAp += 10;    JOptionPane.showMessageDialog(null,"AP     maxima aumentada:   "+ap);}
             }
         }
-        System.out.println();
+
         /*if (cangetjob())
             System.out.printf("%s ha alcanzado el nivel 10");
             getjob();
@@ -304,9 +306,13 @@ public void displayData() {
     }
 
     public void revive() {
-
-        hp = maxHp;
-        ap = maxAp;
+    if (revives >0 ) {
+        JOptionPane.showMessageDialog(null,"Has muerto y se gasto 1 revivir");
+        revives-=1;
+            hp = maxHp;
+            ap = maxAp;
+        }
+    else JOptionPane.showMessageDialog(null,"No quedan Revivir");
     }
     @Override
     public void recibeDm(int eDm) {
@@ -361,4 +367,8 @@ public void displayData() {
     public void setJobadd(int jobadd) {this.jobadd = jobadd;}
 
     public Inventory getInventory() {return inventory;}
+
+    public int getRevives() {return revives;}
+
+    public void setRevives(int revives) {this.revives = revives;}
 }

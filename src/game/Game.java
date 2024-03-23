@@ -25,9 +25,11 @@ public class Game {
         enemies = new ArrayList<>(5);
         enemies.add(new NavigatorPirate());
         enemies.add(new TacticalParrot());
+        enemies.add(new Ateez());
 
     }
     public void mainMenu() {
+
         try {
             String [] opcion= {"Jugar", "Salir"};
             int seleccion=JOptionPane.showOptionDialog(null,"Pirate Quest","Game",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Jugar");
@@ -39,6 +41,7 @@ public class Game {
                         JOptionPane.showMessageDialog(null,"Bienvenido de Vuelta");
                     } catch (Exception e) {
                         player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
+                        difficult();
                     }
                     actionMenu();
                 }
@@ -49,7 +52,17 @@ public class Game {
             mainMenu();
         }
     }
+    public void difficult(){
+        String [] opcion= {"Facil", "Dificil","Infierno"};
+        int sDificult=JOptionPane.showOptionDialog(null,"Selecciona la dificultad\n La dificultad se define por el numero de vidas","Dificultad",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Facil");
+        switch (opcion[sDificult]){
+            case "Facil"-> player.setRevives(5);
+            case "Dificil" -> player.setRevives(3);
+            case "Infierno" -> player.setRevives(0);
+        }
+    }
     public void actionMenu(){
+
             String [] opcion= {"Pelear", "Stats","Inventario","MENU"};
             int sAccion=JOptionPane.showOptionDialog(null,"Menu de Acciones","Accion",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Stats");
 
@@ -71,17 +84,32 @@ public class Game {
         }
     }
     public void fightCycle (){
-        Enemies currentEnemy;
-        currentEnemy = getEnemy(enemies);
-        while (!currentEnemy.eDie() && !player.muerte()) {
-            player.accion(currentEnemy);
-            if (currentEnemy.eDie()) {
-            } else {
-                currentEnemy.eAttack(player);
+
+        if(!enemies.isEmpty()) {
+            Enemies currentEnemy;
+            currentEnemy = getEnemy(enemies);
+            while (!currentEnemy.eDie() && !player.muerte()) {
+                figthLogic(currentEnemy);
+            }
+            enemies.remove(currentEnemy);
+            if (player.muerte()){
+                player.revive();
+            }
+            if (gameOver(player)){
+                JOptionPane.showMessageDialog(null,"Has muerto\nTe has quedado sin vidas\nRegresando al Menu principal");
+                mainMenu();
             }
         }
-        enemies.remove(currentEnemy);
-        actionMenu();
+        else {
+            JOptionPane.showMessageDialog(null,"No quedan Enemigos");
+        actionMenu();}
+    }
+    public void figthLogic(Enemies enemies){
+        player.accion(enemies);
+        if (enemies.eDie()) {
+        } else {
+            enemies.eAttack(player);
+        }
     }
     public void equipArmor(){
         player.getInventory().equipArmorMenu(player);
@@ -96,6 +124,10 @@ public class Game {
         JOptionPane.showMessageDialog(null,"Gracias por jugar");
         FileManager.saveGame(player);
     }
+    private boolean gameOver(Player player){
+        return player.getRevives() < 0;
+    }
+
     @NotNull
     private static Enemies getEnemy(List<Enemies> enemies) {
 

@@ -5,8 +5,9 @@ import enemies.Enemies;
 public class Ateez extends Enemies {
 
 
-    public Ateez(String eName, int eHP, int eDm, int dropG, int giveExp) {
-        super(eName, eHP, eDm, dropG, giveExp);
+    public Ateez() {
+
+        super("ATEZZ", 200, 60, 2000, 500);
     }
     @Override
     public void eAttack(Player player) {
