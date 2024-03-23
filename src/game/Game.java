@@ -96,7 +96,7 @@ public class Game {
             }
             enemies.remove(currentEnemy);
         } else {
-            JOptionPane.showMessageDialog(null, "No quedan Enemigos en este nivel");
+            JOptionPane.showMessageDialog(null, "Ya te has encontrado con todos\n los enemigos posibles de esta sesion");
             actionMenu();
         }
         if (!player.muerte()) actionMenu();
@@ -136,7 +136,8 @@ public class Game {
         }
     private void endGame() {
         FileManager.saveGame(player);
-        JOptionPane.showMessageDialog(null,"Gracias por jugar");
+        JOptionPane.showMessageDialog(null,"Guardando Partida");
+        mainMenu();
     }
     @NotNull
     private static Enemies getEnemy(List<Enemies> enemies) {

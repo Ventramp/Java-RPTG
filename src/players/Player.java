@@ -198,8 +198,8 @@ public void displayData() {
                 case 2 -> {def++;                       JOptionPane.showMessageDialog(null,"DEF    Ha aumentado a:     "+def);}
                 case 3 -> {dex++;                       JOptionPane.showMessageDialog(null,"DEX    Ha aumentado a:     "+dex);}
                 case 4 -> {pCrit++;                     JOptionPane.showMessageDialog(null,"P.CRIT Ha aumentado a:     "+pCrit);}
-                case 5 -> {hp += 20;    maxHp += 20;    JOptionPane.showMessageDialog(null,"HP     maxima aumentada:   "+hp);}
-                case 6 -> {ap += 10;    maxAp += 10;    JOptionPane.showMessageDialog(null,"AP     maxima aumentada:   "+ap);}
+                case 5 -> {hp += 20;    maxHp += 20;    JOptionPane.showMessageDialog(null,"HP     maxima aumentada:   "+maxHp);}
+                case 6 -> {ap += 10;    maxAp += 10;    JOptionPane.showMessageDialog(null,"AP     maxima aumentada:   "+maxAp);}
             }
         }
 
