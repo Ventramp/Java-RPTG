@@ -88,7 +88,8 @@ public void displayData() {
                 + "\n      CLASE:      "+job+"\n"
                 + "        //          LV:"+level+"      //\n         EXP:         "+exp+"/"+maxExp+"\n\n"
                 + "    STR:                         "+str+"   +   ("+weapon.getwAttk()+")\n    DEF:                         "+def+"   +   ("+armor.getaDef()+")\n"
-                + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getName()+"\nARMOR:              "+armor.getName()+"\n\n                                         "+gold+" G\n\n");
+                + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getName()+"\nARMOR:              "+armor.getName()+"\n\n                                         "+gold+" G\n\n"
+                +"                                         "+revives+" Revives\\n\\n");
         }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
 

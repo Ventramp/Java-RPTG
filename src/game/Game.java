@@ -41,7 +41,6 @@ public class Game {
                         JOptionPane.showMessageDialog(null,"Bienvenido de Vuelta");
                     } catch (Exception e) {
                         player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
-                        difficult();
                     }
                     actionMenu();
                 }
@@ -50,15 +49,6 @@ public class Game {
             }
         } catch (Exception e) {
             mainMenu();
-        }
-    }
-    public void difficult(){
-        String [] opcion= {"Facil", "Dificil","Infierno"};
-        int sDificult=JOptionPane.showOptionDialog(null,"Selecciona la dificultad\n La dificultad se define por el numero de vidas","Dificultad",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Facil");
-        switch (opcion[sDificult]){
-            case "Facil"-> player.setRevives(5);
-            case "Dificil" -> player.setRevives(3);
-            case "Infierno" -> player.setRevives(0);
         }
     }
     public void actionMenu(){
@@ -92,18 +82,13 @@ public class Game {
                 figthLogic(currentEnemy);
             }
             enemies.remove(currentEnemy);
-            if (player.muerte()){
-                player.revive();
             }
-            if (gameOver(player)){
-                JOptionPane.showMessageDialog(null,"Has muerto\nTe has quedado sin vidas\nRegresando al Menu principal");
-                mainMenu();
-            }
-        }
         else {
             JOptionPane.showMessageDialog(null,"No quedan Enemigos");
-        actionMenu();}
-    }
+            }
+        actionMenu();
+        }
+
     public void figthLogic(Enemies enemies){
         player.accion(enemies);
         if (enemies.eDie()) {
