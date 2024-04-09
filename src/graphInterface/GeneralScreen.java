@@ -2,16 +2,11 @@ package graphInterface;
 
 import javax.swing.*;
 
-public class GeneralScreen extends JFrame {
-    private static GeneralScreen instance;
-    private JPanel retenedor;
+public class GeneralScreen {
+    private JPanel rScreen;
+    private JPanel viewPanel;
+    private JScrollPane statsPanel;
     private JPanel buttonsPanel;
-
-
-    public GeneralScreen() {
-    setSize(1280,800);
-    setName("PirATEEZ Quest");
-    setVisible(true);
-    setLocationRelativeTo(null);
-    }
+    private JPanel enemyPanel;
+    private JScrollPane consolePanel;
 }

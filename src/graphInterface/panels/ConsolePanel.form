@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="graphInterface.panels.ConsolePanel">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="rConsole" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="860" height="400"/>
@@ -8,17 +8,56 @@
     <properties>
       <maximumSize width="860" height="300"/>
       <minimumSize width="860" height="300"/>
+      <opaque value="false"/>
+      <preferredSize width="860" height="300"/>
+      <requestFocusEnabled value="true"/>
     </properties>
     <border type="none"/>
     <children>
       <scrollpane id="17466">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="840" height="280"/>
+            <preferred-size width="840" height="280"/>
+            <maximum-size width="840" height="280"/>
+          </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="e7a98" class="javax.swing.JTextArea" binding="console">
+            <constraints/>
+            <properties>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <maximumSize width="820" height="260"/>
+              <minimumSize width="820" height="260"/>
+              <preferredSize width="840" height="280"/>
+            </properties>
+          </component>
+        </children>
       </scrollpane>
+      <hspacer id="1590b">
+        <constraints>
+          <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="ec07f">
+        <constraints>
+          <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="22219">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="598e9">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
     </children>
   </grid>
 </form>
