@@ -9,5 +9,6 @@ public class ButtonsPanel extends JPanel{
     private JPanel rButtons;
 
     public ButtonsPanel() {
+        setVisible(true);
     }
 }
