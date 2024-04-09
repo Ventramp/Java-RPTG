@@ -1,16 +1,15 @@
 package enemies.pirate;
-import players.Player;
+
 import enemies.Enemies;
+import players.Player;
 
-public class Ateez extends Enemies {
-
-
-    public Ateez() {
-
-        super("ATEZZ", 200, 60, 2000, 500);
+public class Jonho extends Enemies {
+    public Jonho() {
+        super("Jonho",5,5,5,5);
     }
     @Override
     public void eAttack(Player player) {
+
     }
 
     @Override

@@ -33,7 +33,7 @@
               <margin top="0" left="0" bottom="0" right="0"/>
               <maximumSize width="820" height="260"/>
               <minimumSize width="820" height="260"/>
-              <preferredSize width="840" height="280"/>
+              <preferredSize width="820" height="280"/>
             </properties>
           </component>
         </children>

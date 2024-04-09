@@ -10,10 +10,10 @@ import javax.swing.*;
 import java.io.Serializable;
 
 import static util.Randomized.rng;
-public class NavigatorPirate extends Enemies implements Serializable {
-    public NavigatorPirate()
+public class San extends Enemies implements Serializable {
+    public San()
     {
-        super ("Navegante",50,25,15,20);
+        super ("San",50,25,15,20);
     }
     //override de enemieattack con rng para que se hagan diferentes acciones//
     @Override
