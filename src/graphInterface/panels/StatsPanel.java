@@ -1,8 +1,12 @@
 package graphInterface.panels;
 
 import players.Player;
+import graphInterface.dataLabels.StatLabel;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class StatsPanel extends JPanel{
     private static StatsPanel instance;
@@ -32,5 +36,10 @@ public class StatsPanel extends JPanel{
             instance = new StatsPanel();
         }
         return instance;
+    }
+    private void createUIComponents() {
+        expLabel = new StatLabel("EXP: " + player.getExp();
+        strLabel = new StatLabel(player.getAttk();
+        defLabel = new StatLabel(player.getDef();
     }
 }
