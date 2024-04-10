@@ -16,15 +16,15 @@ import static util.Randomized.rng;
 public class Game {
 
     private Player player;
-    private final List<Enemies> enemies;
+    public final List<Enemies> enemiesl;
     public Game() {
         player = null;
-        enemies = new ArrayList<>(5);
-        enemies.add(new San());
-        enemies.add(new San());
-        enemies.add(new San());
-        enemies.add(new TacticalParrot());
-        enemies.add(new TacticalParrot());
+        enemiesl = new ArrayList<>(5);
+        enemiesl.add(new San());
+        enemiesl.add(new San());
+        enemiesl.add(new San());
+        enemiesl.add(new TacticalParrot());
+        enemiesl.add(new TacticalParrot());
 
     }
     public void mainMenu() {
@@ -81,9 +81,9 @@ public class Game {
         }
     }
     public void fightCycle () {
-        if (!enemies.isEmpty()) {
+        if (!enemiesl.isEmpty()) {
             Enemies currentEnemy;
-            currentEnemy = getEnemy(enemies);
+            currentEnemy = getEnemy(enemiesl);
             while (!currentEnemy.eDie() && !player.muerte()) {
                 player.accion(currentEnemy);
                 if (currentEnemy.eDie()) {
@@ -91,7 +91,7 @@ public class Game {
                     currentEnemy.eAttack(player);
                 }
             }
-            enemies.remove(currentEnemy);
+            enemiesl.remove(currentEnemy);
         } else {
             JOptionPane.showMessageDialog(null, "Ya te has encontrado con todos\n los enemigos posibles de esta sesion");
             actionMenu();
@@ -131,7 +131,7 @@ public class Game {
             gameOver();
             }
         }
-    private void endGame() {
+    public void endGame() {
         FileManager.saveGame(player);
         JOptionPane.showMessageDialog(null,"Guardando Partida");
         mainMenu();

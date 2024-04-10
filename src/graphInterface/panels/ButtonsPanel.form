@@ -1,40 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="graphInterface.panels.ButtonsPanel">
-  <grid id="27dc6" binding="rButtons" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="rButtons" layout-manager="GridLayoutManager" row-count="3" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="1280" height="400"/>
     </constraints>
     <properties>
-      <maximumSize width="1200" height="100"/>
-      <minimumSize width="1200" height="100"/>
+      <maximumSize width="860" height="100"/>
+      <minimumSize width="860" height="100"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="e3644" class="javax.swing.JButton" binding="button1">
+      <component id="324d4" class="javax.swing.JButton" binding="button1" default-binding="true">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="275" height="90"/>
+            <preferred-size width="275" height="90"/>
+            <maximum-size width="275" height="90"/>
+          </grid>
         </constraints>
         <properties>
-          <text value="Button 1"/>
+          <text value="boton 1"/>
         </properties>
       </component>
-      <component id="52d3" class="javax.swing.JButton" binding="button2">
+      <hspacer id="b5f0d">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="dfae2" class="javax.swing.JButton" binding="button2" default-binding="true">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="275" height="90"/>
+            <preferred-size width="275" height="90"/>
+            <maximum-size width="275" height="90"/>
+          </grid>
         </constraints>
         <properties>
-          <text value="Button 2"/>
+          <text value="boton 2"/>
         </properties>
       </component>
-      <component id="1dcda" class="javax.swing.JButton" binding="button3">
+      <component id="3fe0" class="javax.swing.JButton" binding="button3">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="275" height="90"/>
+            <preferred-size width="275" height="90"/>
+            <maximum-size width="275" height="90"/>
+          </grid>
         </constraints>
         <properties>
-          <text value="Button 3"/>
+          <text value="Boton 3"/>
         </properties>
       </component>
+      <hspacer id="6e42d">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="5" height="5"/>
+            <preferred-size width="5" height="5"/>
+            <maximum-size width="5" height="5"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <hspacer id="f703a">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="5" height="5"/>
+            <preferred-size width="5" height="5"/>
+            <maximum-size width="5" height="5"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <hspacer id="2991c">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="5" height="5"/>
+            <preferred-size width="5" height="5"/>
+            <maximum-size width="5" height="5"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <vspacer id="c365f">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="5" height="5"/>
+            <preferred-size width="5" height="5"/>
+            <maximum-size width="5" height="5"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <vspacer id="c20b">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="5" height="5"/>
+            <preferred-size width="5" height="5"/>
+            <maximum-size width="5" height="5"/>
+          </grid>
+        </constraints>
+      </vspacer>
     </children>
   </grid>
 </form>

@@ -14,7 +14,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <scrollpane id="17466">
+      <scrollpane id="17466" binding="consoleScroll">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="840" height="280"/>
