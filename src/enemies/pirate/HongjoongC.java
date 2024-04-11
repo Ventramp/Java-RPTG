@@ -11,7 +11,7 @@ public class HongjoongC extends Enemies {
 
 
     public HongjoongC() {
-        super("Capitan Hongjoong",100, 50, 1000, 250);
+        super("Captain HongJoo",5,0,5,5,5,5);
     }
 
     @Override
@@ -22,5 +22,10 @@ public class HongjoongC extends Enemies {
     public void dropItem(Player player) {
         int prob = rng(1,100);
         player.getInventory().addItem(prob > 99 ? new Jewells() : new PirateFlag());
+    }
+
+    @Override
+    public void displayData() {
+
     }
 }

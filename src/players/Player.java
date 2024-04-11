@@ -5,7 +5,14 @@ import java.io.Serializable;
 import characters.BasicCharacter;
 import enemies.Enemies;
 import items.armors.Armors;
-import items.armors.EmpyArmor;
+import items.armors.boots.Boots;
+import items.armors.boots.EmpyBoots;
+import items.armors.chest.Chest;
+import items.armors.chest.EmpyChest;
+import items.armors.helmets.EmpyHelmet;
+import items.armors.helmets.Helmet;
+import items.armors.knuckles.EmpyKnuckles;
+import items.armors.knuckles.Knuckles;
 import items.weapons.Empy;
 import items.weapons.Weapons;
 import org.jetbrains.annotations.NotNull;
@@ -29,16 +36,22 @@ public class Player extends BasicCharacter implements Serializable {
     protected int exp;
     //VINCULACION DE LOS OBJETOS WEAPON Y ARMOR//
     protected Weapons weapon;
-    protected Armors armor;
+    protected Armors chest;
+    protected Armors helmet;
+    protected Armors knuckles;
+    protected Armors boots;
     protected String job;
     protected int jobadd;
     protected final Inventory inventory;
     protected int revives;
 
+
+
+
     //CONSTRUCTOR DE LAS CARACTERISTICAS DE PLAYER//
     public Player(String name) {
+
         super(name, 100,100);
-        JOptionPane.showMessageDialog(null,"Nuevo Jugador Ingresando:");
         //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESBALANCES//
         this.def=5;
         this.dex=5;
@@ -59,11 +72,14 @@ public class Player extends BasicCharacter implements Serializable {
         this.exp = 0;
         this.maxExp = 100;
         this.weapon = new Empy();
-        this.armor = new EmpyArmor();
+        this.chest = new EmpyChest();
+        this.helmet = new EmpyHelmet();
+        this.knuckles = new EmpyKnuckles();
+        this.boots = new EmpyBoots();
         this.job="Sin Clase";
         this.revives=0;
         inventory = new Inventory();
-        displayData();
+
     }
 
     public void accion(@NotNull Enemies enemies){
@@ -84,11 +100,11 @@ public class Player extends BasicCharacter implements Serializable {
 public void displayData() {
         JOptionPane.showMessageDialog(null,
                 "   ///////      "+name+"      ///////\n"
-                + "      HP:         "+hp+"/"+maxHp+"+("+armor.getaHp()+")\n      AP:         "+ap+"/"+maxAp+"+("+weapon.getwAP()+")\t\t\t\n"
+                + "      HP:         "+hp+"/"+maxHp+"+("+helmet.getaHp()+")\n      AP:         "+ap+"/"+maxAp+"+("+weapon.getwAP()+")\t\t\t\n"
                 + "\n      CLASE:      "+job+"\n"
                 + "        //          LV:"+level+"      //\n         EXP:         "+exp+"/"+maxExp+"\n\n"
-                + "    STR:                         "+str+"   +   ("+weapon.getwAttk()+")\n    DEF:                         "+def+"   +   ("+armor.getaDef()+")\n"
-                + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getName()+"\nARMOR:              "+armor.getName()+"\n\n                                         "+gold+" G\n\n"
+                + "    STR:                         "+str+"   +   ("+weapon.getwAttk()+")\n    DEF:                         "+def+"   +   ("+chest.getaDef()+")\n"
+                + "    DEX:                        "+dex+"\n    PROB.CRIT:           "+pCrit+"\n\nWEAPON:           "+weapon.getName()+"\nARMOR:                                                   "+gold+" G\n\n"
                 +"                                         "+revives+" Revives\n\n");
         }
     //not nulls para que estas acciones no sean posibles sin un enemigo//
@@ -117,12 +133,12 @@ public void displayData() {
         if (rng(1, 100) <= pCrit) {
             //llamada al calculo para daños criticos//
             critical();
-            JOptionPane.showMessageDialog(null,name+" Ataca a "+enemies.geteName()+" con las manos vacias\n!!CRITICO¡¡\n\n");
+            JOptionPane.showMessageDialog(null,name+" Ataca a "+enemies.getName()+" con las manos vacias\n!!CRITICO¡¡\n\n");
             //llamada a la funcion de los enemigos recibe daño con el comodin critico//
             enemies.eRecibeDm(crit);
         }
         else{
-            JOptionPane.showMessageDialog(null,name+" Ataca a "+enemies.geteName()+" con las manos desnudas\n\n");
+            JOptionPane.showMessageDialog(null,name+" Ataca a "+enemies.getName()+" con las manos desnudas\n\n");
             enemies.eRecibeDm(dm);
         }
     }
@@ -166,8 +182,8 @@ public void displayData() {
     }
     //preguntar como desaparecer objetos//
     public void escape(@NotNull Enemies enemies){
-        enemies.seteHP(0);
-        JOptionPane.showMessageDialog(null,name+" Escapo de "+enemies.geteName());
+        enemies.setHp(0);
+        JOptionPane.showMessageDialog(null,name+" Escapo de "+enemies.getName());
     }
     //voids para calculos especificos de daño en las funciones de ataque//
     private void fisicDm(){dm=str+weapon.getwAttk();}
@@ -291,6 +307,26 @@ public void displayData() {
      */
 
     //como recibe daño un player segun su defensa//
+    public String getTotalAttack() {
+        String message = String.format("STR: %d/%d",getAttk(),weapon.getwAttk());
+        return message;
+    }
+    public String getTotalDeff() {
+        String message = String.format("DEF: %d/%d",getDef(),chest.getaDef());
+        return message;
+    }
+    public String getTotalDex() {
+        String message = String.format("DEX: %d/%d",getDex(),boots.getaDex());
+        return message;
+    }
+    public String getGoldStatus() {
+        String message = String.format("G:"+getGold());
+        return message;
+    }
+    public String getTotalPcrit() {
+        String message = String.format("P.CRIT: %d",getpCrit());
+        return message;
+    }
     public void equipWeapon(Weapons weapon) {
         this.weapon = weapon;
     }
@@ -298,8 +334,13 @@ public void displayData() {
         JOptionPane.showMessageDialog(null,"Has equipado :"+weapon.getName());
     }
     public void equipArmor(Armors armor) {
-        this.armor = armor;
 
+        switch (armor.getType()) {
+            case HEAD -> helmet = armor;
+            case CHEST -> chest = armor;
+            case LEGS -> boots = armor;
+            case HANDS -> knuckles = armor;
+        }
     }
     public void equipADialog(@NotNull Armors armor){
         JOptionPane.showMessageDialog(null,"Has equipado :"+armor.getName());
@@ -351,8 +392,38 @@ public void displayData() {
     public void setExp(int exp) {this.exp = exp;}
     public Weapons getWeapon() {return weapon;}
     public void setWeapon(Weapons weapon) {this.weapon = weapon;}
-    public Armors getArmor() {return armor;}
-    public void setArmor(Armors armor) {this.armor = armor;}
+
+    public Armors getChest() {
+        return chest;
+    }
+
+    public void setChest(Armors chest) {
+        this.chest = chest;
+    }
+
+    public Armors getHelmet() {
+        return helmet;
+    }
+
+    public void setHelmet(Armors helmet) {
+        this.helmet = helmet;
+    }
+
+    public Armors getKnuckles() {
+        return knuckles;
+    }
+
+    public void setKnuckles(Armors knuckles) {
+        this.knuckles = knuckles;
+    }
+
+    public Armors getBoots() {
+        return boots;
+    }
+
+    public void setBoots(Armors boots) {
+        this.boots = boots;
+    }
 
     public String getJob() {return job;}
 

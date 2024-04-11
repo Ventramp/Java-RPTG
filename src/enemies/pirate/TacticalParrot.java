@@ -14,7 +14,7 @@ import static util.Randomized.rng;
 
 public class TacticalParrot extends Enemies implements Serializable {
     public TacticalParrot() {
-        super("Perico Armado",30, 50, 10, 50);
+        super("Loro Tactico",5,0,5,5,5,5);
     }
     @Override
     public void dropItem(@NotNull Player player) {
@@ -23,7 +23,12 @@ public class TacticalParrot extends Enemies implements Serializable {
     }
     @Override
     public void eAttack(Player player) {
-        JOptionPane.showMessageDialog(null,geteName()+"Ataca con Disparo doble");
+        JOptionPane.showMessageDialog(null,name+"Ataca con Disparo doble");
         player.recibeDm(geteDm());
+    }
+
+    @Override
+    public void displayData() {
+
     }
 }

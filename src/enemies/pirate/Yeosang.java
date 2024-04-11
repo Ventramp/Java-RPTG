@@ -5,7 +5,7 @@ import players.Player;
 
 public class Yeosang extends Enemies {
     public Yeosang() {
-        super("Yeosang",5,5,5,5);
+        super("Yeosang",5,0,5,5,5,5);
     }
     @Override
     public void eAttack(Player player) {
@@ -14,6 +14,11 @@ public class Yeosang extends Enemies {
 
     @Override
     public void dropItem(Player player) {
+
+    }
+
+    @Override
+    public void displayData() {
 
     }
 }

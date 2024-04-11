@@ -4,9 +4,10 @@ import enemies.pirate.San;
 import enemies.pirate.TacticalParrot;
 import org.jetbrains.annotations.NotNull;
 import players.Player;
-import util.FileManager;
+import util.managers.FileManager;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import game.exeptions.InvalidOptionException;
@@ -16,8 +17,11 @@ import static util.Randomized.rng;
 public class Game {
 
     private Player player;
+    private final int slot;
     public final List<Enemies> enemiesl;
-    public Game() {
+    public Game(int slot) {
+        player = null;
+        this.slot =slot;
         player = null;
         enemiesl = new ArrayList<>(5);
         enemiesl.add(new San());
@@ -35,7 +39,7 @@ public class Game {
 
                 case "Jugar" -> {
                     try {
-                        player = FileManager.loadGame();
+                        player = FileManager.loadGame(new File("files\\game" + slot + ".dat"));
                         JOptionPane.showMessageDialog(null,"Bienvenido de Vuelta");
                     } catch (Exception e) {
                         player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
@@ -132,7 +136,7 @@ public class Game {
             }
         }
     public void endGame() {
-        FileManager.saveGame(player);
+        FileManager.saveGame(player, slot);
         JOptionPane.showMessageDialog(null,"Guardando Partida");
         mainMenu();
     }
@@ -140,7 +144,7 @@ public class Game {
     private static Enemies getEnemy(List<Enemies> enemies) {
 
         Enemies enemy = enemies.get(rng(0, enemies.size() - 1));
-        JOptionPane.showMessageDialog(null, enemy.geteName()+" ha aparecido delante tuyo");
+        JOptionPane.showMessageDialog(null, enemy.getName()+" ha aparecido delante tuyo");
         return enemy;
 
     }

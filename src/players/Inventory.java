@@ -50,11 +50,24 @@ public class Inventory implements Serializable {
     private void equipArmorAction(Player player, List<Armors> armors, int option) {
 
         Armors selectedArmor = armors.get(option - 1);
-        if (player.getArmor() != null)
-            items.add(player.getArmor());
+        switch (selectedArmor.getType()) {
+            case HEAD -> {
+                if (player.getHelmet() != null) items.add(player.getHelmet());
+            }
+            case CHEST -> {
+                if (player.getChest() != null) items.add(player.getChest());
+            }
+            case HANDS -> {
+                if (player.getKnuckles() != null) items.add(player.getKnuckles());
+            }
+            case LEGS -> {
+                if (player.getBoots() != null) items.add(player.getBoots());
+            }
+        }
         player.equipArmor(selectedArmor);
         player.equipADialog(selectedArmor);
         items.remove(selectedArmor);
+
     }
 
     public void equipWeaponMenu(Player player) {

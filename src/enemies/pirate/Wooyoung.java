@@ -5,7 +5,7 @@ import players.Player;
 
 public class Wooyoung extends Enemies {
     public Wooyoung() {
-        super("Wooyoung",5,5,5,5);
+        super("Wooyoung", 5, 0, 5, 5, 5, 5);
     }
     @Override
     public void eAttack(Player player) {
@@ -17,4 +17,8 @@ public class Wooyoung extends Enemies {
 
     }
 
+    @Override
+    public void displayData() {
+
+    }
 }
