@@ -27,7 +27,12 @@ public class StatusPanel  extends JPanel{
     }
 
     public StatusPanel(Player player) {
-        image = ImageManager.getInstance().getImage("ssPanels");
+        image = ImageManager.getInstance().getImage("ssPanels2");
+        Dimension size = new Dimension(image.getWidth(null), image.getHeight(null));
+        setPreferredSize(size);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
         this.player = player;
         setOpaque(false);
         add(rStatus);

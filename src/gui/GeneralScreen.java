@@ -10,7 +10,6 @@ import javax.swing.*;
 public class GeneralScreen extends JFrame{
     private static GeneralScreen instance;
     private JPanel rScreen;
-    private JPanel viewPanel;
     private JPanel buttonsPanel;
     private JPanel enemyPanel;
     private JPanel consolePanel;
@@ -47,6 +46,8 @@ public class GeneralScreen extends JFrame{
 
     private void createUIComponents() {
         player=new Player("Ventramp");
+        String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
+        ConsolePanel.getInstance().getConsole().append(message);
         enemyPanel = EnemyPanel.getInstance();
         consolePanel= ConsolePanel.getInstance();
         statsPanel = StatsPanel.getInstance(player);

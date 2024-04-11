@@ -33,6 +33,7 @@ public class ConsolePanel extends JPanel {
         consoleScroll.setOpaque(false);
         consoleScroll.getViewport().setOpaque(false);
         consoleScroll.setBorder(BorderFactory.createEmptyBorder());
+
     }
 
     public void paintComponent(Graphics g) {
@@ -57,10 +58,8 @@ public class ConsolePanel extends JPanel {
         this.console = console;
     }
 
-
     private void createUIComponents() {
         console=new JTextArea();
-        console.setFont(FontManager.getInstance().getFont("Player"));
         console.setForeground(Color.WHITE);
         console.setOpaque(false);
         console.setLineWrap(true);

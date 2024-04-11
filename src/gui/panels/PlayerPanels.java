@@ -26,6 +26,14 @@ public class PlayerPanels extends JPanel{
     }
     public PlayerPanels() {
         image = ImageManager.getInstance().getImage("ssPanels");
+        Dimension size = new Dimension(image.getWidth(null), image.getHeight(null));
+        setPreferredSize(size);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        playerJtabbed.setOpaque(false);
+        setOpaque(false);
+        playerJtabbed.setBorder(BorderFactory.createEmptyBorder());
         add(rPlayer);
     }
     public void paintComponent(Graphics g) {

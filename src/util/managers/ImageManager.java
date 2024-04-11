@@ -137,9 +137,18 @@ public class ImageManager {
                 new ImageIcon("img\\ui\\panels\\consolePanel.png").getImage());
         imageCache.addImage("ssPanels",
                 new ImageIcon("img\\ui\\panels\\ssPanels.png").getImage());
+        imageCache.addImage("ssPanels2",
+                new ImageIcon("img\\ui\\panels\\ssPanels2.png").getImage());
         imageCache.addImage("gamePanel",
                 new ImageIcon("img\\ui\\panels\\gamePanel.png").getImage());
-
+        imageCache.addImage("buttonsPanel",
+                new ImageIcon("img\\ui\\panels\\buttonsPanel.png").getImage());
+        imageCache.addImage("inventario",
+                new ImageIcon("img\\ui\\buttons\\inventarioButton.png").getImage());
+        imageCache.addImage("salir",
+                new ImageIcon("img\\ui\\buttons\\salirButton.png").getImage());
+        imageCache.addImage("pelear",
+                new ImageIcon("img\\ui\\buttons\\pelearButton.png").getImage());
     }
 
     public static ImageManager getInstance() {
