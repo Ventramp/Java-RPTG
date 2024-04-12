@@ -20,7 +20,7 @@ public class TextLabel extends JLabel {
         setMinimumSize(size);
         setMaximumSize(size);
         setSize(size);
-        Font font = FontManager.getInstance().getFont("Player");
+        Font font = FontManager.getInstance().getFont("statusfont");
         setForeground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         setFont(font);

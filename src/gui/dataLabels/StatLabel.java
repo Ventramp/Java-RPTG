@@ -14,15 +14,8 @@ public class StatLabel extends JLabel {
 
         this.displayText = displayText;
         this.image = image;
-        Dimension size = new Dimension(image.getWidth(null), image.getHeight(null));
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-        setSize(size);
-        Font font = FontManager.getInstance().getFont("Player");
         setForeground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        setFont(font);
     }
 
     @Override

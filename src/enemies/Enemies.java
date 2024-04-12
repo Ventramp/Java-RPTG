@@ -2,11 +2,16 @@ package enemies;
 //DEFINICION DE LOS ENEMIGOS ABSTRACTA//
 import characters.BasicCharacter;
 import players.Player;
+import util.managers.ImageManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.Serializable;
 
 public abstract class Enemies extends BasicCharacter {
+
+    protected Image image;
+    protected final ImageManager imageManager = ImageManager.getInstance();
     private final int eMaxHp;
     private final int eDm;
     private final int dropG;
@@ -55,6 +60,14 @@ public abstract class Enemies extends BasicCharacter {
 
     public int getGiveExp() {
         return giveExp;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+    public ImageManager getImageManager() {
+
+        return imageManager;
     }
 }
 

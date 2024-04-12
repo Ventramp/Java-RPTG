@@ -1,4 +1,4 @@
-package gui.tabs;
+package gui;
 
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;

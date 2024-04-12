@@ -13,6 +13,8 @@ import static util.Randomized.rng;
 public class San extends Enemies implements Serializable {
     public San() {
         super("San",5,0,5,5,5,5);
+        image = imageManager.getImage("tinyBat",
+                new ImageIcon("img\\enemies\\San.png").getImage());
     }
 
     //override de enemieattack con rng para que se hagan diferentes acciones//

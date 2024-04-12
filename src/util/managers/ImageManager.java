@@ -149,6 +149,14 @@ public class ImageManager {
                 new ImageIcon("img\\ui\\buttons\\salirButton.png").getImage());
         imageCache.addImage("pelear",
                 new ImageIcon("img\\ui\\buttons\\pelearButton.png").getImage());
+        imageCache.addImage("statsBActive",
+                new ImageIcon("img\\ui\\buttons\\estadisticasButtonActive.png").getImage());
+        imageCache.addImage("statsBInactive",
+                new ImageIcon("img\\ui\\buttons\\estadisticasButtonInactive.png").getImage());
+        imageCache.addImage("statusBActive",
+                new ImageIcon("img\\ui\\buttons\\estatusbuttonActive.png").getImage());
+        imageCache.addImage("statusBInactive",
+                new ImageIcon("img\\ui\\buttons\\estatusbuttoninactive.png").getImage());
     }
 
     public static ImageManager getInstance() {

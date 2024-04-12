@@ -1,4 +1,5 @@
 package gui;
+import enemies.pirate.San;
 import gui.panels.*;
 import gui.panels.StatsPanel;
 import players.Player;
@@ -13,9 +14,7 @@ public class GeneralScreen extends JFrame{
     private JPanel buttonsPanel;
     private JPanel enemyPanel;
     private JPanel consolePanel;
-    private JPanel playerPanel;
-    private JPanel statusPanel;
-    private JPanel statsPanel;
+    private JTabbedPane playerTabbed;
     private Player player;
     private Enemies enemies;
 
@@ -45,13 +44,15 @@ public class GeneralScreen extends JFrame{
     }
 
     private void createUIComponents() {
-        player=new Player("Ventramp");
+        player = new Player("Ventramp");
+        enemies = new San();
         String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
         ConsolePanel.getInstance().getConsole().append(message);
-        enemyPanel = EnemyPanel.getInstance();
-        consolePanel= ConsolePanel.getInstance();
-        statsPanel = StatsPanel.getInstance(player);
+        enemyPanel = EnemyPanel.getInstance(enemies);
+        consolePanel = ConsolePanel.getInstance();
         buttonsPanel = ButtonsPanel.getInstance();
-        playerPanel = PlayerPanels.getInstance();
+        playerTabbed = PlayerPanel.getInstance();
+        StatusPanel.getInstance(player,PlayerPanel.getInstance(),0);
+        StatsPanel.getInstance(player,PlayerPanel.getInstance(),1);
     }
 }

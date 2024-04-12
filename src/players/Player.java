@@ -5,6 +5,7 @@ import java.io.Serializable;
 import characters.BasicCharacter;
 import enemies.Enemies;
 import items.armors.Armors;
+import items.armors.EmpyArmor;
 import items.armors.boots.Boots;
 import items.armors.boots.EmpyBoots;
 import items.armors.chest.Chest;
@@ -27,7 +28,6 @@ public class Player extends BasicCharacter implements Serializable {
     protected int gold;
     protected int def;
     protected int dex;
-    protected int attk;
     protected int dm;
     protected int crit;
     protected int pCrit;
@@ -52,6 +52,7 @@ public class Player extends BasicCharacter implements Serializable {
     public Player(String name) {
 
         super(name, 100,100);
+        inventory = new Inventory();
         //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESBALANCES//
         this.def=5;
         this.dex=5;
@@ -72,13 +73,13 @@ public class Player extends BasicCharacter implements Serializable {
         this.exp = 0;
         this.maxExp = 100;
         this.weapon = new Empy();
-        this.chest = new EmpyChest();
-        this.helmet = new EmpyHelmet();
-        this.knuckles = new EmpyKnuckles();
-        this.boots = new EmpyBoots();
+        this.chest = new EmpyArmor();
+        this.helmet = new EmpyArmor();
+        this.knuckles = new EmpyArmor();
+        this.boots = new EmpyArmor();
         this.job="Sin Clase";
         this.revives=0;
-        inventory = new Inventory();
+
 
     }
 
@@ -307,16 +308,31 @@ public void displayData() {
      */
 
     //como recibe daño un player segun su defensa//
-    public String getTotalAttack() {
-        String message = String.format("STR: %d/%d",getAttk(),weapon.getwAttk());
+    public String getTotalStr() {
+        int plusAttack = 0;
+        String message = String.format("STR: %d", getStr());
+        plusAttack += weapon.getwAttk();
+        if (plusAttack > 0) {
+            message += String.format(" (+%d)", plusAttack);
+        }
         return message;
     }
     public String getTotalDeff() {
-        String message = String.format("DEF: %d/%d",getDef(),chest.getaDef());
+        int plusAttack = 0;
+        String message = String.format("DEF: %d", getDef());
+        plusAttack += chest.getaDef();
+        if (plusAttack > 0) {
+            message += String.format(" (+%d)", plusAttack);
+        }
         return message;
     }
     public String getTotalDex() {
-        String message = String.format("DEX: %d/%d",getDex(),boots.getaDex());
+        int plusAttack = 0;
+        String message = String.format("DEX: %d", getDex());
+        plusAttack += boots.getaDex();
+        if (plusAttack > 0) {
+            message += String.format(" (+%d)", plusAttack);
+        }
         return message;
     }
     public String getGoldStatus() {
@@ -376,8 +392,6 @@ public void displayData() {
     public void setDef(int def) {this.def = def;}
     public int getDex() {return dex;}
     public void setDex(int dex) {this.dex = dex;}
-    public int getAttk() {return attk;}
-    public void setAttk(int attk) {this.attk = attk;}
     public int getDm() {return dm;}
     public void setDm(int dm) {this.dm = dm;}
     public int getCrit() {return crit;}

@@ -23,6 +23,7 @@ public class FontManager {
         fontCache.addFont("Game File", new File("fonts\\player.ttf"), 20f);
         fontCache.addFont("Player Status", new File("fonts\\player.ttf"), 16f);
         fontCache.addFont("Player", new File("fonts\\player.ttf"), 16f);
+        fontCache.addFont("statusfont", new File("fonts\\player.ttf"), 32);
     }
 
     public static FontManager getInstance() {
