@@ -33,27 +33,27 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="e7a98" class="javax.swing.JTextArea" binding="console" custom-create="true">
+          <component id="23ad6" class="javax.swing.JTextArea" binding="console" custom-create="true">
             <constraints/>
             <properties>
+              <alignmentY value="0.5"/>
+              <autoscrolls value="true"/>
               <columns value="1"/>
               <doubleBuffered value="true"/>
-              <dragEnabled value="true"/>
-              <dropMode value="USE_SELECTION"/>
-              <editable value="true"/>
+              <dropMode value="INSERT"/>
+              <editable value="false"/>
+              <enabled value="true"/>
               <focusCycleRoot value="true"/>
               <focusTraversalPolicyProvider value="true"/>
-              <font name="Ink Free" size="20" style="1"/>
-              <foreground color="-16777216"/>
+              <focusable value="true"/>
               <inheritsPopupMenu value="true"/>
               <lineWrap value="true"/>
-              <margin top="0" left="0" bottom="0" right="0"/>
-              <maximumSize width="680" height="4000"/>
-              <minimumSize width="680" height="4000"/>
+              <maximumSize width="720" height="21"/>
               <opaque value="false"/>
-              <preferredSize width="680" height="4000"/>
-              <requestFocusEnabled value="true"/>
               <rows value="3"/>
+              <text value=""/>
+              <verifyInputWhenFocusTarget value="false"/>
+              <visible value="true"/>
               <wrapStyleWord value="true"/>
             </properties>
           </component>

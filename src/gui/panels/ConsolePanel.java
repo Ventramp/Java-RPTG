@@ -12,6 +12,7 @@ public class ConsolePanel extends JPanel {
     private JPanel bgPanel;
     private JTextArea console;
     private JScrollPane consoleScroll;
+
     public static ConsolePanel getInstance() {
 
         if (instance == null) {
@@ -63,6 +64,8 @@ public class ConsolePanel extends JPanel {
         console.setForeground(Color.WHITE);
         console.setOpaque(false);
         console.setLineWrap(true);
+        console.setFont(FontManager.getInstance().getFont("consoleFont"));
+        console.setForeground(Color.BLACK);
         console.setWrapStyleWord(true);
         console.setAutoscrolls(true);
         console.setEditable(true);
