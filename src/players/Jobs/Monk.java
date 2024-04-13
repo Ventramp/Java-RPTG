@@ -6,7 +6,7 @@ package players.Jobs;
     //CONSTRUCTOR DE MONK Y SUS STADS ADICIONALES Y ESPECIALES//
     public Monk() {
         this.jobName = "Monje";
-        this.armor = new Knuckles();
+
         this.unarmed = 0;
         this.str += 10;
         this.hp += 30;

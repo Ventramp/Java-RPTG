@@ -12,23 +12,37 @@ public abstract class Armors extends Items implements Serializable {
     protected int aHp;
     protected int aDef;
     protected int aDex;
-    protected String name;
+    protected int attk;
 
-    public Armors(String name, String description, int price, int lv, int aHp, int aDef, int aDex) {
+    public Armors(String name, String description, int price, int lv, int aHp, int aDef, int aDex, int attk) {
         super(name, description, price, lv);
-        this.aHp = aHp;
-        this.aDef = aDef;
-        this.aDex = aDex;
+        this.aDef=aDef;
+        this.aDex=aDex;
+        this.aHp=aHp;
+        this.attk=attk;
     }
-
-    public int getaHp() {return aHp;}
-    public int getaDef() {return aDef;}
-    public int getaDex() {return aDex;}
 
     public HashMap<Stats, Integer> getStats() {return stats;}
 
     public ArmorType getType() {return type;}
+    public void setType(ArmorType type) {
 
-    @Override
-    public String getName() {return name;}
+        this.type = type;
+    }
+
+    public int getaHp() {
+        return aHp;
+    }
+
+    public int getaDef() {
+        return aDef;
+    }
+
+    public int getaDex() {
+        return aDex;
+    }
+
+    public int getAttk() {
+        return attk;
+    }
 }
