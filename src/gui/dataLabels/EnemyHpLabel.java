@@ -9,31 +9,33 @@ import util.managers.ImageManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class HpLabel extends JLabel {
+public class EnemyHpLabel extends JLabel {
 
     private BasicCharacter character;
     private Image image;
     private String text;
 
-    public HpLabel(Player character) {
 
-        this.character = character;
+    public EnemyHpLabel(Enemies enemy) {
+
+        this.character = enemy;
         init();
-        Font font = FontManager.getInstance().getFont("statusfont");
+        Font font = FontManager.getInstance().getFont("Player");
         Dimension size = new Dimension(image.getWidth(null), image.getHeight(null) + 10);
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
         setSize(size);
-        setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setFont(font);
     }
+
     private void init() {
 
         ImageManager imageManager = ImageManager.getInstance();
         text = String.format("%d/%d", character.getHp(), character.getMaxHp());
         Color color;
-        image = imageManager.getImage("hp100");
+        image = imageManager.getImage("hpEnemy");
         color = new Color(0, 0, 0, 255);
         setForeground(color);
     }

@@ -5,6 +5,7 @@ import java.awt.*;
 
 import enemies.Enemies;
 import enemies.pirate.San;
+import gui.dataLabels.EnemyHpLabel;
 import gui.dataLabels.SpriteLabel;
 import players.Player;
 import util.managers.ImageManager;
@@ -17,6 +18,7 @@ public class EnemyPanel extends JPanel {
     private JPanel rEnemy;
     private JPanel spritePanel;
     private JLabel enemySpriteLabel;
+    private JLabel enemyhpLabel;
 
     public EnemyPanel(Enemies enemies){
         this.enemies = enemies;
@@ -54,5 +56,7 @@ public class EnemyPanel extends JPanel {
 
     private void createUIComponents() {
         enemySpriteLabel = new SpriteLabel(enemies.getImage());
+        enemyhpLabel = new EnemyHpLabel(enemies);
     }
+
 }

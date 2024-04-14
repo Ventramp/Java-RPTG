@@ -157,6 +157,8 @@ public class ImageManager {
                 new ImageIcon("img\\ui\\buttons\\estatusbuttonActive.png").getImage());
         imageCache.addImage("statusBInactive",
                 new ImageIcon("img\\ui\\buttons\\estatusbuttoninactive.png").getImage());
+        imageCache.addImage("hpEnemy",
+                new ImageIcon("img\\enemies\\hp100enemies.png").getImage());
     }
 
     public static ImageManager getInstance() {
