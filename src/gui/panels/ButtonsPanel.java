@@ -4,6 +4,7 @@ import enemies.Enemies;
 
 import javax.swing.*;
 
+import gui.events.StartBattle;
 import players.Player;
 
 import java.awt.*;
@@ -23,7 +24,8 @@ public class ButtonsPanel extends JPanel {
     private Player player;
     private ConsolePanel console;
 
-    public ButtonsPanel() {
+    public ButtonsPanel(Player player) {
+        this.player = player;
         image = ImageManager.getInstance().getImage("buttonsPanel");
         Dimension size = new Dimension(image.getWidth(null), image.getHeight(null));
         setPreferredSize(size);
@@ -37,7 +39,7 @@ public class ButtonsPanel extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            ConsolePanel.getInstance().getConsole().append("Boton 1\n");
+            StartBattle.getInstance(player).changeButtons();
             }
         });
         button2.addActionListener(new ActionListener() {
@@ -54,11 +56,11 @@ public class ButtonsPanel extends JPanel {
         });
     }
 
-    public static ButtonsPanel getInstance() {
+    public static ButtonsPanel getInstance(Player player) {
 
         if (instance == null) {
 
-            instance = new ButtonsPanel();
+            instance = new ButtonsPanel(player);
         }
         return instance;
     }
@@ -85,6 +87,17 @@ public class ButtonsPanel extends JPanel {
 
         button3 = new JButton();
         button3.setIcon(new ImageIcon(ImageManager.getInstance().getImage("salir")));
+    }
 
+    public JButton getButton1() {
+        return button1;
+    }
+
+    public JButton getButton2() {
+        return button2;
+    }
+
+    public JButton getButton3() {
+        return button3;
     }
 }

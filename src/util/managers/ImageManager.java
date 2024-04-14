@@ -149,6 +149,22 @@ public class ImageManager {
                 new ImageIcon("img\\ui\\buttons\\salirButton.png").getImage());
         imageCache.addImage("pelear",
                 new ImageIcon("img\\ui\\buttons\\pelearButton.png").getImage());
+        imageCache.addImage("ataque",
+                new ImageIcon("img\\ui\\buttons\\ataqueButton.png").getImage());
+        imageCache.addImage("libra",
+                new ImageIcon("img\\ui\\buttons\\libraButton.png").getImage());
+        imageCache.addImage("huir",
+                new ImageIcon("img\\ui\\buttons\\HuirButton.png").getImage());
+        imageCache.addImage("golpe",
+                new ImageIcon("img\\ui\\buttons\\golpeButton.png").getImage());
+        imageCache.addImage("artilleria",
+                new ImageIcon("img\\ui\\buttons\\artilleriaButton.png").getImage());
+        imageCache.addImage("regresar",
+                new ImageIcon("img\\ui\\buttons\\regresarButton.png").getImage());
+        imageCache.addImage("aNormal",
+                new ImageIcon("img\\ui\\buttons\\normalButton.png").getImage());
+        imageCache.addImage("aCargado",
+                new ImageIcon("img\\ui\\buttons\\cargadoButton.png").getImage());
         imageCache.addImage("statsBActive",
                 new ImageIcon("img\\ui\\buttons\\estadisticasButtonActive.png").getImage());
         imageCache.addImage("statsBInactive",
