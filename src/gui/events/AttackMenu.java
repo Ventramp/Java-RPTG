@@ -46,20 +46,20 @@ public class AttackMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                     player.attack(enemies);
-                if (enemies.eDie()){}
-                else {
-                    enemies.eAttack(player);
-                }
                 if (enemies.eDie()) {
-                    ButtonsPanel.getInstance(player,enemies).changeButtons();
                     enemies = EnemyFactory.generateRegularEnemy(player);
                     GeneralScreen.getInstance().setEnemies(enemies);
                     EnemyPanel.getInstance(enemies).updateEnemy(enemies);
+                    ButtonsPanel.getInstance(player,enemies).changeButtons();
                 }else {
+                    enemies.eAttack(player);
                     EnemyPanel.getInstance(enemies).updateEnemy();
+                    StartBattle.getInstance(player,enemies).changeButtons();
                 }
                 StatusPanel.getInstance(player, PlayerPanel.getInstance(),0).updatePlayer(player);
                 StatsPanel.getInstance(player,PlayerPanel.getInstance(), 1).update();
+                EnemyPanel.getInstance(enemies).updateEnemy(enemies);
+                EnemyPanel.getInstance(enemies).updateEnemy();
                     }
             });
     }

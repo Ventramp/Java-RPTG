@@ -121,7 +121,7 @@ public void displayData() {
     //preguntar como desaparecer objetos//
     public void escape(@NotNull Enemies enemies){
         enemies.setHp(0);
-        ConsolePanel.getInstance().getConsole().append(name+" Escapo de "+enemies.getName());
+        ConsolePanel.getInstance().getConsole().append(name+" Escapo de "+enemies.getName()+"\n");
     }
     //voids para calculos especificos de daño en las funciones de ataque//
     private void fisicDm(){dm=str+weapon.getwAttk();}

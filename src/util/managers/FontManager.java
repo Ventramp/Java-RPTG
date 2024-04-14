@@ -19,7 +19,7 @@ public class FontManager {
         fontCache.addFont("Game File", new File("fonts\\player.ttf"), 20f, true);
         fontCache.addFont("Player Status", new File("fonts\\player.ttf"), 16f, false);
         fontCache.addFont("Player", new File("fonts\\player.ttf"), 16f, false);
-        fontCache.addFont("statusfont", new File("fonts\\Inkfree.ttf"), 32, true);
+        fontCache.addFont("statusfont", new File("fonts\\Inkfree.ttf"), 40, true);
         fontCache.addFont("consoleFont", new File("fonts\\Inkfree.ttf"), 25, true);
     }
 

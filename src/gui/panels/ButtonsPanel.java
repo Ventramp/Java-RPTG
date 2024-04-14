@@ -82,7 +82,7 @@ public class ButtonsPanel extends JPanel {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append("Abrir Inventario");
+                ConsolePanel.getInstance().getConsole().append("Abrir Inventario\n");
             }
         });
     }

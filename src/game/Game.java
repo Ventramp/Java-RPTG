@@ -21,6 +21,7 @@ public class Game {
         player = null;
         this.slot =slot;
         player = null;
+
     }
 
     public void equipArmor(){

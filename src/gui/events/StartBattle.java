@@ -1,9 +1,11 @@
 package gui.events;
 
 import enemies.Enemies;
-import gui.panels.ButtonsPanel;
-import gui.panels.ConsolePanel;
+import gui.GeneralScreen;
+import gui.PlayerPanel;
+import gui.panels.*;
 import players.Player;
+import util.enemies.EnemyFactory;
 import util.managers.ImageManager;
 
 import javax.swing.*;
@@ -60,6 +62,19 @@ public void ataque(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 player.escape(enemies);
+                if (enemies.eDie()) {
+                    enemies = EnemyFactory.generateRegularEnemy(player);
+                    GeneralScreen.getInstance().setEnemies(enemies);
+                    EnemyPanel.getInstance(enemies).updateEnemy(enemies);
+                    ButtonsPanel.getInstance(player,enemies).changeButtons();
+                }else {
+                    StartBattle.getInstance(player,enemies).changeButtons();
+                    EnemyPanel.getInstance(enemies).updateEnemy();
+                }
+                StatusPanel.getInstance(player, PlayerPanel.getInstance(),0).updatePlayer(player);
+                StatsPanel.getInstance(player,PlayerPanel.getInstance(), 1).update();
+                EnemyPanel.getInstance(enemies).updateEnemy(enemies);
+                EnemyPanel.getInstance(enemies).updateEnemy();
             }
         });
     }
