@@ -44,7 +44,7 @@ public class StatsPanel extends JPanel {
         setOpaque(false);
         setBackground(null);
         setMixingCutoutShape(new Rectangle(0, 0, 0, 0));
-        playerPanel.addTab("Estatus",this);
+        playerPanel.addTab("stats",this);
         playerPanel.setTabIcon(tabIndex,isActive() ? activeIcon:inactiveIcon);
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -74,6 +74,18 @@ public class StatsPanel extends JPanel {
     }
 
     public void update() {
+
+        ((StatLabel)strLabel).setDisplayText(player.getTotalStr());
+        ((StatLabel)defLabel).setDisplayText(player.getTotalDeff());
+        ((StatLabel)dexLabel).setDisplayText(player.getTotalDex());
+        ((StatLabel)pcritLabel).setDisplayText(player.getTotalPcrit());
+        ((StatLabel)goldLabel).setDisplayText("ORO: " + player.getGold());
+        ((StatLabel)weaponLabel).setDisplayText(player.getWeapon().getName());
+        ((StatLabel)helmetLabel).setDisplayText(player.getHelmet().getName());
+        ((StatLabel)chestLabel).setDisplayText(player.getChest().getName());
+        ((StatLabel)bootsLabel).setDisplayText(player.getBoots().getName());
+        ((StatLabel)knucklesLabel).setDisplayText(player.getKnuckles().getName());
+        repaint();
     }
 
     private void createUIComponents() {

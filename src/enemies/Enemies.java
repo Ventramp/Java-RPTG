@@ -17,17 +17,20 @@ public abstract class Enemies extends BasicCharacter {
     private final int eDm;
     private final int dropG;
     private final int giveExp;
+    protected final Player player;
 /*Para evitar confuciones dentro del codigo diferenciamos la informacion de los enemigos de
 * la del jugador colocando a sus atributos una e*/
     //UTILIZAMOS EL THIS PARA ACCEDER A LAS VARIABLES//
 
 
-    public Enemies(String name, int hp, int ap, int eMaxHp, int eDm, int dropG, int giveExp) {
+    public Enemies(String name, int hp, int ap, int eMaxHp, int eDm, int dropG, int giveExp, Player player) {
         super(name, hp, ap);
+        this.player=player;
         this.eMaxHp = hp;
         this.eDm = eDm;
         this.dropG = dropG;
         this.giveExp = giveExp;
+        ConsolePanel.getInstance().getConsole().append(name+" ha aparecido delante tuyo\n");
     }
 
     //ACCIONES QUE REALIZARA EL PERSONAJE//
@@ -38,6 +41,10 @@ public abstract class Enemies extends BasicCharacter {
         //si se cumple el boleano de muerte hacer//
         if (eDie())
             ConsolePanel.getInstance().getConsole().append(name+" fue derrotado\n");
+    }
+    @Override
+    public void displayData() {
+        ConsolePanel.getInstance().getConsole().append("Enemigo: \t"+name+"\nAtaque: \t"+geteDm()+"\nRecompensa: \t"+getDropG()+" G\n");
     }
     public boolean eDie(){
         return hp <= 0;

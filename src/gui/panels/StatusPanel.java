@@ -27,7 +27,6 @@ public class StatusPanel  extends JPanel{
     private JLabel playerName;
     private JLabel jobLabel;
     private JLabel hpLabel;
-    private JLabel mpLabel;
     private JLabel levelLabel;
 
     public static StatusPanel getInstance(Player player, PlayerPanel playerPanel, int tabIndex) {
@@ -71,8 +70,15 @@ public class StatusPanel  extends JPanel{
 
         return playerPanel.getSelectedIndex() == tabIndex;
     }
+
     public void updatePlayer(Player player) {
+
         this.player = player;
+        ((HpLabel) hpLabel).updateCharacter(player);
+        ((ApLabel) apLabel).updateCharacter(player);
+        apLabel.repaint();
+        ((TextLabel)levelLabel).setDisplayText(String.format("Nivel: %d", player.getLevel()));
+        levelLabel.repaint();
     }
 
     private void createUIComponents() {

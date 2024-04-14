@@ -2,9 +2,10 @@ package gui.events;
 
 import enemies.Enemies;
 import gui.GeneralScreen;
-import gui.panels.ButtonsPanel;
-import gui.panels.ConsolePanel;
+import gui.PlayerPanel;
+import gui.panels.*;
 import players.Player;
+import util.enemies.EnemyFactory;
 import util.managers.ImageManager;
 
 import javax.swing.*;
@@ -45,13 +46,22 @@ public class AttackMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                     player.attack(enemies);
-                    if (!enemies.eDie()){
-                        enemies.eAttack(player);
-                        StartBattle.getInstance(player,enemies).changeButtons();
+                if (enemies.eDie()){}
+                else {
+                    enemies.eAttack(player);
+                }
+                if (enemies.eDie()) {
+                    ButtonsPanel.getInstance(player,enemies).changeButtons();
+                    enemies = EnemyFactory.generateRegularEnemy(player);
+                    GeneralScreen.getInstance().setEnemies(enemies);
+                    EnemyPanel.getInstance(enemies).updateEnemy(enemies);
+                }else {
+                    EnemyPanel.getInstance(enemies).updateEnemy();
+                }
+                StatusPanel.getInstance(player, PlayerPanel.getInstance(),0).updatePlayer(player);
+                StatsPanel.getInstance(player,PlayerPanel.getInstance(), 1).update();
                     }
-                    else GeneralScreen.getInstance().battleend();
-            }
-        });
+            });
     }
     public void artilleria(){
         ButtonsPanel.getInstance(player, enemies).getButton2().removeActionListener(ButtonsPanel.getInstance(player, enemies).getButton2().getActionListeners()[0]);

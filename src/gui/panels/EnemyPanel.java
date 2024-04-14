@@ -5,7 +5,9 @@ import java.awt.*;
 
 import enemies.Enemies;
 import enemies.pirate.San;
+import gui.GeneralScreen;
 import gui.dataLabels.EnemyHpLabel;
+import gui.dataLabels.HpLabel;
 import gui.dataLabels.SpriteLabel;
 import players.Player;
 import util.managers.ImageManager;
@@ -39,6 +41,22 @@ public class EnemyPanel extends JPanel {
             instance = new EnemyPanel(enemies);
         }
         return instance;
+    }
+    public void updateEnemy() {
+
+        this.enemies = GeneralScreen.getInstance().getEnemies();
+        ((EnemyHpLabel) enemyhpLabel).updateCharacter(this.enemies);
+        ((SpriteLabel) enemySpriteLabel).updateImage(this.enemies.getImage());
+        ((EnemyHpLabel) enemyhpLabel).updateCharacter(this.enemies);
+        enemySpriteLabel.repaint();
+        paintComponents(getGraphics());
+    }
+
+    public void updateEnemy(Enemies enemies) {
+
+        this.enemies = enemies;
+        ((EnemyHpLabel) enemyhpLabel).updateCharacter(this.enemies);
+        repaint();
     }
     public void paintComponent(Graphics g) {
 

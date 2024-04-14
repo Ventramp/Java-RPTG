@@ -175,6 +175,22 @@ public class ImageManager {
                 new ImageIcon("img\\ui\\buttons\\estatusbuttoninactive.png").getImage());
         imageCache.addImage("hpEnemy",
                 new ImageIcon("img\\enemies\\hp100enemies.png").getImage());
+        imageCache.addImage("hongjoog",
+                new ImageIcon("img\\enemies\\Hongjoog.png").getImage());
+        imageCache.addImage("jonho",
+                new ImageIcon("img\\enemies\\Jonho.png").getImage());
+        imageCache.addImage("mingi",
+                new ImageIcon("img\\enemies\\Mingi.png").getImage());
+        imageCache.addImage("san",
+                new ImageIcon("img\\enemies\\San.png").getImage());
+        imageCache.addImage("seonhwa",
+                new ImageIcon("img\\enemies\\Seonhwa.png").getImage());
+        imageCache.addImage("wooyoung",
+                new ImageIcon("img\\enemies\\Wooyoung.png").getImage());
+        imageCache.addImage("yeosang",
+                new ImageIcon("img\\enemies\\Yeosang.png").getImage());
+        imageCache.addImage("yunho",
+                new ImageIcon("img\\enemies\\Yunho.png").getImage());
     }
 
     public static ImageManager getInstance() {

@@ -17,19 +17,10 @@ public class Game {
 
     private Player player;
     private final int slot;
-    public final List<Enemies> enemiesl;
     public Game(int slot) {
         player = null;
         this.slot =slot;
         player = null;
-        enemiesl = new ArrayList<>(8);
-        enemiesl.add(new HongjoongC());
-        enemiesl.add(new Jonho());
-        enemiesl.add(new Mingi());
-        enemiesl.add(new SeonghwaVC());
-        enemiesl.add(new Wooyoung());
-        enemiesl.add(new Yeosang());
-        enemiesl.add(new Yunho());
     }
 
     public void equipArmor(){

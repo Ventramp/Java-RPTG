@@ -192,7 +192,7 @@ public void displayData() {
         return message;
     }
     public String getTotalPcrit() {
-        String message = String.format("P.CRIT: %d",getpCrit());
+        String message = String.format("   P.CRIT: %d",getpCrit());
         return message;
     }
     public void endofbattle(Enemies enemies){
@@ -234,9 +234,10 @@ public void displayData() {
         hp -= edmreduction;
         ConsolePanel.getInstance().getConsole().append(name+" recibio "+edmreduction+" puntos de daño\n");
         apRecover();
-        if (muerte())
-            JOptionPane.showMessageDialog(null,"**********  HAS MUERTO  **********");
-        GeneralScreen.getInstance().dispose();
+        if (muerte()) {
+            JOptionPane.showMessageDialog(null, "**********  HAS MUERTO  **********");
+            GeneralScreen.getInstance().dispose();
+        }
     }
     //ganancia y limitacion de hp y ap usados al recibir daño y al acabar una pelea//
     private void apRecover(){ap+=10;     if (ap>maxHp) ap=maxAp;}

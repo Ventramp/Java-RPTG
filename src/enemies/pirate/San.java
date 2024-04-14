@@ -5,16 +5,18 @@ import items.drops.Compass;
 import items.drops.Jewells;
 import players.Player;
 import org.jetbrains.annotations.NotNull;
+import util.annotations.RegularEnemy;
 
 import javax.swing.*;
 
 import java.io.Serializable;
 
 import static util.Randomized.rng;
+@RegularEnemy
 public class San extends Enemies implements Serializable {
-    public San() {
-        super("San",30,0,5,200,5,0);
-        image = imageManager.getImage("tinyBat",
+    public San(Player player) {
+        super("San",30,0,30,20,5,0,player);
+        image = imageManager.getImage("san",
                 new ImageIcon("img\\enemies\\San.png").getImage());
     }
 
@@ -69,8 +71,5 @@ public class San extends Enemies implements Serializable {
         }
     }
 
-    @Override
-    public void displayData() {
-    ConsolePanel.getInstance().getConsole().append("Enemigo: \t"+name+"\nAtaque: \t"+geteDm()+"\nRecompensa: \t"+getDropG()+" G\n");
-    }
+
 }

@@ -23,7 +23,6 @@ public class GeneralScreen extends JFrame{
     private JTabbedPane playerTabbed;
     private Player player;
     private Enemies enemies;
-    public final List<Enemies> enemiesl;
 
     public static void main(String[] args) {
 
@@ -38,15 +37,6 @@ public class GeneralScreen extends JFrame{
         return instance;
     }
     public GeneralScreen() {
-        enemiesl = new ArrayList<>(9);
-        enemiesl.add(new HongjoongC());
-        enemiesl.add(new Jonho());
-        enemiesl.add(new Mingi());
-        enemiesl.add(new San());
-        enemiesl.add(new SeonghwaVC());
-        enemiesl.add(new Wooyoung());
-        enemiesl.add(new Yeosang());
-        enemiesl.add(new Yunho());
         setTitle("PirATEEZ Quest");
         setLocationRelativeTo(null);
         setContentPane(rScreen);
@@ -77,15 +67,9 @@ public class GeneralScreen extends JFrame{
     public void setEnemies(Enemies enemies) {
         this.enemies = enemies;
     }
-    @NotNull
-    private static Enemies getEnemy(List<Enemies> enemies) {
 
-        Enemies enemy = enemies.get(rng(0, enemies.size() - 1));
-        ConsolePanel.getInstance().getConsole().append(enemy.getName()+" ha aparecido delante tuyo\n");
-        return enemy;
-    }
     private void createUIComponents() {
-        enemies=new HongjoongC();
+        enemies=new HongjoongC(player);
         player = new Player("Ventramp");
         String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
         ConsolePanel.getInstance().getConsole().append(message);
@@ -95,13 +79,5 @@ public class GeneralScreen extends JFrame{
         playerTabbed = PlayerPanel.getInstance();
         StatusPanel.getInstance(player,PlayerPanel.getInstance(),0);
         StatsPanel.getInstance(player,PlayerPanel.getInstance(),1);
-    }
-    public void initializeBattle() {
-        Enemies enemy = getEnemy(enemiesl);
-        StartBattle.getInstance(player, enemies).changeButtons();
-    }
-    public void battleend() {
-        ButtonsPanel.getInstance(player, null).changeButtons();
-        enemyPanel = null;
     }
 }

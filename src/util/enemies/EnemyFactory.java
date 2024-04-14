@@ -1,6 +1,7 @@
 package util.enemies;
 
 import enemies.Enemies;
+import enemies.pirate.San;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
@@ -19,7 +20,7 @@ public class EnemyFactory {
 
 	private static final Random random = new Random();
 
-	public static Enemy generateRegularEnemy(Player player) {
+	public static Enemies generateRegularEnemy(Player player) {
 
 		Reflections reflections = new Reflections(new ConfigurationBuilder()
 				.setUrls(ClasspathHelper.forJavaClassPath())
@@ -32,14 +33,14 @@ public class EnemyFactory {
 
 		try {
 
-			return (Enemy) claseEnemyRegular.getDeclaredConstructor(Player.class).newInstance(player);
+			return (Enemies) claseEnemyRegular.getDeclaredConstructor(Player.class).newInstance(player);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new TinyBat(player);
+			return new San(player);
 		}
 	}
 
-	public static Enemy generateBossEnemy(Player player) {
+	public static Enemies generateBossEnemy(Player player) {
 
 		Reflections reflections = new Reflections(new ConfigurationBuilder()
 				.setUrls(ClasspathHelper.forJavaClassPath())
@@ -51,7 +52,7 @@ public class EnemyFactory {
 		Class<?> claseJefe = classList.get(random.nextInt(classList.size()));
 
 		try {
-			return (Enemy) claseJefe.getDeclaredConstructor(Player.class).newInstance(player);
+			return (Enemies) claseJefe.getDeclaredConstructor(Player.class).newInstance(player);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

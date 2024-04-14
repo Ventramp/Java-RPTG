@@ -1,9 +1,11 @@
 package gui.events;
 
 import enemies.Enemies;
-import gui.panels.ButtonsPanel;
-import gui.panels.ConsolePanel;
+import gui.GeneralScreen;
+import gui.PlayerPanel;
+import gui.panels.*;
 import players.Player;
+import util.enemies.EnemyFactory;
 import util.managers.ImageManager;
 
 import javax.swing.*;
@@ -41,7 +43,6 @@ public class ArtilleryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                while (!player.muerte() && !enemies.eDie()) {
                     if (player.getAp() >= 10) {
                         player.gun(enemies);
                         StartBattle.getInstance(player, enemies).changeButtons();
@@ -49,11 +50,17 @@ public class ArtilleryMenu {
                         ConsolePanel.getInstance().getConsole().append("Ap Insuficiente");
                         StartBattle.getInstance(player, enemies).changeButtons();
                     }
-                    if (enemies.eDie()){}
-                    else {
+                    if (enemies.eDie()) {
+                        ButtonsPanel.getInstance(player,enemies).changeButtons();
+                        enemies = EnemyFactory.generateRegularEnemy(player);
+                        GeneralScreen.getInstance().setEnemies(enemies);
+                        EnemyPanel.getInstance(enemies).updateEnemy(enemies);
+                    }else {
                         enemies.eAttack(player);
+                        EnemyPanel.getInstance(enemies).updateEnemy();
                     }
-                }
+                    StatusPanel.getInstance(player,PlayerPanel.getInstance(),0).updatePlayer(player);
+                    StatsPanel.getInstance(player,PlayerPanel.getInstance(), 1).update();
             }
         });
     }
@@ -70,7 +77,17 @@ public class ArtilleryMenu {
                         ConsolePanel.getInstance().getConsole().append("Ap Insuficiente");
                         StartBattle.getInstance(player, enemies).changeButtons();
                     }
-                    enemies.eAttack(player);
+                    if (enemies.eDie()) {
+                        ButtonsPanel.getInstance(player,enemies).changeButtons();
+                        enemies = EnemyFactory.generateRegularEnemy(player);
+                        GeneralScreen.getInstance().setEnemies(enemies);
+                        EnemyPanel.getInstance(enemies).updateEnemy(enemies);
+                    }else {
+                        enemies.eAttack(player);
+                        EnemyPanel.getInstance(enemies).updateEnemy();
+                    }
+                    StatusPanel.getInstance(player,PlayerPanel.getInstance(),0).updatePlayer(player);
+                    StatsPanel.getInstance(player,PlayerPanel.getInstance(), 1).update();
                 }
             }
         });
