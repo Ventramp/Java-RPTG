@@ -24,8 +24,9 @@ public class ButtonsPanel extends JPanel {
     private Player player;
     private ConsolePanel console;
 
-    public ButtonsPanel(Player player) {
+    public ButtonsPanel(Player player, Enemies enemies) {
         this.player = player;
+        this.enemies= enemies;
         image = ImageManager.getInstance().getImage("buttonsPanel");
         Dimension size = new Dimension(image.getWidth(null), image.getHeight(null));
         setPreferredSize(size);
@@ -56,11 +57,11 @@ public class ButtonsPanel extends JPanel {
         });
     }
 
-    public static ButtonsPanel getInstance(Player player) {
+    public static ButtonsPanel getInstance(Player player, Enemies enemies) {
 
         if (instance == null) {
 
-            instance = new ButtonsPanel(player);
+            instance = new ButtonsPanel(player, enemies);
         }
         return instance;
     }

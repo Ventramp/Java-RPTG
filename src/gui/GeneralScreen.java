@@ -50,7 +50,7 @@ public class GeneralScreen extends JFrame{
         ConsolePanel.getInstance().getConsole().append(message);
         enemyPanel = EnemyPanel.getInstance(enemies);
         consolePanel = ConsolePanel.getInstance();
-        buttonsPanel = ButtonsPanel.getInstance(player);
+        buttonsPanel = ButtonsPanel.getInstance(player, enemies);
         playerTabbed = PlayerPanel.getInstance();
         StatusPanel.getInstance(player,PlayerPanel.getInstance(),0);
         StatsPanel.getInstance(player,PlayerPanel.getInstance(),1);

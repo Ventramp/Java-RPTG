@@ -1,5 +1,6 @@
 package enemies.pirate;
 import enemies.Enemies;
+import gui.panels.ConsolePanel;
 import items.drops.Compass;
 import items.drops.Jewells;
 import players.Player;
@@ -36,35 +37,35 @@ public class San extends Enemies implements Serializable {
     }
     //ataque tipo estoque con notnull para que no se pueda hacer sin player//
     private void thrust (@NotNull Player player){
-        JOptionPane.showMessageDialog(null,getName()+" Ataca con un Estoque");
+        ConsolePanel.getInstance().getConsole().append(getName()+" Ataca con un Estoque");
         //llamada a la funcion con la cual los characters reciben daño//
         player.recibeDm(geteDm());
     }
     //ataque tipo disparo con posibilidad entre 1 y 3 disparos//
     public void shot (@NotNull Player player){
-        JOptionPane.showMessageDialog(null,getName()+" te va a disparar");
+        ConsolePanel.getInstance().getConsole().append(getName()+" te va a disparar");
         int multshot = rng(0,3);
         for (int i=0; i<multshot;i++){
-            JOptionPane.showMessageDialog(null,(i+1)+"° Disparo");
+            ConsolePanel.getInstance().getConsole().append((i+1)+"° Disparo");
             player.recibeDm(geteDm());
         }
-        JOptionPane.showMessageDialog(null,"Fin del ataque enemigo");
+        ConsolePanel.getInstance().getConsole().append("Fin del ataque enemigo");
     }
     //el enemigo te roba tu dinero//
     public void robarG (@NotNull Player player){
         //si no tienes nada de dinero se burla
         if (player.getGold()==0){
-            JOptionPane.showMessageDialog(null,getName()+" te intenta robar los calzones");
+            ConsolePanel.getInstance().getConsole().append(getName()+" te intenta robar los calzones");
         }
         //si tienes mas de 0 pero menos o igual a 10//
         if (player.getGold()<=10&player.getGold()>0){
             player.setGold(player.getGold() - 10);
-            JOptionPane.showMessageDialog(null,getName()+" Te robo el poco dinero que te quedaba");
+            ConsolePanel.getInstance().getConsole().append(getName()+" Te robo el poco dinero que te quedaba");
         }
         if (player.getGold()>10) {
             //si es mayor a 10//
             player.setGold(player.getGold() - 10);
-            JOptionPane.showMessageDialog(null,getName() + " te robo 10 G");
+            ConsolePanel.getInstance().getConsole().append(getName() + " te robo 10 G");
         }
     }
 

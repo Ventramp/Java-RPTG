@@ -45,7 +45,6 @@ public class Game {
                         player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
                         difficult();
                     }
-                    actionMenu();
                 }
                 case "Salir"->JOptionPane.showMessageDialog(null,"Gracias por jugar");
                 default -> throw new InvalidOptionException();
@@ -63,55 +62,15 @@ public class Game {
                 case "Dificil"-> player.setRevives(0);
             }
     }
-    public void actionMenu(){
-            String [] opcion= {"Pelear", "Stats","Inventario","MENU"};
-            int sAccion=JOptionPane.showOptionDialog(null,"Menu de Acciones","Accion",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Stats");
 
-            switch (opcion[sAccion]) {
-                case "Pelear" -> fightCycle();
-                case "Stats" -> {player.displayData();   actionMenu();}
-                case "MENU" -> endGame();
-                case "Inventario"-> inventoryMenu();
-            }
-    }
-    public void inventoryMenu(){
-        player.getInventory().printItems();
-        String [] opcion= {"Equipar Armadura", "Equipar Arma","Regresar"};
-        int sInventory=JOptionPane.showOptionDialog(null,"Menu de Inventario","Inventario",0,JOptionPane.QUESTION_MESSAGE,null,opcion, "Regresar");
-        switch (opcion[sInventory]){
-            case "Equipar Armadura"-> equipArmor();
-            case "Equipar Arma" -> equipWeapon();
-            case "Regresar" -> actionMenu();
-        }
-    }
-    public void fightCycle () {
-        if (!enemiesl.isEmpty()) {
-            Enemies currentEnemy;
-            currentEnemy = getEnemy(enemiesl);
-            while (!currentEnemy.eDie() && !player.muerte()) {
-                player.accion(currentEnemy);
-                if (currentEnemy.eDie()) {
-                } else {
-                    currentEnemy.eAttack(player);
-                }
-            }
-            enemiesl.remove(currentEnemy);
-        } else {
-            JOptionPane.showMessageDialog(null, "Ya te has encontrado con todos\n los enemigos posibles de esta sesion");
-            actionMenu();
-        }
-        if (!player.muerte()) actionMenu();
-        else revive();
 
-    }
+
 
     public void equipArmor(){
         player.getInventory().equipArmorMenu(player);
-        actionMenu();
     }
     public void equipWeapon(){
         player.getInventory().equipWeaponMenu(player);
-        actionMenu();
     }
     public void gameOver(){
         JOptionPane.showMessageDialog(null,"Fin del Juego \n Regresando al menu principal");
@@ -125,7 +84,6 @@ public class Game {
             switch (opcion[sRevive]) {
                 case "Revivir" -> {
                     player.revive();
-                    actionMenu();
                 }
 
                 case "Salir" -> mainMenu();

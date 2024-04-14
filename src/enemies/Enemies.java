@@ -1,6 +1,7 @@
 package enemies;
 //DEFINICION DE LOS ENEMIGOS ABSTRACTA//
 import characters.BasicCharacter;
+import gui.panels.ConsolePanel;
 import players.Player;
 import util.managers.ImageManager;
 
@@ -33,11 +34,11 @@ public abstract class Enemies extends BasicCharacter {
     public void eRecibeDm (int dm){
         //comodin dm para recordar que es el daño que hace el player//
         hp-=dm;
-        JOptionPane.showMessageDialog(null,name+" recibio "+dm+" puntos de daño \n"
+        ConsolePanel.getInstance().getConsole().append(name+" recibio "+dm+" puntos de daño \n"
         +"               EHP:"+hp+"/"+eMaxHp);
         //si se cumple el boleano de muerte hacer//
         if (eDie())
-            JOptionPane.showMessageDialog(null,name+" fue derrotado\n");
+            ConsolePanel.getInstance().getConsole().append(name+" fue derrotado\n");
     }
     public boolean eDie(){
         return hp <= 0;
