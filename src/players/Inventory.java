@@ -114,7 +114,7 @@ public class Inventory implements Serializable {
 
     public void addItem(Items item) {
 
-        String addMessage = String.format("%s se ha agregado al Inventario!", item.getName());
+        String addMessage = String.format("%s se ha agregado al Inventario!\n\n", item.getName());
         ConsolePanel.getInstance().getConsole().append(items.add(item) ? addMessage : "Inventario Lleno.");
     }
 

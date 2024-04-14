@@ -84,7 +84,7 @@ public void displayData() {
         }
 
     //ataque normal//
-    public void attack(@NotNull Enemies enemies){
+    public void attack(@NotNull Enemies enemies, Player player){
         //llamada al calculo de daño fisico//
         fisicDm();
         if (rng(1, 100) <= pCrit) {
@@ -98,24 +98,24 @@ public void displayData() {
             ConsolePanel.getInstance().getConsole().append(name+" Ataca a "+enemies.getName()+" con las manos desnudas\n");
             enemies.eRecibeDm(dm);
         }
-        endofbattle(enemies);
+        endofbattle(enemies, player);
 
     }
 
-    public void gun(@NotNull Enemies enemies){
+    public void gun(@NotNull Enemies enemies, Player player){
         ap-=10;
         dm=str+5;
         ConsolePanel.getInstance().getConsole().append("Pistola -30Ap\n");
         enemies.eRecibeDm(dm);
-       endofbattle(enemies);
+       endofbattle(enemies, player);
 
     }
-    public void canyon(@NotNull Enemies enemies){
+    public void canyon(@NotNull Enemies enemies, Player player){
         ap-=50;
         dm=str*2;
         ConsolePanel.getInstance().getConsole().append("\nCañon -50Ap\n\n");
         enemies.eRecibeDm(dm);
-        endofbattle(enemies);
+        endofbattle(enemies, player);
     }
 
     //preguntar como desaparecer objetos//
@@ -195,10 +195,11 @@ public void displayData() {
         String message = String.format("   P.CRIT: %d",getpCrit());
         return message;
     }
-    public void endofbattle(Enemies enemies){
+    public void endofbattle(Enemies enemies,Player player){
         if (enemies.eDie()){
             rewards(enemies);
             lvUpCheck();
+            enemies.dropItem(player);
 
         }
     }

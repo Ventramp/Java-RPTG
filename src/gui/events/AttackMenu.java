@@ -45,7 +45,7 @@ public class AttackMenu {
         ButtonsPanel.getInstance(player, enemies).getButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    player.attack(enemies);
+                    player.attack(enemies,player);
                 if (enemies.eDie()) {
                     enemies = EnemyFactory.generateRegularEnemy(player);
                     GeneralScreen.getInstance().setEnemies(enemies);

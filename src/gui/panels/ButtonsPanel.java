@@ -50,7 +50,8 @@ public class ButtonsPanel extends JPanel {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append("Abrir Inventario");
+                ConsolePanel.getInstance().getConsole().append("Abriste el inventario\n");
+                player.getInventory().printItems();
             }
         });
         button3.addActionListener(new ActionListener() {
@@ -82,7 +83,8 @@ public class ButtonsPanel extends JPanel {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append("Abrir Inventario\n");
+                ConsolePanel.getInstance().getConsole().append("Abriste el inventario\n");
+                player.getInventory().printItems();
             }
         });
     }

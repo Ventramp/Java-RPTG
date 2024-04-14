@@ -44,7 +44,7 @@ public class ArtilleryMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                     if (player.getAp() >= 10) {
-                        player.gun(enemies);
+                        player.gun(enemies, player);
                         StartBattle.getInstance(player, enemies).changeButtons();
                     } else {
                         ConsolePanel.getInstance().getConsole().append("Ap Insuficiente");
@@ -73,7 +73,7 @@ public class ArtilleryMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                     if (player.getAp() >= 50) {
-                        player.canyon(enemies);
+                        player.canyon(enemies, player);
                         StartBattle.getInstance(player, enemies).changeButtons();
                     } else {
                         ConsolePanel.getInstance().getConsole().append("Ap Insuficiente");
