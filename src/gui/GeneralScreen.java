@@ -43,6 +43,66 @@ public class GeneralScreen extends JFrame{
         setResizable(false);
     }
 
+    public static void setInstance(GeneralScreen instance) {
+        GeneralScreen.instance = instance;
+    }
+
+    public JPanel getrScreen() {
+        return rScreen;
+    }
+
+    public void setrScreen(JPanel rScreen) {
+        this.rScreen = rScreen;
+    }
+
+    public JPanel getButtonsPanel() {
+        return buttonsPanel;
+    }
+
+    public void setButtonsPanel(JPanel buttonsPanel) {
+        this.buttonsPanel = buttonsPanel;
+    }
+
+    public JPanel getEnemyPanel() {
+        return enemyPanel;
+    }
+
+    public void setEnemyPanel(JPanel enemyPanel) {
+        this.enemyPanel = enemyPanel;
+    }
+
+    public JPanel getConsolePanel() {
+        return consolePanel;
+    }
+
+    public void setConsolePanel(JPanel consolePanel) {
+        this.consolePanel = consolePanel;
+    }
+
+    public JTabbedPane getPlayerTabbed() {
+        return playerTabbed;
+    }
+
+    public void setPlayerTabbed(JTabbedPane playerTabbed) {
+        this.playerTabbed = playerTabbed;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Enemies getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(Enemies enemies) {
+        this.enemies = enemies;
+    }
+
     private void createUIComponents() {
         player = new Player("Ventramp");
         enemies = new San();

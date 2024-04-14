@@ -14,11 +14,17 @@ public class ArtilleryMenu {
     public static ArtilleryMenu instance;
     private Player player;
     private Enemies enemies;
-    public static ArtilleryMenu getInstance() {
+
+    public ArtilleryMenu(Player player, Enemies enemies) {
+        this.player = player;
+        this.enemies = enemies;
+    }
+
+    public static ArtilleryMenu getInstance(Player player, Enemies enemies) {
 
         if (instance == null) {
 
-            instance = new ArtilleryMenu();
+            instance = new ArtilleryMenu(player, enemies);
         }
         return instance;
     }
@@ -35,7 +41,7 @@ public class ArtilleryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                player.gun(enemies);
             }
         });
     }
@@ -44,7 +50,7 @@ public class ArtilleryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append(player.getName()+" uso Libra.\n");
+                player.canyon(enemies);
             }
         });
     }

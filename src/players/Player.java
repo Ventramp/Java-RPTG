@@ -89,28 +89,37 @@ public void displayData() {
         if (rng(1, 100) <= pCrit) {
             //llamada al calculo para daños criticos//
             critical();
-            ConsolePanel.getInstance().getConsole().append(name+" Ataca a "+enemies.getName()+" con las manos vacias\n!!CRITICO¡¡\n\n");
+            ConsolePanel.getInstance().getConsole().append(name+" Ataca a "+enemies.getName()+" con las manos vacias\n!!CRITICO¡¡\n");
             //llamada a la funcion de los enemigos recibe daño con el comodin critico//
             enemies.eRecibeDm(crit);
         }
         else{
-            ConsolePanel.getInstance().getConsole().append(name+" Ataca a "+enemies.getName()+" con las manos desnudas\n\n");
+            ConsolePanel.getInstance().getConsole().append(name+" Ataca a "+enemies.getName()+" con las manos desnudas\n");
             enemies.eRecibeDm(dm);
+        }
+        if (enemies.eDie()){
+            rewards(enemies);
         }
     }
 
-    private void gun(@NotNull Enemies enemies){
+    public void gun(@NotNull Enemies enemies){
         ap-=30;
         dm=str+5;
         ConsolePanel.getInstance().getConsole().append("Pistola -30Ap\nAP:   "+ap+"/"+maxAp);
         enemies.eRecibeDm(dm);
+        if (enemies.eDie()){
+            rewards(enemies);
+        }
 
     }
-    private void canyon(@NotNull Enemies enemies){
+    public void canyon(@NotNull Enemies enemies){
         ap-=50;
         dm=str*2;
         ConsolePanel.getInstance().getConsole().append("Cañon -50Ap\nAP:   "+ap+"/"+maxAp);
         enemies.eRecibeDm(dm);
+        if (enemies.eDie()){
+            rewards(enemies);
+        }
     }
 
     //preguntar como desaparecer objetos//

@@ -15,15 +15,16 @@ public static StartBattle instance;
 private Player player;
 private Enemies enemies;
 
-    public StartBattle(Player player) {
+    public StartBattle(Player player,Enemies enemies) {
         this.player = player;
+        this.enemies= enemies;
     }
 
-    public static StartBattle getInstance(Player player) {
+    public static StartBattle getInstance(Player player, Enemies enemies) {
 
         if (instance == null) {
 
-            instance = new StartBattle(player);
+            instance = new StartBattle(player, enemies);
         }
         return instance;
     }
@@ -49,7 +50,7 @@ public void ataque(){
         ButtonsPanel.getInstance(player, enemies).getButton2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append(player.getName()+" uso Libra.\n");
+                enemies.displayData();
             }
         });
     }
@@ -58,7 +59,7 @@ public void ataque(){
         ButtonsPanel.getInstance(player, enemies).getButton3().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append(player.getName()+" huyo del combate.\n");
+                player.escape(enemies);
             }
         });
     }

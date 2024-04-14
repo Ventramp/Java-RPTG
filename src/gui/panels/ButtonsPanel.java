@@ -4,6 +4,7 @@ import enemies.Enemies;
 
 import javax.swing.*;
 
+import gui.GeneralScreen;
 import gui.events.StartBattle;
 import players.Player;
 
@@ -25,6 +26,9 @@ public class ButtonsPanel extends JPanel {
     private ConsolePanel console;
 
     public ButtonsPanel(Player player, Enemies enemies) {
+        button1.setIcon(new ImageIcon(ImageManager.getInstance().getImage("pelear")));
+        button2.setIcon(new ImageIcon(ImageManager.getInstance().getImage("inventario")));
+        button3.setIcon(new ImageIcon(ImageManager.getInstance().getImage("salir")));
         this.player = player;
         this.enemies= enemies;
         image = ImageManager.getInstance().getImage("buttonsPanel");
@@ -40,19 +44,54 @@ public class ButtonsPanel extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            StartBattle.getInstance(player).changeButtons();
+            StartBattle.getInstance(player, enemies).changeButtons();
             }
         });
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append("Boton 2\n");
+                ConsolePanel.getInstance().getConsole().append("Abrir Inventario");
             }
         });
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append("Boton 3\n");
+                GeneralScreen.getInstance().dispose();
+            }
+        });
+    }
+    public void changeButtons(){
+        button1.setIcon(new ImageIcon(ImageManager.getInstance().getImage("pelear")));
+        button2.setIcon(new ImageIcon(ImageManager.getInstance().getImage("inventario")));
+        button3.setIcon(new ImageIcon(ImageManager.getInstance().getImage("salir")));
+        pelear();
+        salir();
+        inventario();
+    }
+    public void pelear (){
+        button1.removeActionListener(ButtonsPanel.getInstance(player, enemies).button1.getActionListeners()[0]);
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StartBattle.getInstance(player, enemies).changeButtons();
+            }
+        });
+    }
+    public void inventario (){
+        button2.removeActionListener(ButtonsPanel.getInstance(player, enemies).button2.getActionListeners()[0]);
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConsolePanel.getInstance().getConsole().append("Abrir Inventario");
+            }
+        });
+    }
+    public void salir (){
+        button3.removeActionListener(ButtonsPanel.getInstance(player, enemies).button3.getActionListeners()[0]);
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GeneralScreen.getInstance().dispose();
             }
         });
     }

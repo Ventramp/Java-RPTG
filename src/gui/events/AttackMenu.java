@@ -51,7 +51,7 @@ public class AttackMenu {
         ButtonsPanel.getInstance(player, enemies).getButton2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArtilleryMenu.getInstance().changeButtons();
+                ArtilleryMenu.getInstance(player, enemies).changeButtons();
             }
         });
     }
@@ -60,7 +60,7 @@ public class AttackMenu {
         ButtonsPanel.getInstance(player, enemies).getButton3().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StartBattle.getInstance(player).changeButtons();
+                StartBattle.getInstance(player, enemies).changeButtons();
             }
         });
     }

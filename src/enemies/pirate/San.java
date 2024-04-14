@@ -71,6 +71,6 @@ public class San extends Enemies implements Serializable {
 
     @Override
     public void displayData() {
-
+    ConsolePanel.getInstance().getConsole().append("Enemigo: "+name+"\nAtaque: "+geteDm()+"\nRecompensa: $"+getDropG()+" Oro\n");
     }
 }
