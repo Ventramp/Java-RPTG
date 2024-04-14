@@ -41,7 +41,19 @@ public class ArtilleryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                player.gun(enemies);
+                while (!player.muerte() && !enemies.eDie()) {
+                    if (player.getAp() >= 10) {
+                        player.gun(enemies);
+                        StartBattle.getInstance(player, enemies).changeButtons();
+                    } else {
+                        ConsolePanel.getInstance().getConsole().append("Ap Insuficiente");
+                        StartBattle.getInstance(player, enemies).changeButtons();
+                    }
+                    if (enemies.eDie()){}
+                    else {
+                        enemies.eAttack(player);
+                    }
+                }
             }
         });
     }
@@ -50,7 +62,16 @@ public class ArtilleryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                player.canyon(enemies);
+                while (!player.muerte() && !enemies.eDie()) {
+                    if (player.getAp() >= 50) {
+                        player.canyon(enemies);
+                        StartBattle.getInstance(player, enemies).changeButtons();
+                    } else {
+                        ConsolePanel.getInstance().getConsole().append("Ap Insuficiente");
+                        StartBattle.getInstance(player, enemies).changeButtons();
+                    }
+                    enemies.eAttack(player);
+                }
             }
         });
     }

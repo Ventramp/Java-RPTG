@@ -5,13 +5,17 @@ import items.drops.Jewells;
 import items.drops.PirateHat;
 import players.Player;
 
+import javax.swing.*;
+
 import static util.Randomized.rng;
 
 public class SeonghwaVC extends Enemies {
 
 
     public SeonghwaVC() {
-        super("Vicecapitan Seongwa",5,0,5,5,5,5);
+        super("Vicecapitan Seonghwa",5,0,5,5,5,5);
+        image = imageManager.getImage("tinyBat",
+                new ImageIcon("img\\enemies\\Seonghwa.png").getImage());
     }
 
     @Override

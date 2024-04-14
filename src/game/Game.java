@@ -22,12 +22,11 @@ public class Game {
         player = null;
         this.slot =slot;
         player = null;
-        enemiesl = new ArrayList<>(9);
+        enemiesl = new ArrayList<>(8);
         enemiesl.add(new HongjoongC());
         enemiesl.add(new Jonho());
         enemiesl.add(new Mingi());
         enemiesl.add(new SeonghwaVC());
-        enemiesl.add(new TacticalParrot());
         enemiesl.add(new Wooyoung());
         enemiesl.add(new Yeosang());
         enemiesl.add(new Yunho());

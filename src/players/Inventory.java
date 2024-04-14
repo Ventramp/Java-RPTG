@@ -1,5 +1,6 @@
 package players;
 
+import gui.panels.ConsolePanel;
 import items.Items;
 import items.armors.Armors;
 import items.weapons.Weapons;
@@ -114,7 +115,7 @@ public class Inventory implements Serializable {
     public void addItem(Items item) {
 
         String addMessage = String.format("%s se ha agregado al Inventario!", item.getName());
-        JOptionPane.showMessageDialog(null,items.add(item) ? addMessage : "Inventario Lleno.");
+        ConsolePanel.getInstance().getConsole().append(items.add(item) ? addMessage : "Inventario Lleno.");
     }
 
     public void removeItem(Items item) {

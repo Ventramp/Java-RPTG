@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import characters.BasicCharacter;
 import enemies.Enemies;
+import gui.GeneralScreen;
 import gui.panels.ConsolePanel;
 import items.armors.Armors;
 import items.armors.EmpyArmor;
@@ -97,29 +98,24 @@ public void displayData() {
             ConsolePanel.getInstance().getConsole().append(name+" Ataca a "+enemies.getName()+" con las manos desnudas\n");
             enemies.eRecibeDm(dm);
         }
-        if (enemies.eDie()){
-            rewards(enemies);
-        }
+        endofbattle(enemies);
+
     }
 
     public void gun(@NotNull Enemies enemies){
-        ap-=30;
+        ap-=10;
         dm=str+5;
-        ConsolePanel.getInstance().getConsole().append("Pistola -30Ap\nAP:   "+ap+"/"+maxAp);
+        ConsolePanel.getInstance().getConsole().append("Pistola -30Ap\n");
         enemies.eRecibeDm(dm);
-        if (enemies.eDie()){
-            rewards(enemies);
-        }
+       endofbattle(enemies);
 
     }
     public void canyon(@NotNull Enemies enemies){
         ap-=50;
         dm=str*2;
-        ConsolePanel.getInstance().getConsole().append("Cañon -50Ap\nAP:   "+ap+"/"+maxAp);
+        ConsolePanel.getInstance().getConsole().append("\nCañon -50Ap\n\n");
         enemies.eRecibeDm(dm);
-        if (enemies.eDie()){
-            rewards(enemies);
-        }
+        endofbattle(enemies);
     }
 
     //preguntar como desaparecer objetos//
@@ -134,7 +130,7 @@ public void displayData() {
 
     //Obtencion de recompensas//
     private void rewards(@NotNull Enemies enemies){
-        ConsolePanel.getInstance().getConsole().append("///EXP     "+exp+"  +  "+enemies.getGiveExp()+"///\n///Gold     "+gold+"  +  "+enemies.getDropG()+"///");
+        ConsolePanel.getInstance().getConsole().append("\n\t///EXP     "+exp+"  +  "+enemies.getGiveExp()+"///\n\t///Gold     "+gold+"  +  "+enemies.getDropG()+"///\n\n");
         this.exp+= enemies.getGiveExp();
         this.gold+= enemies.getDropG();
     }
@@ -199,6 +195,13 @@ public void displayData() {
         String message = String.format("P.CRIT: %d",getpCrit());
         return message;
     }
+    public void endofbattle(Enemies enemies){
+        if (enemies.eDie()){
+            rewards(enemies);
+            lvUpCheck();
+
+        }
+    }
     public void equipWeapon(Weapons weapon) {
         this.weapon = weapon;
     }
@@ -229,11 +232,11 @@ public void displayData() {
         edmreduction= eDm-def;
         if (edmreduction <= 0) edmreduction=0;
         hp -= edmreduction;
-        ConsolePanel.getInstance().getConsole().append(name+" recibio "+edmreduction+" puntos de daño\n"
-        +"      HP:         "+hp+"/"+maxHp+"\n      AP:          "+ap+"/"+maxHp);
+        ConsolePanel.getInstance().getConsole().append(name+" recibio "+edmreduction+" puntos de daño\n");
         apRecover();
         if (muerte())
-            ConsolePanel.getInstance().getConsole().append("**********  HAS MUERTO  **********");
+            JOptionPane.showMessageDialog(null,"**********  HAS MUERTO  **********");
+        GeneralScreen.getInstance().dispose();
     }
     //ganancia y limitacion de hp y ap usados al recibir daño y al acabar una pelea//
     private void apRecover(){ap+=10;     if (ap>maxHp) ap=maxAp;}

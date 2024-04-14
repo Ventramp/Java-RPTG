@@ -13,7 +13,7 @@ import java.io.Serializable;
 import static util.Randomized.rng;
 public class San extends Enemies implements Serializable {
     public San() {
-        super("San",5,0,5,5,5,5);
+        super("San",30,0,5,200,5,0);
         image = imageManager.getImage("tinyBat",
                 new ImageIcon("img\\enemies\\San.png").getImage());
     }
@@ -37,40 +37,40 @@ public class San extends Enemies implements Serializable {
     }
     //ataque tipo estoque con notnull para que no se pueda hacer sin player//
     private void thrust (@NotNull Player player){
-        ConsolePanel.getInstance().getConsole().append(getName()+" Ataca con un Estoque");
+        ConsolePanel.getInstance().getConsole().append(getName()+" Ataca con un Estoque\n");
         //llamada a la funcion con la cual los characters reciben daño//
         player.recibeDm(geteDm());
     }
     //ataque tipo disparo con posibilidad entre 1 y 3 disparos//
     public void shot (@NotNull Player player){
-        ConsolePanel.getInstance().getConsole().append(getName()+" te va a disparar");
+        ConsolePanel.getInstance().getConsole().append(getName()+" te va a disparar\n");
         int multshot = rng(0,3);
         for (int i=0; i<multshot;i++){
-            ConsolePanel.getInstance().getConsole().append((i+1)+"° Disparo");
+            ConsolePanel.getInstance().getConsole().append((i+1)+"° Disparo\n");
             player.recibeDm(geteDm());
         }
-        ConsolePanel.getInstance().getConsole().append("Fin del ataque enemigo");
+        ConsolePanel.getInstance().getConsole().append("Fin del ataque enemigo\n");
     }
     //el enemigo te roba tu dinero//
     public void robarG (@NotNull Player player){
         //si no tienes nada de dinero se burla
         if (player.getGold()==0){
-            ConsolePanel.getInstance().getConsole().append(getName()+" te intenta robar los calzones");
+            ConsolePanel.getInstance().getConsole().append(getName()+" te intenta robar los calzones\n");
         }
         //si tienes mas de 0 pero menos o igual a 10//
         if (player.getGold()<=10&player.getGold()>0){
             player.setGold(player.getGold() - 10);
-            ConsolePanel.getInstance().getConsole().append(getName()+" Te robo el poco dinero que te quedaba");
+            ConsolePanel.getInstance().getConsole().append(getName()+" Te robo el poco dinero que te quedaba\n");
         }
         if (player.getGold()>10) {
             //si es mayor a 10//
             player.setGold(player.getGold() - 10);
-            ConsolePanel.getInstance().getConsole().append(getName() + " te robo 10 G");
+            ConsolePanel.getInstance().getConsole().append(getName() + " te robo 10 G\n");
         }
     }
 
     @Override
     public void displayData() {
-    ConsolePanel.getInstance().getConsole().append("Enemigo: "+name+"\nAtaque: "+geteDm()+"\nRecompensa: $"+getDropG()+" Oro\n");
+    ConsolePanel.getInstance().getConsole().append("Enemigo: \t"+name+"\nAtaque: \t"+geteDm()+"\nRecompensa: \t"+getDropG()+" G\n");
     }
 }

@@ -1,12 +1,18 @@
 package gui;
-import enemies.pirate.San;
+import enemies.pirate.*;
+import gui.events.StartBattle;
 import gui.panels.*;
 import gui.panels.StatsPanel;
+import org.jetbrains.annotations.NotNull;
 import players.Player;
 import enemies.Enemies;
 
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static util.Randomized.rng;
 
 public class GeneralScreen extends JFrame{
     private static GeneralScreen instance;
@@ -17,6 +23,7 @@ public class GeneralScreen extends JFrame{
     private JTabbedPane playerTabbed;
     private Player player;
     private Enemies enemies;
+    public final List<Enemies> enemiesl;
 
     public static void main(String[] args) {
 
@@ -31,10 +38,20 @@ public class GeneralScreen extends JFrame{
         return instance;
     }
     public GeneralScreen() {
+        enemiesl = new ArrayList<>(9);
+        enemiesl.add(new HongjoongC());
+        enemiesl.add(new Jonho());
+        enemiesl.add(new Mingi());
+        enemiesl.add(new San());
+        enemiesl.add(new SeonghwaVC());
+        enemiesl.add(new Wooyoung());
+        enemiesl.add(new Yeosang());
+        enemiesl.add(new Yunho());
         setTitle("PirATEEZ Quest");
         setLocationRelativeTo(null);
         setContentPane(rScreen);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
     public void startGame(){
         pack();
@@ -43,49 +60,7 @@ public class GeneralScreen extends JFrame{
         setResizable(false);
     }
 
-    public static void setInstance(GeneralScreen instance) {
-        GeneralScreen.instance = instance;
-    }
 
-    public JPanel getrScreen() {
-        return rScreen;
-    }
-
-    public void setrScreen(JPanel rScreen) {
-        this.rScreen = rScreen;
-    }
-
-    public JPanel getButtonsPanel() {
-        return buttonsPanel;
-    }
-
-    public void setButtonsPanel(JPanel buttonsPanel) {
-        this.buttonsPanel = buttonsPanel;
-    }
-
-    public JPanel getEnemyPanel() {
-        return enemyPanel;
-    }
-
-    public void setEnemyPanel(JPanel enemyPanel) {
-        this.enemyPanel = enemyPanel;
-    }
-
-    public JPanel getConsolePanel() {
-        return consolePanel;
-    }
-
-    public void setConsolePanel(JPanel consolePanel) {
-        this.consolePanel = consolePanel;
-    }
-
-    public JTabbedPane getPlayerTabbed() {
-        return playerTabbed;
-    }
-
-    public void setPlayerTabbed(JTabbedPane playerTabbed) {
-        this.playerTabbed = playerTabbed;
-    }
 
     public Player getPlayer() {
         return player;
@@ -102,10 +77,16 @@ public class GeneralScreen extends JFrame{
     public void setEnemies(Enemies enemies) {
         this.enemies = enemies;
     }
+    @NotNull
+    private static Enemies getEnemy(List<Enemies> enemies) {
 
+        Enemies enemy = enemies.get(rng(0, enemies.size() - 1));
+        ConsolePanel.getInstance().getConsole().append(enemy.getName()+" ha aparecido delante tuyo\n");
+        return enemy;
+    }
     private void createUIComponents() {
+        enemies=new HongjoongC();
         player = new Player("Ventramp");
-        enemies = new San();
         String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
         ConsolePanel.getInstance().getConsole().append(message);
         enemyPanel = EnemyPanel.getInstance(enemies);
@@ -114,5 +95,13 @@ public class GeneralScreen extends JFrame{
         playerTabbed = PlayerPanel.getInstance();
         StatusPanel.getInstance(player,PlayerPanel.getInstance(),0);
         StatsPanel.getInstance(player,PlayerPanel.getInstance(),1);
+    }
+    public void initializeBattle() {
+        Enemies enemy = getEnemy(enemiesl);
+        StartBattle.getInstance(player, enemies).changeButtons();
+    }
+    public void battleend() {
+        ButtonsPanel.getInstance(player, null).changeButtons();
+        enemyPanel = null;
     }
 }

@@ -44,7 +44,7 @@ public class ButtonsPanel extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            StartBattle.getInstance(player, enemies).changeButtons();
+                GeneralScreen.getInstance().initializeBattle();
             }
         });
         button2.addActionListener(new ActionListener() {
@@ -73,7 +73,7 @@ public class ButtonsPanel extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StartBattle.getInstance(player, enemies).changeButtons();
+                GeneralScreen.getInstance().initializeBattle();
             }
         });
     }

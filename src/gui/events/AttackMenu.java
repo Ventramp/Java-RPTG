@@ -1,6 +1,7 @@
 package gui.events;
 
 import enemies.Enemies;
+import gui.GeneralScreen;
 import gui.panels.ButtonsPanel;
 import gui.panels.ConsolePanel;
 import players.Player;
@@ -14,6 +15,7 @@ public class AttackMenu {
     public static AttackMenu instance;
     private Player player;
     private Enemies enemies;
+
 
     public AttackMenu(Player player, Enemies enemies) {
         this.player = player;
@@ -42,7 +44,12 @@ public class AttackMenu {
         ButtonsPanel.getInstance(player, enemies).getButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            player.attack(enemies);
+                    player.attack(enemies);
+                    if (!enemies.eDie()){
+                        enemies.eAttack(player);
+                        StartBattle.getInstance(player,enemies).changeButtons();
+                    }
+                    else GeneralScreen.getInstance().battleend();
             }
         });
     }

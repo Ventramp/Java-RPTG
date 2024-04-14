@@ -5,13 +5,17 @@ import items.drops.Jewells;
 import items.drops.PirateFlag;
 import players.Player;
 
+import javax.swing.*;
+
 import static util.Randomized.rng;
 
 public class HongjoongC extends Enemies {
 
 
     public HongjoongC() {
-        super("Captain HongJoo",5,0,5,5,5,5);
+        super("Captain Hongjoong",5,0,5,5,5,5);
+        image = imageManager.getImage("tinyBat",
+                new ImageIcon("img\\enemies\\Hongjoong.png").getImage());
     }
 
     @Override
