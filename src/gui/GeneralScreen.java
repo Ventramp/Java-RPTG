@@ -68,7 +68,7 @@ public class GeneralScreen extends JFrame {
     }
 
     private void createUIComponents() {
-        player = new Player("Ventramp");
+        player = new Player(JOptionPane.showInputDialog(null,"Ingresa tu nombre de usuario"));
         String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
         ConsolePanel.getInstance().getConsole().append(message);
         enemies = new HongjoongC(player);

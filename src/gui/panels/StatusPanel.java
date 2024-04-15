@@ -72,7 +72,7 @@ public class StatusPanel  extends JPanel{
     }
 
     public void updatePlayer(Player player) {
-
+        playerName =new TextLabel(player.getName(), "textHolder");
         this.player = player;
         ((HpLabel) hpLabel).updateCharacter(player);
         ((ApLabel) apLabel).updateCharacter(player);
