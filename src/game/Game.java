@@ -64,8 +64,6 @@ public class Game {
                     } catch (Exception e) {
                         player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
                     }
-                    // Aquí llamas al método iniciarJuego() de SelectFileWindow
-                    new SelectFileWindow().iniciarJuego();
                 }
                 case 2 -> Interactive.printDialog("Gracias por jugar");
                 default -> throw new InvalidOptionException();

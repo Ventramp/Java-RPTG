@@ -23,6 +23,7 @@ public class SelectFileWindow extends JFrame {
 	private JLabel gameName;
 	private JLabel gameIcon;
 	private final FontManager fontManager;
+	private int slot;
 	private Player player;
 	public static SelectFileWindow getInstance() {
 		if (instance == null) {
@@ -36,6 +37,7 @@ public class SelectFileWindow extends JFrame {
 	}
 
 	public SelectFileWindow() {
+		setSize(1280, 800);
 		fontManager = FontManager.getInstance();
 		setTitle("Selección de archivo");
 		setContentPane(rootPane);
@@ -47,25 +49,48 @@ public class SelectFileWindow extends JFrame {
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				slot=1;
+				try {
+					player = FileManager.loadGame(new File("files\\game" + slot + ".dat"));
+					JOptionPane.showMessageDialog(null,"Bienvenido de Vuelta");
+					GeneralScreen.getInstance().startGame();
+				} catch (Exception i) {
+					player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
+					GeneralScreen.getInstance().startGame();
+				}
 			}
 		});
 
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				slot=2;
+				try {
+					player = FileManager.loadGame(new File("files\\game" + slot + ".dat"));
+					JOptionPane.showMessageDialog(null,"Bienvenido de Vuelta");
+					GeneralScreen.getInstance().startGame();
+				} catch (Exception i) {
+					player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
+					GeneralScreen.getInstance().startGame();
+				}
 			}
 		});
 
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				slot=3;
+				try {
+					player = FileManager.loadGame(new File("files\\game" +slot+ ".dat"));
+					JOptionPane.showMessageDialog(null,"Bienvenido de Vuelta");
+					GeneralScreen.getInstance().startGame();
+				} catch (Exception i) {
+					player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
+					GeneralScreen.getInstance().startGame();
+				}
 			}
 		});
 	}
-
 	private void createUIComponents() {
 
 		button1 = new JButton();
@@ -76,5 +101,10 @@ public class SelectFileWindow extends JFrame {
 	public Player getPlayer() {
 
 		return player;
+	}
+
+	public int getSlot() {
+
+		return slot;
 	}
 }
