@@ -143,6 +143,8 @@ public class ImageManager {
                 new ImageIcon("img\\ui\\panels\\gamePanel.png").getImage());
         imageCache.addImage("buttonsPanel",
                 new ImageIcon("img\\ui\\panels\\buttonsPanel.png").getImage());
+        imageCache.addImage("filescreen",
+                new ImageIcon("img\\ui\\panels\\SlotsLabel.png").getImage());
         imageCache.addImage("inventario",
                 new ImageIcon("img\\ui\\buttons\\inventarioButton.png").getImage());
         imageCache.addImage("salir",
@@ -191,6 +193,16 @@ public class ImageManager {
                 new ImageIcon("img\\enemies\\Yeosang.png").getImage());
         imageCache.addImage("yunho",
                 new ImageIcon("img\\enemies\\Yunho.png").getImage());
+        imageCache.addImage("slot1",
+                new ImageIcon("img\\ui\\holders\\slot1.png").getImage());
+        imageCache.addImage("slot2",
+                new ImageIcon("img\\ui\\holders\\slot2.png").getImage());
+        imageCache.addImage("slot3",
+                new ImageIcon("img\\ui\\holders\\slot3.png").getImage());
+        imageCache.addImage("logo",
+                new ImageIcon("img\\Logo.png").getImage());
+        imageCache.addImage("icono",
+                new ImageIcon("img\\icono.png").getImage());
     }
 
     public static ImageManager getInstance() {

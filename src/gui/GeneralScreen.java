@@ -1,20 +1,13 @@
 package gui;
 
 import enemies.pirate.*;
-import game.Game;
-import gui.events.StartBattle;
 import gui.panels.*;
 import gui.panels.StatsPanel;
-import org.jetbrains.annotations.NotNull;
 import players.Player;
 import enemies.Enemies;
+import util.managers.ImageManager;
 
 import javax.swing.*;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import static util.Randomized.rng;
 
 public class GeneralScreen extends JFrame {
     private static GeneralScreen instance;
@@ -25,7 +18,7 @@ public class GeneralScreen extends JFrame {
     private JTabbedPane playerTabbed;
     private Player player;
     private Enemies enemies;
-
+    private ImageIcon icono;
     public static void main(String[] args) {
         GeneralScreen.getInstance().startGame();
     }
@@ -42,6 +35,8 @@ public class GeneralScreen extends JFrame {
         setLocationRelativeTo(null);
         setContentPane(rScreen);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        icono = new ImageIcon((ImageManager.getInstance().getImage("icono")));
+        setIconImage(icono.getImage());
     }
 
     public void startGame() {
@@ -68,9 +63,7 @@ public class GeneralScreen extends JFrame {
     }
 
     private void createUIComponents() {
-        player = SelectFileWindow.getInstance().getPlayer();
-        String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
-        ConsolePanel.getInstance().getConsole().append(message);
+        player = SelectFileLabel.getInstance().getPlayer();
         enemies = new HongjoongC(player);
         enemyPanel = EnemyPanel.getInstance(enemies);
         consolePanel = ConsolePanel.getInstance();

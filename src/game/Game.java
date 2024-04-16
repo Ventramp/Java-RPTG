@@ -1,21 +1,12 @@
 package game;
 
-import enemies.Enemies;
-import game.exeptions.EnemyDeadException;
 import game.exeptions.InvalidOptionException;
-import game.exeptions.PlayerDeathException;
-import gui.GeneralScreen;
-import gui.SelectFileWindow;
-import org.jetbrains.annotations.NotNull;
 import players.Player;
 import util.managers.FileManager;
 import util.interfaces.Interactive;
-import util.interfaces.Randomized;
 
 import javax.swing.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * La clase Game es la clase principal del juego. Es la clase que controla el flujo del juego y las interacciones entre

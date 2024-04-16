@@ -5,6 +5,7 @@ import enemies.Enemies;
 import javax.swing.*;
 
 import gui.GeneralScreen;
+import gui.SelectFileLabel;
 import gui.events.StartBattle;
 import players.Player;
 
@@ -12,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import util.managers.FileManager;
 import util.managers.ImageManager;
 
 public class ButtonsPanel extends JPanel {
@@ -26,6 +28,12 @@ public class ButtonsPanel extends JPanel {
     private ConsolePanel console;
 
     public ButtonsPanel(Player player, Enemies enemies) {
+        button1.setBorderPainted(false);
+        button1.setContentAreaFilled(false);
+        button2.setBorderPainted(false);
+        button2.setContentAreaFilled(false);
+        button2.setBorderPainted(false);
+        button3.setContentAreaFilled(false);
         button1.setIcon(new ImageIcon(ImageManager.getInstance().getImage("pelear")));
         button2.setIcon(new ImageIcon(ImageManager.getInstance().getImage("inventario")));
         button3.setIcon(new ImageIcon(ImageManager.getInstance().getImage("salir")));
@@ -57,6 +65,7 @@ public class ButtonsPanel extends JPanel {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                endGame();
                 GeneralScreen.getInstance().dispose();
             }
         });
@@ -93,9 +102,14 @@ public class ButtonsPanel extends JPanel {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                endGame();
                 GeneralScreen.getInstance().dispose();
             }
         });
+    }
+    private void endGame() {
+        FileManager.saveGame(player, SelectFileLabel.getInstance().getSlot());
+        JOptionPane.showMessageDialog(null, "Guardando Partida");
     }
 
     public static ButtonsPanel getInstance(Player player, Enemies enemies) {
