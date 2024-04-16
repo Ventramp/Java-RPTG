@@ -15,7 +15,7 @@ import static util.Randomized.rng;
 @RegularEnemy
 public class Mingi extends Enemies {
     public Mingi(Player player) {
-        super("Mingi",30,0,30,20,5,5, player);
+        super("Mingi",30,0,30,20,5,25, player);
         image = imageManager.getImage("mingi",
                 new ImageIcon("img\\enemies\\Mingi.png").getImage());
     }

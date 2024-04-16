@@ -15,7 +15,7 @@ import static util.Randomized.rng;
 @RegularEnemy
 public class Wooyoung extends Enemies {
     public Wooyoung(Player player) {
-        super("Wooyoung", 30, 0, 30,20, 5, 5,player);
+        super("Wooyoung", 30, 0, 30,20, 5, 25,player);
         image = imageManager.getImage("wooyoung",
                 new ImageIcon("img\\enemies\\Wooyoung.png").getImage());
     }

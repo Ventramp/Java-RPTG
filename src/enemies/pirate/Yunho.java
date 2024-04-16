@@ -16,7 +16,7 @@ import static util.Randomized.rng;
 public class Yunho extends Enemies {
 
     public Yunho(Player player) {
-        super("Yunho",30,0,30,20,5,5,player);
+        super("Yunho",30,0,30,20,5,25,player);
         image = imageManager.getImage("yunho",
                 new ImageIcon("img\\enemies\\Yunho.png").getImage());
     }

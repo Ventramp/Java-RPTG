@@ -15,7 +15,7 @@ import static util.Randomized.rng;
 @RegularEnemy
 public class San extends Enemies implements Serializable {
     public San(Player player) {
-        super("San",30,0,30,20,5,0,player);
+        super("San",30,0,30,20,25,0,player);
         image = imageManager.getImage("san",
                 new ImageIcon("img\\enemies\\San.png").getImage());
     }

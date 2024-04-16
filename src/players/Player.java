@@ -5,7 +5,9 @@ import java.io.Serializable;
 import characters.BasicCharacter;
 import enemies.Enemies;
 import gui.GeneralScreen;
+import gui.PlayerPanel;
 import gui.panels.ConsolePanel;
+import gui.panels.StatusPanel;
 import items.armors.Armors;
 import items.armors.EmpyArmor;
 import items.armors.boots.EmpyBoots;
@@ -15,6 +17,7 @@ import items.armors.knuckles.EmpyKnuckles;
 import items.weapons.Empy;
 import items.weapons.Weapons;
 import org.jetbrains.annotations.NotNull;
+import util.managers.ImageManager;
 
 import javax.swing.*;
 
@@ -42,7 +45,7 @@ public class Player extends BasicCharacter implements Serializable {
     protected int jobadd;
     protected final Inventory inventory;
     protected int revives;
-
+    protected ImageIcon icono;
 
 
 
@@ -50,6 +53,7 @@ public class Player extends BasicCharacter implements Serializable {
     public Player(String name) {
 
         super(name, 100,100);
+        icono = new ImageIcon((ImageManager.getInstance().getImage("icono")));
         inventory = new Inventory();
         //INCLUSION DE UN MINIMO DE 5 PARA LAS CARACTERISTICAS PARA EVITAR DESBALANCES//
         this.def=5;
@@ -144,7 +148,8 @@ public void displayData() {
         level++;
         //exp maxima aumentara gradualmente segun cuantos niveles suba//
         maxExp += 20*(level-1);
-        String message = String.format("SUBISTE DE NIVEL\n");
+        String message = String.format("");
+        JOptionPane.showMessageDialog(null,"Subiste de Nivel","LevelUp",JOptionPane.INFORMATION_MESSAGE,icono);
         for (int i = 0; i < 4; i++) {
             int x = (rng(1, 6));
             switch (x) {
@@ -156,6 +161,9 @@ public void displayData() {
                 case 6 -> {ap += 10;    maxAp += 10;    message += String.format ("AP     maxima aumentada:   %d\n",maxAp);}
             }
         }
+        hp=maxHp;
+        ap=maxAp;
+        StatusPanel.getInstance(GeneralScreen.getInstance().getPlayer(), PlayerPanel.getInstance(),0).updatePlayer(GeneralScreen.getInstance().getPlayer());
         ConsolePanel.getInstance().getConsole().append(message);
     }
 

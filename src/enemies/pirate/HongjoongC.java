@@ -17,7 +17,7 @@ public class HongjoongC extends Enemies {
 
 
     public HongjoongC(Player player) {
-        super("Captain Hongjoong",30,0,30,20,5,5,player);
+        super("Captain Hongjoong",30,0,30,20,5,25,player);
         image = imageManager.getImage("hongjoong",
                 new ImageIcon("img\\enemies\\Hongjoong.png").getImage());
     }

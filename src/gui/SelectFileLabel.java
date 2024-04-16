@@ -89,19 +89,33 @@ public class SelectFileLabel extends JPanel {
 				SelectfileWindow.getInstance().dispose();
 			} else {}
 		} catch (Exception i) {
-			int respuesta = JOptionPane.showConfirmDialog(
+			int respuesta = JOptionPane.showOptionDialog(
 					null,
 					"                    Slot Vacio\n¿Quieres iniciar una nueva partida?",
 					"Nueva Partida",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
-					icono);
+					icono,
+					new Object[]{"Sí", "No"},
+					"Sí");
 			if (respuesta == JOptionPane.YES_OPTION) {
-				player = new Player(JOptionPane.showInputDialog("Ingresa el nombre del jugador:"));
-				GeneralScreen.getInstance().startGame();
-				String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
-				ConsolePanel.getInstance().getConsole().append(message);
-				SelectfileWindow.getInstance().dispose();
+				String playerNameInput = (String) JOptionPane.showInputDialog(
+						null,
+						"Ingresa el nombre del jugador:",
+						"Nuevo Usuario",
+						JOptionPane.PLAIN_MESSAGE,
+						icono,
+						null,
+						"");
+				if (playerNameInput == null || playerNameInput.isEmpty()) {
+					JOptionPane.showMessageDialog(null,"No se ingresó ningún jugador.");
+				} else {
+					player = new Player(playerNameInput);
+					GeneralScreen.getInstance().startGame();
+					String message = String.format("¡Bienvenido a la aventura, %s!\n", player.getName());
+					ConsolePanel.getInstance().getConsole().append(message);
+					SelectfileWindow.getInstance().dispose();
+				}
 			}else {}
 		}
 	}

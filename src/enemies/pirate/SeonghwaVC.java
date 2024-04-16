@@ -17,7 +17,7 @@ public class SeonghwaVC extends Enemies {
 
 
     public SeonghwaVC(Player player) {
-        super("Vicecapitan Seonghwa",30,0,30,20,5,5,player);
+        super("Vicecapitan Seonghwa",30,0,30,20,5,25,player);
         image = imageManager.getImage("Seonghwa",
                 new ImageIcon("img\\enemies\\Seonghwa.png").getImage());
     }
