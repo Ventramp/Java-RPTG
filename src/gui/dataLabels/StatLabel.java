@@ -28,7 +28,7 @@ public class StatLabel extends JLabel {
         g2d.drawImage(image, 0, 0, null);
         int textPositionY = image.getHeight(null) / 2 + g2d.getFontMetrics().getHeight() / 4;
         int textPositionX = (image.getWidth(null) - g2d.getFontMetrics().stringWidth(displayText)) / 2;
-        textPositionX+= 15;
+        textPositionX+= 35;
         g2d.drawString(displayText, textPositionX, textPositionY);
     }
 
