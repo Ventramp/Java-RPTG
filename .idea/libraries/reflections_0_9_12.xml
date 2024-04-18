@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="annotations-24.0.0">
+  <library name="reflections-0.9.12">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/annotations-24.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reflections-0.9.12.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

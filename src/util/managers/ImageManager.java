@@ -203,6 +203,18 @@ public class ImageManager {
                 new ImageIcon("img\\Logo.png").getImage());
         imageCache.addImage("icono",
                 new ImageIcon("img\\icono.png").getImage());
+        imageCache.addImage("equipar",
+                new ImageIcon("img\\ui\\buttons\\equiparbutton.png").getImage());
+        imageCache.addImage("tienda",
+                new ImageIcon("img\\ui\\buttons\\tiendabutton.png").getImage());
+        imageCache.addImage("armadura",
+                new ImageIcon("img\\ui\\buttons\\armadurabutton.png").getImage());
+        imageCache.addImage("arma",
+                new ImageIcon("img\\ui\\buttons\\armabutton.png").getImage());
+        imageCache.addImage("comprar",
+                new ImageIcon("img\\ui\\buttons\\comprarButton.png").getImage());
+        imageCache.addImage("vender",
+                new ImageIcon("img\\ui\\buttons\\venderButton.png").getImage());
     }
 
     public static ImageManager getInstance() {
