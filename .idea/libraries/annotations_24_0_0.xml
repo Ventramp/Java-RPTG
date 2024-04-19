@@ -2,8 +2,15 @@
   <library name="annotations-24.0.0">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/annotations-24.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.14.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javassist-3.26.0-GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsr305-3.0.2.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/javassist-3.26.0-GA-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/javassist-3.26.0-GA-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

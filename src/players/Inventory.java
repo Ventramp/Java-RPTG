@@ -4,14 +4,13 @@ import gui.panels.ConsolePanel;
 import items.Items;
 import items.armors.Armors;
 import items.weapons.Weapons;
-import players.Player;
 import util.FixedArrayList;
 
 import javax.swing.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class Inventory implements Serializable {
+public class Inventory implements Serializable{
 
     private final FixedArrayList<Items> items;
 
@@ -143,4 +142,5 @@ public class Inventory implements Serializable {
             JOptionPane.showMessageDialog(null,message.toString());
         }
     }
+
 }

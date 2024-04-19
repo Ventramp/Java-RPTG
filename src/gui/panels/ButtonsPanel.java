@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import gui.GeneralScreen;
 import gui.SelectFileLabel;
+import gui.events.InventoryMenu;
 import gui.events.StartBattle;
 import players.Player;
 
@@ -58,8 +59,7 @@ public class ButtonsPanel extends JPanel {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append("Abriste el inventario\n");
-                player.getInventory().printItems();
+                InventoryMenu.getInstance(player,enemies).changeButtons();
             }
         });
         button3.addActionListener(new ActionListener() {
@@ -92,8 +92,7 @@ public class ButtonsPanel extends JPanel {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConsolePanel.getInstance().getConsole().append("Abriste el inventario\n");
-                player.getInventory().printItems();
+                InventoryMenu.getInstance(player,enemies).changeButtons();
             }
         });
     }

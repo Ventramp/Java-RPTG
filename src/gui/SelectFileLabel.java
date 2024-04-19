@@ -85,7 +85,7 @@ public class SelectFileLabel extends JPanel {
 					"Sí");
 			if (respuesta == JOptionPane.YES_OPTION) {
 				GeneralScreen.getInstance().startGame();
-				ConsolePanel.getInstance().getConsole().append("Bienvenido de Vuelta");
+				ConsolePanel.getInstance().getConsole().append("Bienvenido de Vuelta\n");
 				SelectfileWindow.getInstance().dispose();
 			} else {}
 		} catch (Exception i) {

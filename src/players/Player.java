@@ -7,6 +7,7 @@ import enemies.Enemies;
 import gui.GeneralScreen;
 import gui.PlayerPanel;
 import gui.panels.ConsolePanel;
+import gui.panels.StatsPanel;
 import gui.panels.StatusPanel;
 import items.armors.Armors;
 import items.armors.EmpyArmor;
@@ -46,6 +47,7 @@ public class Player extends BasicCharacter implements Serializable {
     protected final Inventory inventory;
     protected int revives;
     protected ImageIcon icono;
+    protected Player player;
 
 
 
@@ -216,6 +218,7 @@ public void displayData() {
     }
     public void equipWDialog(@NotNull Weapons weapons){
         ConsolePanel.getInstance().getConsole().append("Has equipado :"+weapon.getName());
+        StatsPanel.getInstance(player, PlayerPanel.getInstance(),1).update();
     }
     public void equipArmor(Armors armor) {
 
@@ -228,6 +231,7 @@ public void displayData() {
     }
     public void equipADialog(@NotNull Armors armor){
         ConsolePanel.getInstance().getConsole().append("Has equipado :"+armor.getName());
+        StatsPanel.getInstance(player, PlayerPanel.getInstance(),1).update();
     }
 
     public void revive() {

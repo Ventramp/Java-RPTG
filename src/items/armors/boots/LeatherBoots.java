@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class LeatherBoots extends Armors implements Serializable {
 
 
-    public LeatherBoots(String name, String description, int price, int lv, int aHp, int aDef, int aDex, int attk) {
-        super(name, description, price, lv, aHp, aDef, aDex, attk);
+    public LeatherBoots() {
+        super("Botas de Cuero", "botas sencillas de cuero", 200, 1, 0,0, 5, 0);
         this.type= ArmorType.LEGS;
     }
 }

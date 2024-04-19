@@ -40,7 +40,7 @@ public class EquipMenu {
         ButtonsPanel.getInstance(player, enemies).getButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                player.getInventory().equipArmorMenu(player);
             }
         });
     }
@@ -49,7 +49,7 @@ public class EquipMenu {
         ButtonsPanel.getInstance(player, enemies).getButton2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            player.equipArmor();
+                player.getInventory().equipWeaponMenu(player);
             }
         });
     }
@@ -58,7 +58,7 @@ public class EquipMenu {
         ButtonsPanel.getInstance(player, enemies).getButton3().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            InventoryMenu.getInstance(player,enemies);
+            InventoryMenu.getInstance(player,enemies).changeButtons();
             }
         });
     }

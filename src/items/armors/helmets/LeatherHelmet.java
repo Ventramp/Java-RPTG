@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 public class LeatherHelmet extends Armors implements Serializable {
 
-    public LeatherHelmet(String name, String description, int price, int lv, int aHp, int aDef, int aDex, int attk) {
-        super(name, description, price, lv, aHp, aDef, aDex, attk);
+    public LeatherHelmet() {
+        super("Casco de Cuero", "Casco sencillo de cuero", 200, 1, 10,0, 0, 0);
         this.type= ArmorType.HEAD;
     }
 

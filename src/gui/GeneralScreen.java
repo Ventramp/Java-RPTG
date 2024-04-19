@@ -64,7 +64,7 @@ public class GeneralScreen extends JFrame {
 
     private void createUIComponents() {
         player = SelectFileLabel.getInstance().getPlayer();
-        enemies = new HongjoongC(player);
+        enemies = new San(player);
         enemyPanel = EnemyPanel.getInstance(enemies);
         consolePanel = ConsolePanel.getInstance();
         buttonsPanel = ButtonsPanel.getInstance(player, enemies);

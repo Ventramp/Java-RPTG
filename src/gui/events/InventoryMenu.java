@@ -43,7 +43,7 @@ public class InventoryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+            EquipMenu.getInstance(player,enemies).changeButtons();
             }
         });
     }
@@ -52,7 +52,7 @@ public class InventoryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+            ShopMenu.getInstance(player,enemies).changeButtons();
             }
         });
     }
@@ -61,7 +61,7 @@ public class InventoryMenu {
         ButtonsPanel.getInstance(player, enemies).getButton3().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ButtonsPanel.getInstance(player,enemies).changeButtons();
             }
         });
     }
